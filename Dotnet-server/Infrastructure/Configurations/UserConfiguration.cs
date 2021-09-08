@@ -8,10 +8,17 @@ namespace Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.ToTable(nameof(User)).HasKey(item => item.UserId);
+            builder.ToTable("user");
+
+            builder.HasIndex(p => p.Login).IsUnique();
             builder.Property(x => x.Login).IsRequired().HasMaxLength(20);
+            
+            builder.Property(x => x.Email).IsRequired();
+            
+            builder.OwnsOne(x => x.Password);
             builder.Property(x => x.Password).IsRequired();
-            builder.Property(x => x.CreationDate).IsRequired();
+
+            builder.Property(x => x.RegisterDate).IsRequired();
         }
     }
 }
