@@ -5,9 +5,9 @@ namespace Infrastructure
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly LinkDbContext _context;
+        private readonly LinkSoDbContext _context;
 
-        public UnitOfWork(LinkDbContext context)
+        public UnitOfWork(LinkSoDbContext context)
         {
             _context = context;
         }

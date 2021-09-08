@@ -17,7 +17,7 @@ namespace Infrastructure
         
         public static void AddDatabase(this IServiceCollection serviceCollection, string connectionString)
         {
-            serviceCollection.AddDbContext<LinkDbContext>(options =>
+            serviceCollection.AddDbContext<LinkSoDbContext>(options =>
                 ConfigureDatabase(options, connectionString));
         }
 

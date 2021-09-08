@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure
 {
-    public class LinkDbContext : DbContext
+    public class LinkSoDbContext : DbContext
     {
         public DbSet<Link> Links { get; set; }
         
         public DbSet<User> Users { get; set; }
         
-        public LinkDbContext(DbContextOptions<LinkDbContext> options) : base(options)
+        public LinkSoDbContext(DbContextOptions<LinkSoDbContext> options) : base(options)
         {
             
         }

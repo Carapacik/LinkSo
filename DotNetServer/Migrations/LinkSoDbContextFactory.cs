@@ -6,9 +6,9 @@ using Microsoft.Extensions.Configuration;
 
 namespace Migrations
 {
-    public class LinkDbContextFactory : IDesignTimeDbContextFactory<LinkDbContext>
+    public class LinkSoDbContextFactory : IDesignTimeDbContextFactory<LinkSoDbContext>
     {
-        public LinkDbContext CreateDbContext(string[] args)
+        public LinkSoDbContext CreateDbContext(string[] args)
         {
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
@@ -16,13 +16,13 @@ namespace Migrations
                 .AddEnvironmentVariables()
                 .Build();
 
-            var builder = new DbContextOptionsBuilder<LinkDbContext>();
+            var builder = new DbContextOptionsBuilder<LinkSoDbContext>();
 
             var connectionString = configuration.GetConnectionString("MigrationsConnection");
 
             builder.ConfigureDatabase(connectionString);
 
-            return new LinkDbContext(builder.Options);
+            return new LinkSoDbContext(builder.Options);
         }
     }
 }

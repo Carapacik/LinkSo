@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using Application.Exceptions;
-using Application.Tools;
 using Application.Tools.Hash;
 using Domain.Entities;
 using Domain.Repositories;
