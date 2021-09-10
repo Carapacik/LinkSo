@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Domain.Entities;
-using WebApi.DTOs.Link;
+using WebApi.DTOs.Responses;
 
 namespace WebApi.AutoMapper
 {
@@ -8,7 +8,7 @@ namespace WebApi.AutoMapper
     {
         public WebApiMappingProfile()
         {
-            CreateMap<Link, LinkInfoDTO>();
+            CreateMap<Link, LinkInfoResponseDTO>();
         }
     }
 }

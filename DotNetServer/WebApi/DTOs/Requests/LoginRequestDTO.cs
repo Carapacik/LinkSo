@@ -1,10 +1,8 @@
-﻿namespace WebApi.DTOs.User
+﻿namespace WebApi.DTOs.Requests
 {
-    public class RegisterDto
+    public class LoginRequestDTO
     {
         public string Login { get; init; }
-
-        public string Email { get; init; }
 
         public string Password { get; init; }
     }

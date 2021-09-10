@@ -24,10 +24,10 @@ namespace Application.Services
             }
 
             if (link.LinkType == LinkType.Public)
-                return link.FullUrl;
+                return link.Target;
 
             var queryString = System.Web.HttpUtility.ParseQueryString(string.Empty);
-            queryString.Add("key", link.ShortUrl);
+            queryString.Add("key", link.Key);
 
             // TODO: добавить адрес фронта
             return Path.Combine("frontAddr", "password", queryString.ToQueryString());

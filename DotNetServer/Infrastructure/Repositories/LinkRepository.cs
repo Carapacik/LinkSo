@@ -14,23 +14,34 @@ namespace Infrastructure.Repositories
             _linkSoDbContext = linkSoDbContext;
         }
 
-        public async Task<Link> AddLink(string shortUrl, string fullUrl, LinkType linkType, Password password = null)
+        public async Task<Link> AddLink(string key, string target, LinkType linkType, int authorId,
+            Password password)
         {
             var newLink = new Link
             {
-                ShortUrl = shortUrl,
-                FullUrl = fullUrl,
+                Key = key,
+                Target = target,
                 LinkType = linkType,
-                Password = password
+                Password = password,
+                UserId = authorId == 0 ? null : authorId
             };
 
             await _linkSoDbContext.Links.AddAsync(newLink);
             return newLink;
         }
 
-        public async Task<Link> GetLink(string shortUrl)
+        public async Task<Link> GetLink(string key)
         {
-            return await _linkSoDbContext.Links.FirstOrDefaultAsync(x => x.ShortUrl == shortUrl);
+            return await _linkSoDbContext.Links.FirstOrDefaultAsync(x => x.Key == key);
+        }
+
+        public async Task DeleteLink(string key)
+        {
+            var link = await _linkSoDbContext.Links.FirstOrDefaultAsync(x => x.Key == key);
+            if (link != null)
+            {
+                _linkSoDbContext.Links.Remove(link);
+            }
         }
     }
 }

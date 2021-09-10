@@ -5,8 +5,10 @@ namespace Domain.Repositories
 {
     public interface ILinkRepository
     {
-        Task<Link> AddLink(string shortUrl, string fullUrl, LinkType linkType, Password password = null);
+        Task<Link> AddLink(string key, string target, LinkType linkType, int authorId, Password password);
 
-        Task<Link> GetLink(string shortUrl);
+        Task<Link> GetLink(string key);
+
+        Task DeleteLink(string key);
     }
 }

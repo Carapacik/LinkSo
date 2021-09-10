@@ -1,9 +1,12 @@
 ﻿using System.Threading.Tasks;
 using Application.Services;
+using Application.Tools.Permissions;
 using AutoMapper;
+using Domain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using WebApi.DTOs.Link;
+using WebApi.DTOs.Requests;
+using WebApi.DTOs.Responses;
 
 namespace WebApi.Controllers
 {   
@@ -11,7 +14,7 @@ namespace WebApi.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [Produces("application/json")]
-    public class LinkManagerController
+    public class LinkManagerController : ControllerBase
     {
         private readonly LinkManagerService _linkManagerService;
         private readonly IMapper _mapper;
@@ -22,13 +25,21 @@ namespace WebApi.Controllers
             _mapper = mapper;
         }
 
-        [HttpPost]
-        public async Task<ActionResult<LinkInfoDTO>> CreateLink([FromBody]LinkCreateDTO linkCreateDTO)
+        [HttpPost("create")]
+        [AllowAnonymous]
+        public async Task<ActionResult<LinkInfoResponseDTO>> CreateLink([FromBody]LinkCreateRequestDTO linkCreateRequestDto)
         {
-            var createdLink = await _linkManagerService.CreateLink(linkCreateDTO.ShortUrl, linkCreateDTO.FullUrl,
-                linkCreateDTO.LinkType, linkCreateDTO.Password);
+            var createdLink = await _linkManagerService.CreateLink(linkCreateRequestDto.Target,
+                linkCreateRequestDto.LinkType, HttpContext.User.GetClaims(), linkCreateRequestDto.Password);
 
-            return _mapper.Map<LinkInfoDTO>(createdLink);
+            return _mapper.Map<LinkInfoResponseDTO>(createdLink);
+        }
+        
+        [HttpDelete("delete")]
+        public async Task<IActionResult> DeleteLink([FromQuery]string key)
+        {
+            await _linkManagerService.DeleteLink(key, HttpContext.User.GetClaims());
+            return Ok();
         }
     }
 }

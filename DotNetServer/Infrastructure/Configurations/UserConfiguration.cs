@@ -10,13 +10,17 @@ namespace Infrastructure.Configurations
         {
             builder.ToTable("user");
 
+            builder.OwnsOne(x => x.Password, password =>
+            {
+                password.Property(x => x.PasswordHash).HasColumnName("password_hash");
+                password.Property(x => x.PasswordSalt).HasColumnName("password_salt");
+            });
+
             builder.HasIndex(p => p.Login).IsUnique();
             builder.Property(x => x.Login).IsRequired().HasMaxLength(20);
             
             builder.Property(x => x.Email).IsRequired();
             
-            builder.OwnsOne(x => x.Password);
-            builder.Property(x => x.Password).IsRequired();
 
             builder.Property(x => x.RegisterDate).IsRequired();
         }

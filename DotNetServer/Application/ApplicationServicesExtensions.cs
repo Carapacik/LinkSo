@@ -1,5 +1,7 @@
 ﻿using System.Text;
 using Application.Services;
+using Application.Tools;
+using Application.Tools.Jwt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -37,7 +39,13 @@ namespace Application
         
         public static void AddApplicationDependencies(this IServiceCollection services)
         {
+            services.AddScoped<LinkGenerator>();
+            services.AddScoped<JwtHandler>();
+            
+            services.AddScoped<UserService>();
+            services.AddScoped<LinkManagerService>();
             services.AddScoped<RedirectService>();
+            services.AddScoped<UserService>();
         }
     }
 }

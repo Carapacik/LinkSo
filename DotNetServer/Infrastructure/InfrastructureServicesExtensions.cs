@@ -25,7 +25,7 @@ namespace Infrastructure
         {
             dbOptions.UseNpgsql(connectionString, b =>
             {
-                b.MigrationsAssembly("Recipes.Migrations");
+                b.MigrationsAssembly("Migrations");
                 b.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
             }).UseSnakeCaseNamingConvention();
         }

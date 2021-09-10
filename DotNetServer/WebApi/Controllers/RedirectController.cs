@@ -17,10 +17,9 @@ namespace WebApi.Controllers
         }
         
         [HttpGet]
-        public async Task<ActionResult<string>> DoRedirect(string key)
+        public async Task<ActionResult<string>> ProcessRedirect(string key)
         {
-            var link = await _redirectService.GetLink(key);
-            return Redirect(link);
+            return await _redirectService.GetLink(key);
         }
     }
 }
