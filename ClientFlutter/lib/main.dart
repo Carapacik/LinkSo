@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-
-import 'src/app.dart';
-import 'src/settings/settings_controller.dart';
-import 'src/settings/settings_service.dart';
+import 'package:get/get.dart';
+import 'package:linkso/app.dart';
+import 'package:linkso/controllers/menu_controller.dart';
 
 void main() async {
-  final settingsController = SettingsController(SettingsService());
-  await settingsController.loadSettings();
-  runApp(MyApp(settingsController: settingsController));
+  Get.put(MenuController());
+  runApp(const App());
 }

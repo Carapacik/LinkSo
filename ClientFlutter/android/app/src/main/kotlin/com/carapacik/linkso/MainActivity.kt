@@ -1,4 +1,4 @@
-package com.example.linksosu
+package com.carapacik.linkso
 
 import io.flutter.embedding.android.FlutterActivity
 

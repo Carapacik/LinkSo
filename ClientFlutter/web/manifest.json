@@ -1,11 +1,11 @@
 {
-    "name": "linksosu",
-    "short_name": "linksosu",
+    "name": "linkso",
+    "short_name": "linkso",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Url shorter",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
