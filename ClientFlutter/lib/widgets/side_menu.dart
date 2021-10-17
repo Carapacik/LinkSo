@@ -40,21 +40,22 @@ class SideMenu extends StatelessWidget {
           Column(
             mainAxisSize: MainAxisSize.min,
             children: sideMenuItems
-                .map((name) => SideMenuItem(
-                      itemName: name.toString() == authenticationPageRoute ? "Log out" : name.toString(),
-                      onTap: () {
-                        print("generate");
-                        if (name == authenticationPageRoute) {
-                          // TODO: go to auth page
-                        }
+                .map(
+                  (name) => SideMenuItem(
+                    itemName: name.toString() == authenticationPageRoute ? "Log out" : name.toString(),
+                    onTap: () {
+                      if (name == authenticationPageRoute) {
+                        // TODO: go to auth page
+                      }
 
-                        if (!menuController.isActive(name.toString())) {
-                          menuController.changeActiveItemTo(name.toString());
-                          if (ResponsiveWidget.isSmallScreen(context)) Get.back();
-                          // TODO: go to "name" route
-                        }
-                      },
-                    ))
+                      if (!menuController.isActive(name.toString())) {
+                        menuController.changeActiveItemTo(name.toString());
+                        if (ResponsiveWidget.isSmallScreen(context)) Get.back();
+                        navigationController.navigateTo(name.toString());
+                      }
+                    },
+                  ),
+                )
                 .toList(),
           ),
         ],

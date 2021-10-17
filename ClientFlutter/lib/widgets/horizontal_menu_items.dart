@@ -38,9 +38,7 @@ class HorizontalMenuItem extends StatelessWidget {
                   color: AppColors.dark,
                 ),
               ),
-              SizedBox(
-                width: _width / 80,
-              ),
+              SizedBox(width: _width / 80),
               Padding(
                 padding: const EdgeInsets.all(16),
                 child: menuController.returnIconFor(itemName),

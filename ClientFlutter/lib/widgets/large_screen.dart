@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:linkso/helpers/local_navigator.dart';
 
 import 'side_menu.dart';
 
@@ -12,11 +13,11 @@ class LargeScreen extends StatelessWidget {
         const Expanded(child: SideMenu()),
         Expanded(
           flex: 5,
-          child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 16),
-            color: Colors.blue,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: localNavigator(),
           ),
-        )
+        ),
       ],
     );
   }

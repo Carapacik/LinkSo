@@ -8,6 +8,7 @@ class MenuController extends GetxController {
   static MenuController instance = Get.find();
   RxString activeItem = overviewPageRoute.obs;
   RxString hoverItem = "".obs;
+  RxBool isDarkMode = false.obs;
 
   void changeActiveItemTo(String itemName) {
     activeItem.value = itemName;
@@ -15,6 +16,12 @@ class MenuController extends GetxController {
 
   void onHover(String itemName) {
     if (!isActive(itemName)) hoverItem.value = itemName;
+  }
+
+  void changeTheme(bool state) {
+    final _themeMode = state ? ThemeMode.dark : ThemeMode.light;
+    isDarkMode.value = !state;
+    Get.changeThemeMode(_themeMode);
   }
 
   bool isActive(String itemName) => activeItem.value == itemName;
