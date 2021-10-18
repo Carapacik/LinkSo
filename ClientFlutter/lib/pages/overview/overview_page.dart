@@ -7,6 +7,7 @@ import 'package:linkso/pages/overview/widgets/overview_cards_medium.dart';
 import 'package:linkso/pages/overview/widgets/overview_cards_small.dart';
 import 'package:linkso/pages/overview/widgets/revenue_section_large.dart';
 import 'package:linkso/pages/overview/widgets/revenue_section_small.dart';
+import 'package:linkso/pages/overview/widgets/table.dart';
 import 'package:linkso/widgets/custom_text.dart';
 
 class OverviewPAge extends StatelessWidget {
@@ -40,7 +41,8 @@ class OverviewPAge extends StatelessWidget {
                   const OverviewCardsLargeScreen()
               else
                 const OverviewCardsSmallScreen(),
-              if (!ResponsiveWidget.isSmallScreen(context)) const RevenueLarge() else const RevenueSmall()
+              if (!ResponsiveWidget.isSmallScreen(context)) const RevenueLarge() else const RevenueSmall(),
+              const DataTable2SimpleDemo(),
             ],
           ),
         ),

@@ -3,6 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:linkso/layout.dart';
+import 'package:linkso/pages/auth/auth_page.dart';
 import 'package:linkso/resources/theme.dart';
 
 class App extends StatelessWidget {
@@ -24,7 +25,7 @@ class App extends StatelessWidget {
         Locale('en', ''),
         Locale('ru', ''),
       ],
-      home: SiteLayout(),
+      home: AuthPage(),
     );
   }
 }

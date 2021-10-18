@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:linkso/controllers.dart';
 import 'package:linkso/helpers/responsiveness.dart';
+import 'package:linkso/pages/auth/auth_page.dart';
 import 'package:linkso/resources/palette.dart';
 import 'package:linkso/routing.dart';
 import 'package:linkso/widgets/custom_text.dart';
@@ -45,7 +46,7 @@ class SideMenu extends StatelessWidget {
                     itemName: name.toString() == authenticationPageRoute ? "Log out" : name.toString(),
                     onTap: () {
                       if (name == authenticationPageRoute) {
-                        // TODO: go to auth page
+                        Get.offAll(() => AuthPage());
                       }
 
                       if (!menuController.isActive(name.toString())) {

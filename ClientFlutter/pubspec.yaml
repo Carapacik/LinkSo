@@ -9,8 +9,7 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
-  #charts_flutter: ^0.11.0 # не обновлено для  flutter 2.5
-  charts_flutter:
+  charts_flutter: #^0.11.0 # не обновлено для flutter 2.5
     git:
       url: https://github.com/google/charts
       path: charts_flutter

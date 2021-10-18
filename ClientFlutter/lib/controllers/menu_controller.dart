@@ -32,8 +32,6 @@ class MenuController extends GetxController {
     switch (itemName) {
       case overviewPageRoute:
         return _customIcon(Icons.trending_up, itemName);
-      case driversPageRoute:
-        return _customIcon(Icons.drive_eta, itemName);
       case clientsPageRoute:
         return _customIcon(Icons.people_alt_outlined, itemName);
       case authenticationPageRoute:
