@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:linkso/pages/overview/widgets/bar_chart.dart';
 import 'package:linkso/pages/overview/widgets/revenue_info.dart';
 import 'package:linkso/resources/palette.dart';
 import 'package:linkso/widgets/custom_text.dart';
@@ -39,8 +40,9 @@ class RevenueSmall extends StatelessWidget {
                 Container(
                   width: 600,
                   height: 200,
-                  // child: SimpleBarChart.withSampleData(),
-                  child: Text("chart flutter"),
+                  child: SimpleBarChart.withSampleData(),
+
+                  // child: Text("Chart flutter after update package"),
                 ),
               ],
             ),

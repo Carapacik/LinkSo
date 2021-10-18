@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
-import 'package:linkso/l10n/l10n.dart';
 import 'package:linkso/layout.dart';
 import 'package:linkso/resources/theme.dart';
 
@@ -21,7 +20,10 @@ class App extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: L10n.all,
+      supportedLocales: const [
+        Locale('en', ''),
+        Locale('ru', ''),
+      ],
       home: SiteLayout(),
     );
   }

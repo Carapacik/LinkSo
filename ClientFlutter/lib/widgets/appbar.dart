@@ -11,11 +11,11 @@ AppBar topNav(BuildContext context, GlobalKey<ScaffoldState> key) {
   Locale _getLocale(Locale l) {
     switch (l.languageCode) {
       case 'en':
-        return Locale('ru', 'RU');
+        return const Locale('ru', 'RU');
 
       case 'ru':
       default:
-        return Locale('en', '');
+        return const Locale('en', '');
     }
   }
 
@@ -51,10 +51,11 @@ AppBar topNav(BuildContext context, GlobalKey<ScaffoldState> key) {
         ),
       ),
       IconButton(
-          onPressed: () {
-            Get.updateLocale(_getLocale(locale));
-          },
-          icon: const Icon(Icons.language)),
+        onPressed: () {
+          Get.updateLocale(_getLocale(locale));
+        },
+        icon: const Icon(Icons.language),
+      ),
       Stack(
         children: [
           IconButton(
