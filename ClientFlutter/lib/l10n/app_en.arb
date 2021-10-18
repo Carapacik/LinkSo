@@ -1,0 +1,6 @@
+{
+  "appTitle": "linkSO",
+  "@appTitle": {
+    "description": "The title of the application"
+  }
+}

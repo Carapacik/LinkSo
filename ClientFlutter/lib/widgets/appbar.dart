@@ -1,11 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:linkso/controllers.dart';
 import 'package:linkso/helpers/responsiveness.dart';
 import 'package:linkso/resources/palette.dart';
-import 'package:linkso/resources/theme.dart';
 
 AppBar topNav(BuildContext context, GlobalKey<ScaffoldState> key) {
+  final locale = Localizations.localeOf(context);
+
+  Locale _getLocale(Locale l) {
+    switch (l.languageCode) {
+      case 'en':
+        return Locale('ru', 'RU');
+
+      case 'ru':
+      default:
+        return Locale('en', '');
+    }
+  }
+
   return AppBar(
     backgroundColor: Colors.transparent,
     leading: !ResponsiveWidget.isSmallScreen(context)
@@ -27,7 +40,7 @@ AppBar topNav(BuildContext context, GlobalKey<ScaffoldState> key) {
             },
           ),
     elevation: 0,
-    title: Text("LinkSO"),
+    title: Text(AppLocalizations.of(context)!.appTitle),
     actions: [
       Obx(
         () => Switch(
@@ -38,18 +51,15 @@ AppBar topNav(BuildContext context, GlobalKey<ScaffoldState> key) {
         ),
       ),
       IconButton(
-        onPressed: () {
-          Get.changeTheme(Get.isDarkMode ? lightTheme : darkTheme);
-        },
-        icon: Icon(Icons.settings),
-      ),
+          onPressed: () {
+            Get.updateLocale(_getLocale(locale));
+          },
+          icon: const Icon(Icons.language)),
       Stack(
         children: [
           IconButton(
             onPressed: () {},
-            icon: Icon(
-              Icons.notifications,
-            ),
+            icon: const Icon(Icons.notifications),
           ),
           Positioned(
             top: 7,

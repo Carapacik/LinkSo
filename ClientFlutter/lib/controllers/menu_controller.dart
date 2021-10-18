@@ -20,8 +20,8 @@ class MenuController extends GetxController {
 
   void changeTheme(bool state) {
     final _themeMode = state ? ThemeMode.dark : ThemeMode.light;
-    isDarkMode.value = !state;
     Get.changeThemeMode(_themeMode);
+    isDarkMode.value = state;
   }
 
   bool isActive(String itemName) => activeItem.value == itemName;

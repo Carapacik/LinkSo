@@ -20,6 +20,7 @@ dependencies:
   get: ^4.3.8
   glassmorphism: ^3.0.0
   google_fonts: ^2.1.0
+  intl: ^0.17.0
   json_annotation: ^4.3.0
   retrofit: ^2.0.1
   url_launcher: ^6.0.12
