@@ -8,20 +8,9 @@ class MenuController extends GetxController {
   static MenuController instance = Get.find();
   RxString activeItem = overviewPageRoute.obs;
   RxString hoverItem = "".obs;
-  RxBool isDarkMode = false.obs;
-
-  void changeActiveItemTo(String itemName) {
-    activeItem.value = itemName;
-  }
 
   void onHover(String itemName) {
     if (!isActive(itemName)) hoverItem.value = itemName;
-  }
-
-  void changeTheme(bool state) {
-    final _themeMode = state ? ThemeMode.dark : ThemeMode.light;
-    Get.changeThemeMode(_themeMode);
-    isDarkMode.value = state;
   }
 
   bool isActive(String itemName) => activeItem.value == itemName;
@@ -30,11 +19,11 @@ class MenuController extends GetxController {
 
   Widget returnIconFor(String itemName) {
     switch (itemName) {
-      case overviewPageRoute:
+      case overviewPageDisplayName:
         return _customIcon(Icons.trending_up, itemName);
-      case clientsPageRoute:
+      case clientsPageDisplayName:
         return _customIcon(Icons.people_alt_outlined, itemName);
-      case authenticationPageRoute:
+      case authenticationPageDisplayName:
         return _customIcon(Icons.exit_to_app, itemName);
       default:
         return _customIcon(Icons.exit_to_app, itemName);

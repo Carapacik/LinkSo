@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:linkso/controllers.dart';
 import 'package:linkso/helpers/responsiveness.dart';
-import 'package:linkso/pages/auth/auth_page.dart';
 import 'package:linkso/resources/palette.dart';
 import 'package:linkso/routing.dart';
 import 'package:linkso/widgets/custom_text.dart';
@@ -42,17 +41,18 @@ class SideMenu extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: sideMenuItems
                 .map(
-                  (name) => SideMenuItem(
-                    itemName: name.toString() == authenticationPageRoute ? "Log out" : name.toString(),
+                  (item) => SideMenuItem(
+                    itemName: item.name,
                     onTap: () {
-                      if (name == authenticationPageRoute) {
-                        Get.offAll(() => AuthPage());
+                      if (item.route == authenticationPageRoute) {
+                        menuController.activeItem.value = overviewPageDisplayName;
+                        Get.offAllNamed(authenticationPageRoute);
                       }
 
-                      if (!menuController.isActive(name.toString())) {
-                        menuController.changeActiveItemTo(name.toString());
+                      if (!menuController.isActive(item.name)) {
+                        menuController.activeItem.value = item.name;
                         if (ResponsiveWidget.isSmallScreen(context)) Get.back();
-                        navigationController.navigateTo(name.toString());
+                        navigationController.navigateTo(item.route);
                       }
                     },
                   ),

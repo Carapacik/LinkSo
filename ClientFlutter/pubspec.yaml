@@ -21,6 +21,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   get: ^4.3.8
+  get_storage: ^2.0.3
   glassmorphism: ^3.0.0
   google_fonts: ^2.1.0
   intl: ^0.17.0

@@ -12,7 +12,6 @@ AppBar topNav(BuildContext context, GlobalKey<ScaffoldState> key) {
     switch (l.languageCode) {
       case 'en':
         return const Locale('ru', 'RU');
-
       case 'ru':
       default:
         return const Locale('en', '');
@@ -42,13 +41,11 @@ AppBar topNav(BuildContext context, GlobalKey<ScaffoldState> key) {
     elevation: 0,
     title: Text(AppLocalizations.of(context)!.appTitle),
     actions: [
-      Obx(
-        () => Switch(
-          value: menuController.isDarkMode.value,
-          onChanged: (state) {
-            menuController.changeTheme(state);
-          },
-        ),
+      IconButton(
+        onPressed: () {
+          themeController.switchTheme();
+        },
+        icon: const Icon(Icons.nightlight_round),
       ),
       IconButton(
         onPressed: () {

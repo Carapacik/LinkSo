@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:linkso/layout.dart';
 import 'package:linkso/resources/palette.dart';
+import 'package:linkso/routing.dart';
 import 'package:linkso/widgets/custom_text.dart';
 
 class AuthPage extends StatelessWidget {
@@ -75,7 +75,7 @@ class AuthPage extends StatelessWidget {
               const SizedBox(height: 15),
               InkWell(
                 onTap: () {
-                  Get.offAll(() => SiteLayout());
+                  Get.offAllNamed(rootRoute);
                 },
                 child: Container(
                   decoration: BoxDecoration(color: AppColors.active, borderRadius: BorderRadius.circular(20)),
