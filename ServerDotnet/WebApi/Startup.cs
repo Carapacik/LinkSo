@@ -32,7 +32,6 @@ namespace WebApi
             // Application
             services.AddAuthorization(Configuration.GetSection(JwtSettings.Name));
             services.AddApplicationDependencies();
-            services.AddCors(options => options.AddDefaultPolicy(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
 
             // Infrastructure
             services.AddDatabase(Configuration.GetConnectionString("DefaultConnection"));
