@@ -1,8 +1,8 @@
-
 import 'package:dio/dio.dart';
 import 'package:linkso/api/remote_data_source.dart';
 import 'package:linkso/api/rest_client.dart';
 import 'package:linkso/model/link_create.dart';
+import 'package:linkso/model/link_info.dart';
 
 class RemoteDataSourceImplementation implements RemoteDataSource {
   final _dio = Dio(
@@ -25,7 +25,7 @@ class RemoteDataSourceImplementation implements RemoteDataSource {
   }
 
   @override
-  Future<LinkCreate> createLink(LinkCreate link) {
+  Future<LinkInfo> createLink(LinkCreate link) {
     return _restClient.createLink(link);
   }
 }

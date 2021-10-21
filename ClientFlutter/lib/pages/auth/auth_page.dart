@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:linkso/api/google_sign_in.dart';
 import 'package:linkso/resources/palette.dart';
 import 'package:linkso/routing.dart';
 import 'package:linkso/widgets/custom_text.dart';
@@ -88,6 +89,19 @@ class AuthPage extends StatelessWidget {
                   ),
                 ),
               ),
+              Row(
+                children: [
+                  ElevatedButton(
+                    onPressed: signIn,
+                    child: Text("Google"),
+                  ),
+                  const SizedBox(width: 10),
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: Text("Facebook"),
+                  ),
+                ],
+              ),
               const SizedBox(height: 15),
               RichText(
                 text: const TextSpan(
@@ -102,5 +116,11 @@ class AuthPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future signIn() async {
+    final user = await GoogleSignInApi.login();
+    print(user?.email);
+    Get.offAllNamed(rootRoute);
   }
 }

@@ -9,6 +9,8 @@ const clientsPageRoute = "/clients";
 const authenticationPageDisplayName = "Log out";
 const authenticationPageRoute = "/auth";
 
+const homePageRoute = "/home";
+
 class MenuItem {
   final String name;
   final String route;

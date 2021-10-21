@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:linkso/api/google_sign_in.dart';
 import 'package:linkso/api/remote_data_source_implementation.dart';
 import 'package:linkso/controllers.dart';
 import 'package:linkso/helpers/responsiveness.dart';
 import 'package:linkso/model/link_create.dart';
+import 'package:linkso/routing.dart';
 import 'package:linkso/widgets/custom_text.dart';
 
 class ClientsPage extends StatelessWidget {
@@ -34,6 +37,14 @@ class ClientsPage extends StatelessWidget {
             print(createLink.toString());
           },
           child: const Text("Get link"),
+        ),
+        const SizedBox(height: 30),
+        ElevatedButton(
+          onPressed: () async {
+            GoogleSignInApi.logout();
+            Get.offAllNamed(authenticationPageRoute);
+          },
+          child: const Text("Logout"),
         ),
       ],
     );

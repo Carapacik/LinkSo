@@ -1,5 +1,6 @@
 import 'package:linkso/model/link_create.dart';
+import 'package:linkso/model/link_info.dart';
 
 abstract class RemoteDataSource {
-  Future<LinkCreate> createLink(LinkCreate link);
+  Future<LinkInfo> createLink(LinkCreate link);
 }

@@ -6,6 +6,7 @@ import 'package:linkso/controllers.dart';
 import 'package:linkso/layout.dart';
 import 'package:linkso/pages/auth/auth_page.dart';
 import 'package:linkso/pages/error/not_found_page.dart';
+import 'package:linkso/pages/new_home/home_page.dart';
 import 'package:linkso/resources/theme.dart';
 import 'package:linkso/routing.dart';
 
@@ -16,7 +17,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: authenticationPageRoute,
+      initialRoute: homePageRoute,
       unknownRoute: GetPage(
         name: "/not-found",
         page: () => const NotFoundPage(),
@@ -24,6 +25,7 @@ class App extends StatelessWidget {
       getPages: [
         GetPage(name: rootRoute, page: () => SiteLayout()),
         GetPage(name: authenticationPageRoute, page: () => const AuthPage()),
+        GetPage(name: homePageRoute, page: () => HomePage()),
       ],
       theme: lightTheme,
       darkTheme: darkTheme,

@@ -7,26 +7,24 @@ part of 'rest_client.dart';
 // **************************************************************************
 
 class _RestClient implements RestClient {
-  _RestClient(this._dio, {this.baseUrl}) {
-    baseUrl ??= 'http://localhost:5000/api/';
-  }
+  _RestClient(this._dio, {this.baseUrl});
 
   final Dio _dio;
 
   String? baseUrl;
 
   @override
-  Future<LinkCreate> createLink(link) async {
+  Future<LinkInfo> createLink(link) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(link.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<LinkCreate>(
+    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<LinkInfo>(
         Options(method: 'POST', headers: _headers, extra: _extra)
             .compose(_dio.options, 'linkmanager/create', queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = LinkCreate.fromJson(_result.data!);
+    final value = LinkInfo.fromJson(_result.data!);
     return value;
   }
 
