@@ -28,40 +28,40 @@ AppBar topNav(BuildContext context, GlobalKey<ScaffoldState> key) {
             },
           ),
     actions: [
-      // IconButton(
-      //   onPressed: () {
-      //     themeController.switchTheme();
-      //   },
-      //   icon: const Icon(Icons.nightlight_round),
-      // ),
+      IconButton(
+        onPressed: () {
+          themeController.switchTheme();
+        },
+        icon: const Icon(Icons.nightlight_round),
+      ),
       // IconButton(
       //   onPressed: () {
       //     Get.updateLocale(_getLocale(locale));
       //   },
       //   icon: const Icon(Icons.language),
       // ),
-      Stack(
-        children: [
-          Center(
-            child: IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.notifications),
-            ),
-          ),
-          Positioned(
-            top: 12,
-            right: 7,
-            child: Container(
-              width: 10,
-              height: 10,
-              decoration: const BoxDecoration(
-                color: Colors.red,
-                shape: BoxShape.circle,
-              ),
-            ),
-          )
-        ],
-      ),
+      // Stack(
+      //   children: [
+      //     Center(
+      //       child: IconButton(
+      //         onPressed: () {},
+      //         icon: const Icon(Icons.notifications),
+      //       ),
+      //     ),
+      //     Positioned(
+      //       top: 12,
+      //       right: 7,
+      //       child: Container(
+      //         width: 10,
+      //         height: 10,
+      //         decoration: const BoxDecoration(
+      //           color: Colors.red,
+      //           shape: BoxShape.circle,
+      //         ),
+      //       ),
+      //     )
+      //   ],
+      // ),
     ],
   );
 }

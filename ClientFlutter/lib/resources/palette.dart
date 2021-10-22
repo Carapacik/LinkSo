@@ -20,4 +20,25 @@ class AppColors {
   static const g7 = Color(0xFF6A568B);
   static const g8 = Color(0xFF6C6475);
 
+  static const lightGradient = LinearGradient(
+    begin: Alignment.topRight,
+    end: Alignment.bottomLeft,
+    colors: [
+      g1,
+      g2,
+      g3,
+      g4,
+    ],
+  );
+
+  static const darkGradient = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [
+      g5,
+      g6,
+      g7,
+      g8,
+    ],
+  );
 }

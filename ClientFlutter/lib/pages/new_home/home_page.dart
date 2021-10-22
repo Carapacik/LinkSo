@@ -3,10 +3,12 @@ import 'package:glassmorphism/glassmorphism.dart';
 import 'package:linkso/api/remote_data_source_implementation.dart';
 import 'package:linkso/model/link_create.dart';
 import 'package:linkso/model/link_info.dart';
+import 'package:linkso/resources/palette.dart';
 import 'package:linkso/resources/theme.dart';
+import 'package:linkso/widgets/appbar.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -17,25 +19,18 @@ class _HomePageState extends State<HomePage> {
   String? targetLink;
   final linkController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
+      extendBodyBehindAppBar: true,
+      appBar: topNav(context, _scaffoldKey),
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-            colors: [
-              Color(0xff701ebd),
-              Color(0xFF873bcc),
-              Color(0xFFfe4a97),
-              Color(0xFFe17763),
-            ],
-          ),
-        ),
+        decoration: const BoxDecoration(gradient: AppColors.lightGradient), // тут брать из темы
         child: Center(
           child: GlassmorphicContainer(
             width: 700,
