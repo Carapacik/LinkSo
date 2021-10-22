@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:linkso/api/facebook_sign_in.dart';
 import 'package:linkso/api/google_sign_in.dart';
 import 'package:linkso/api/remote_data_source_implementation.dart';
 import 'package:linkso/controllers.dart';
@@ -44,9 +45,26 @@ class ClientsPage extends StatelessWidget {
             GoogleSignInApi.logout();
             Get.offAllNamed(authenticationPageRoute);
           },
-          child: const Text("Logout"),
+          child: const Text("Logout Google"),
+        ),
+        const SizedBox(height: 30),
+        ElevatedButton(
+          onPressed: () async {
+            FacebookSignInApi().logout();
+            Get.offAllNamed(authenticationPageRoute);
+          },
+          child: const Text("Logout Facebook"),
+        ),
+        const SizedBox(height: 30),
+        ElevatedButton(
+          onPressed: ()  {
+
+            Get.offAllNamed(homePageRoute);
+          },
+          child: const Text("Short link"),
         ),
       ],
+
     );
   }
 }

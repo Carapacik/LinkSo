@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:linkso/app.dart';
+import 'package:linkso/controllers/home_controller.dart';
 import 'package:linkso/controllers/menu_controller.dart';
 import 'package:linkso/controllers/navigation_controller.dart';
 import 'package:linkso/controllers/theme_controller.dart';
@@ -13,5 +14,6 @@ void main() async {
   Get.put(MenuController());
   Get.put(NavigationController());
   Get.put(ThemeController());
+  Get.put(HomeController());
   runApp(const App());
 }

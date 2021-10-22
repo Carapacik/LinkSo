@@ -17,7 +17,7 @@ class RemoteDataSourceImplementation implements RemoteDataSource {
   RemoteDataSourceImplementation() {
     _restClient = RestClient(_dio, baseUrl: "http://localhost:5000/api/");
 
-    // для отключение сертификата
+    // для отключение SSL сертификата
     // (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (HttpClient client) {
     //   client.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
     //   return client;

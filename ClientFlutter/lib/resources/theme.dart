@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:linkso/resources/palette.dart';
 
 final _lightTextTheme = GoogleFonts.montserratTextTheme().apply(bodyColor: AppColors.darkText);
-final _darkTextTheme = GoogleFonts.montserratTextTheme().apply(bodyColor: AppColors.lightText);
+final _darkTextTheme = GoogleFonts.montserratTextTheme().apply(bodyColor: Colors.white);
 
 extension TextThemeExt on TextTheme {
   TextStyle get b24 => headline2!.copyWith(
@@ -22,6 +22,7 @@ final ThemeData lightTheme = ThemeData(
     },
   ),
   iconTheme: const IconThemeData(color: AppColors.darkText),
+  colorScheme: _lightColorScheme,
 );
 
 final ThemeData darkTheme = ThemeData(
@@ -32,5 +33,21 @@ final ThemeData darkTheme = ThemeData(
       TargetPlatform.android: FadeUpwardsPageTransitionsBuilder()
     },
   ),
-  iconTheme: const IconThemeData(color: AppColors.lightText),
+  iconTheme: const IconThemeData(color: Colors.white),
+);
+
+final ColorScheme _lightColorScheme = ColorScheme(
+  primary: AppColors.darkText,
+  primaryVariant: AppColors.primaryVariant,
+  secondary: Color(0xFF03DAC5),
+  secondaryVariant: Color(0xFF0AE1C5),
+  background: Color(0xFFE6EBEB),
+  surface: Color(0xFFFAFBFB),
+  onBackground: Colors.white,
+  error: Colors.red,
+  onError: Colors.white,
+  onPrimary: Colors.white,
+  onSecondary: Color(0xFF322942),
+  onSurface: Color(0xFF241E30),
+  brightness: Brightness.light,
 );

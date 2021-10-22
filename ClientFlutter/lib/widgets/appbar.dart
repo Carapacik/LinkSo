@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:linkso/controllers.dart';
 import 'package:linkso/helpers/responsiveness.dart';
 
 AppBar topNav(BuildContext context, GlobalKey<ScaffoldState> key) {
