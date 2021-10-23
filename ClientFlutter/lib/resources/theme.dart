@@ -22,7 +22,8 @@ final ThemeData lightTheme = ThemeData(
     },
   ),
   iconTheme: const IconThemeData(color: AppColors.darkText),
-  colorScheme: _lightColorScheme,
+  buttonTheme: const ButtonThemeData(buttonColor: Colors.white),
+  // colorScheme: _lightColorScheme,
 );
 
 final ThemeData darkTheme = ThemeData(
@@ -34,9 +35,11 @@ final ThemeData darkTheme = ThemeData(
     },
   ),
   iconTheme: const IconThemeData(color: Colors.white),
+  buttonTheme: const ButtonThemeData(buttonColor: AppColors.darkText),
+  // colorScheme: _darkColorScheme,
 );
 
-final ColorScheme _lightColorScheme = ColorScheme(
+const ColorScheme _lightColorScheme = ColorScheme(
   primary: AppColors.darkText,
   primaryVariant: AppColors.primaryVariant,
   secondary: Color(0xFF03DAC5),
@@ -50,4 +53,20 @@ final ColorScheme _lightColorScheme = ColorScheme(
   onSecondary: Color(0xFF322942),
   onSurface: Color(0xFF241E30),
   brightness: Brightness.light,
+);
+
+const ColorScheme _darkColorScheme = ColorScheme(
+  primary: AppColors.darkText,
+  primaryVariant: AppColors.primaryVariant,
+  secondary: Color(0xFF03DAC5),
+  secondaryVariant: Color(0xFF0AE1C5),
+  background: Color(0xFFE6EBEB),
+  surface: Color(0xFFFAFBFB),
+  onBackground: Colors.white,
+  error: Colors.red,
+  onError: Colors.white,
+  onPrimary: Colors.white,
+  onSecondary: Color(0xFF322942),
+  onSurface: Color(0xFF241E30),
+  brightness: Brightness.dark,
 );
