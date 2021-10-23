@@ -37,6 +37,8 @@ class SideMenu extends StatelessWidget {
             ),
           const SizedBox(height: 40),
           Divider(color: AppColors.lightGrey.withOpacity(0.1)),
+          Text("Home"),
+          Text("Links"),
           Column(
             mainAxisSize: MainAxisSize.min,
             children: sideMenuItems
@@ -59,6 +61,7 @@ class SideMenu extends StatelessWidget {
                 )
                 .toList(),
           ),
+          Text("Account settings"),
         ],
       ),
     );

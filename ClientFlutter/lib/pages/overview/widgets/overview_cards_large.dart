@@ -11,29 +11,29 @@ class OverviewCardsLargeScreen extends StatelessWidget {
     return Row(
       children: [
         InfoCard(
-          title: "Links count many words",
+          title: "Links",
           value: "7",
           onTap: () {},
           topColor: Colors.cyan,
         ),
         SizedBox(width: _width / 64),
         InfoCard(
-          title: "ooo",
-          value: "16",
+          title: "Redirect",
+          value: "70",
           onTap: () {},
           topColor: Colors.red,
         ),
         SizedBox(width: _width / 64),
         InfoCard(
-          title: "mmm",
-          value: "15",
+          title: "Stat1",
+          value: "1",
           onTap: () {},
           topColor: Colors.pink,
         ),
         SizedBox(width: _width / 64),
         InfoCard(
-          title: "aaa",
-          value: "3",
+          title: "Stat2",
+          value: "1",
           onTap: () {},
           topColor: Colors.orangeAccent,
         ),

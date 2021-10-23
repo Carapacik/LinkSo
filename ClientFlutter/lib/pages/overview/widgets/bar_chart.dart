@@ -29,15 +29,17 @@ class SimpleBarChart extends StatelessWidget {
     final data = [
       OrdinalSales('Today', 55),
       OrdinalSales('Yesterday', 25),
-      OrdinalSales('2 days', 100),
-      OrdinalSales('24 Jun', 75),
-      OrdinalSales('23 Jun', 15),
+      OrdinalSales('2 days', 10),
+      OrdinalSales('3 days', 65),
+      OrdinalSales('4 days', 44),
+      OrdinalSales('5 days', 33),
+      OrdinalSales('6 days', 1),
     ];
 
     return [
       charts.Series<OrdinalSales, String>(
         id: 'Sales',
-        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+        colorFn: (_, __) => charts.MaterialPalette.black,
         domainFn: (OrdinalSales sales, _) => sales.year,
         measureFn: (OrdinalSales sales, _) => sales.sales,
         data: data,

@@ -31,7 +31,7 @@ class RevenueLarge extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 const CustomText(
-                  text: "Revenue Chart",
+                  text: "Clicks",
                   size: 20,
                   weight: FontWeight.bold,
                   color: AppColors.lightGrey,
@@ -40,7 +40,6 @@ class RevenueLarge extends StatelessWidget {
                   width: 600,
                   height: 200,
                   child: SimpleBarChart.withSampleData(),
-                  // child: Text("Chart flutter after update package"),
                 ),
               ],
             ),
@@ -55,15 +54,15 @@ class RevenueLarge extends StatelessWidget {
               children: [
                 Row(
                   children: const [
-                    RevenueInfo(title: "today rev", amount: "23"),
-                    RevenueInfo(title: "last 7 days", amount: "150"),
+                    RevenueInfo(title: "Today", amount: "2"),
+                    RevenueInfo(title: "Last 7 days", amount: "150"),
                   ],
                 ),
                 const SizedBox(height: 30),
                 Row(
                   children: const [
-                    RevenueInfo(title: "last 30 days", amount: "1500"),
-                    RevenueInfo(title: "last 12 months", amount: "30 202"),
+                    RevenueInfo(title: "Last 30 days", amount: "1500"),
+                    RevenueInfo(title: "Last 12 months", amount: "30 202"),
                   ],
                 ),
               ],

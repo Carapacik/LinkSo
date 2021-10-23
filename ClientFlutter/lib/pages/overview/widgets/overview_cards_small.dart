@@ -12,29 +12,29 @@ class OverviewCardsSmallScreen extends StatelessWidget {
       child: Column(
         children: [
           InfoCardSmall(
-            title: "ooo",
-            value: "16",
+            title: "Links",
+            value: "7",
             onTap: () {},
             isActive: true,
           ),
           SizedBox(height: _width / 64),
           InfoCardSmall(
-            title: "ooo",
-            value: "16",
+            title: "Redirect",
+            value: "70",
             onTap: () {},
             isActive: true,
           ),
           SizedBox(height: _width / 64),
           InfoCardSmall(
-            title: "ooo",
-            value: "16",
+            title: "Stat1",
+            value: "1",
             onTap: () {},
             isActive: true,
           ),
           SizedBox(height: _width / 64),
           InfoCardSmall(
-            title: "ooo",
-            value: "16",
+            title: "Stat2",
+            value: "1",
             onTap: () {},
             isActive: true,
           ),

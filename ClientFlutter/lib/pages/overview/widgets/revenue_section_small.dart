@@ -32,7 +32,7 @@ class RevenueSmall extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 const CustomText(
-                  text: "Revenue Chart",
+                  text: "Clicks",
                   size: 20,
                   weight: FontWeight.bold,
                   color: AppColors.lightGrey,
@@ -41,8 +41,6 @@ class RevenueSmall extends StatelessWidget {
                   width: 600,
                   height: 200,
                   child: SimpleBarChart.withSampleData(),
-
-                  // child: Text("Chart flutter after update package"),
                 ),
               ],
             ),
@@ -60,7 +58,7 @@ class RevenueSmall extends StatelessWidget {
                 Row(
                   children: const [
                     RevenueInfo(
-                      title: "Today's revenue",
+                      title: "Today",
                       amount: "230",
                     ),
                     RevenueInfo(

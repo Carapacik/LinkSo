@@ -62,6 +62,9 @@ AppBar topNav(BuildContext context, GlobalKey<ScaffoldState> key) {
       //     )
       //   ],
       // ),
+
+
+      // Сделать тут Login и logout справа сверху
     ],
   );
 }
