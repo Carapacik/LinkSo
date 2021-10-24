@@ -8,9 +8,9 @@ Route generateRoute(RouteSettings settings) {
     case clientsPageRoute:
       return _getPageRoute(ClientsPage());
     case overviewPageRoute:
-      return _getPageRoute(OverviewPAge());
+      return _getPageRoute(OverviewPage());
     default:
-      return _getPageRoute(OverviewPAge());
+      return _getPageRoute(OverviewPage());
   }
 }
 

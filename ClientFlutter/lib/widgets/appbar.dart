@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:linkso/controllers.dart';
 import 'package:linkso/helpers/responsiveness.dart';
+import 'package:linkso/resources/palette.dart';
 
 AppBar topNav(BuildContext context, GlobalKey<ScaffoldState> key) {
   final locale = Localizations.localeOf(context);
@@ -20,7 +21,7 @@ AppBar topNav(BuildContext context, GlobalKey<ScaffoldState> key) {
     backgroundColor: Colors.transparent,
     elevation: 0,
     leading: !ResponsiveWidget.isSmallScreen(context)
-        ? const Center(child: Text("LinkSo"))
+        ? null
         : IconButton(
             icon: const Icon(Icons.menu),
             onPressed: () {
@@ -28,12 +29,23 @@ AppBar topNav(BuildContext context, GlobalKey<ScaffoldState> key) {
             },
           ),
     actions: [
-      IconButton(
-        onPressed: () {
-          themeController.switchTheme();
-        },
-        icon: const Icon(Icons.nightlight_round),
+      Obx(
+        () => IconButton(
+          onPressed: () {
+            themeController.switchTheme(context);
+          },
+          icon: themeController.isDarkMode.value
+              ? const Icon(
+                  Icons.light_mode,
+                  color: Colors.white,
+                )
+              : const Icon(
+                  Icons.dark_mode,
+                  color: AppColors.darkText,
+                ),
+        ),
       ),
+
       // IconButton(
       //   onPressed: () {
       //     Get.updateLocale(_getLocale(locale));
@@ -62,7 +74,6 @@ AppBar topNav(BuildContext context, GlobalKey<ScaffoldState> key) {
       //     )
       //   ],
       // ),
-
 
       // Сделать тут Login и logout справа сверху
     ],

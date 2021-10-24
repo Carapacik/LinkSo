@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:linkso/api/facebook_sign_in.dart';
 import 'package:linkso/api/google_sign_in.dart';
 import 'package:linkso/resources/palette.dart';
 import 'package:linkso/routing.dart';
@@ -97,14 +96,6 @@ class AuthPage extends StatelessWidget {
                     child: Text("Google"),
                   ),
                   const SizedBox(width: 10),
-                  ElevatedButton(
-                    onPressed: () {
-                      FacebookSignInApi().login();
-                      print(FacebookSignInApi().userData);
-                      Get.offAllNamed(rootRoute);
-                    },
-                    child: Text("Facebook"),
-                  ),
                 ],
               ),
               const SizedBox(height: 15),

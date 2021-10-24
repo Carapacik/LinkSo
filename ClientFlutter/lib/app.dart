@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
-import 'package:linkso/controllers.dart';
 import 'package:linkso/layout.dart';
 import 'package:linkso/pages/auth/auth_page.dart';
 import 'package:linkso/pages/error/not_found_page.dart';
@@ -29,7 +28,7 @@ class App extends StatelessWidget {
       ],
       theme: lightTheme,
       darkTheme: darkTheme,
-      themeMode: themeController.theme,
+      onGenerateTitle: (context) => AppLocalizations.of(context)!.appTitle,
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,

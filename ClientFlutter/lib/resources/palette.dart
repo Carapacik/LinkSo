@@ -30,7 +30,6 @@ class AppColors {
       g4,
     ],
   );
-
   static const darkGradient = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,

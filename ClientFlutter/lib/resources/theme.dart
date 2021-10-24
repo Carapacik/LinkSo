@@ -13,7 +13,7 @@ extension TextThemeExt on TextTheme {
       );
 }
 
-final ThemeData lightTheme = ThemeData(
+final ThemeData lightTheme = ThemeData.light().copyWith(
   textTheme: _lightTextTheme,
   pageTransitionsTheme: const PageTransitionsTheme(
     builders: {
@@ -23,10 +23,11 @@ final ThemeData lightTheme = ThemeData(
   ),
   iconTheme: const IconThemeData(color: AppColors.darkText),
   buttonTheme: const ButtonThemeData(buttonColor: Colors.white),
+  scaffoldBackgroundColor: Colors.white,
   // colorScheme: _lightColorScheme,
 );
 
-final ThemeData darkTheme = ThemeData(
+final ThemeData darkTheme = ThemeData.dark().copyWith(
   textTheme: _darkTextTheme,
   pageTransitionsTheme: const PageTransitionsTheme(
     builders: {
@@ -36,6 +37,7 @@ final ThemeData darkTheme = ThemeData(
   ),
   iconTheme: const IconThemeData(color: Colors.white),
   buttonTheme: const ButtonThemeData(buttonColor: AppColors.darkText),
+  scaffoldBackgroundColor: Colors.black,
   // colorScheme: _darkColorScheme,
 );
 
