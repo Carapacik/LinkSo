@@ -1,3 +1,4 @@
+import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:glassmorphism/glassmorphism.dart';
@@ -5,9 +6,10 @@ import 'package:linkso/api/remote_data_source_implementation.dart';
 import 'package:linkso/controllers.dart';
 import 'package:linkso/helpers/responsiveness.dart';
 import 'package:linkso/model/link_create.dart';
-import 'package:linkso/resources/palette.dart';
 import 'package:linkso/resources/theme.dart';
 import 'package:linkso/widgets/appbar.dart';
+import 'package:linkso/widgets/default_button.dart';
+import 'package:linkso/widgets/gradient_background.dart';
 
 class MainPage extends StatelessWidget {
   MainPage({Key? key}) : super(key: key);
@@ -20,21 +22,14 @@ class MainPage extends StatelessWidget {
       key: _scaffoldKey,
       extendBodyBehindAppBar: true,
       appBar: topNav(context, _scaffoldKey),
-      body: Obx(() {
-        return Container(
-          height: double.infinity,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            gradient: themeController.isDarkMode.value ? AppColors.darkGradient : AppColors.lightGradient,
+      body: const GradientBackground(
+        child: Center(
+          child: ResponsiveWidget(
+            largeScreen: _GlassLarge(),
+            smallScreen: _GlassSmall(),
           ),
-          child: const Center(
-            child: ResponsiveWidget(
-              largeScreen: _GlassLarge(),
-              smallScreen: _GlassSmall(),
-            ),
-          ),
-        );
-      }),
+        ),
+      ),
     );
   }
 }
@@ -48,9 +43,9 @@ class _GlassLarge extends StatelessWidget {
   Widget build(BuildContext context) {
     return GlassmorphicContainer(
       width: 600,
-      height: 250,
-      borderRadius: 15,
-      margin: const EdgeInsets.symmetric(horizontal: 20),
+      // height: 270,
+      height: 400,
+      borderRadius: 40,
       blur: 10,
       border: 1,
       alignment: Alignment.topCenter,
@@ -75,7 +70,7 @@ class _GlassLarge extends StatelessWidget {
         ],
       ),
       child: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(30),
         child: Column(
           children: [
             Text(
@@ -90,17 +85,7 @@ class _GlassLarge extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 30),
-            Obx(() {
-              final _link = linkController.receivedLinkKey.value;
-              if (_link != "") {
-                return Text(
-                  "linkso.su/$_link",
-                  style: const TextStyle(fontSize: 20),
-                );
-              } else {
-                return const SizedBox();
-              }
-            }),
+            const _ResultLink(),
           ],
         ),
       ),
@@ -115,9 +100,9 @@ class _GlassSmall extends StatelessWidget {
   Widget build(BuildContext context) {
     return GlassmorphicContainer(
       width: double.infinity,
-      height: 350,
-      margin: const EdgeInsets.symmetric(horizontal: 20),
-      borderRadius: 15,
+      height: 300,
+      margin: const EdgeInsets.symmetric(horizontal: 25),
+      borderRadius: 40,
       blur: 10,
       border: 1,
       alignment: Alignment.topCenter,
@@ -142,33 +127,58 @@ class _GlassSmall extends StatelessWidget {
         ],
       ),
       child: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(30),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Text(
               "Make your link shorter",
               style: Theme.of(context).textTheme.b24,
             ),
+            const SizedBox(height: 20),
+            const _LinkForm(),
             const SizedBox(height: 30),
-            const Center(
-              child: _LinkForm(),
-            ),
-            const SizedBox(height: 30),
-            Obx(() {
-              final _link = linkController.receivedLinkKey.value;
-              if (_link != "") {
-                return Text(
-                  "linkso.su/$_link",
-                  style: const TextStyle(fontSize: 20),
-                );
-              } else {
-                return const SizedBox();
-              }
-            }),
+            const _ResultLink(),
           ],
         ),
       ),
     );
+  }
+}
+
+class _ResultLink extends StatelessWidget {
+  const _ResultLink({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(() {
+      final _key = linkController.receivedLinkKey.value;
+      if (_key != "") {
+        final fullLink = "linkso.su/$_key";
+        return Center(
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SelectableText(
+                fullLink,
+                style: const TextStyle(fontSize: 20),
+              ),
+              const SizedBox(width: 20),
+              DefaultButton(
+                onPressed: () {
+                  FlutterClipboard.copy(fullLink);
+                },
+                text: "Copy",
+              ),
+            ],
+          ),
+        );
+      } else {
+        return const SizedBox.shrink();
+      }
+    });
   }
 }
 
@@ -181,7 +191,6 @@ class _LinkForm extends StatefulWidget {
 
 class _LinkFormState extends State<_LinkForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -191,70 +200,69 @@ class _LinkFormState extends State<_LinkForm> {
           ? Column(
               children: [
                 TextFormField(
-                  controller: controller,
+                  controller: linkController.controller,
                   maxLength: 128,
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return "";
+                      return "Link must be not null";
                     }
                     return null;
                   },
-                  onSaved: (value) {},
-                ),
-                const SizedBox(height: 30),
-                ElevatedButton(
-                  onPressed: () async {
-                    final form = _formKey.currentState!;
-                    if (form.validate()) {
-                      form.save();
-                      final _receivedLinkInfo = await RemoteDataSourceImplementation()
-                          .createLink(LinkCreate(target: "https://youtu.be/dQw4w9WgXcQ"));
-                      linkController.receivedLinkKey.value = _receivedLinkInfo.key;
-                    }
+                  onSaved: (value) {
+                    linkController.targetLink = value!;
                   },
-                  child: const Text("Shorten"),
-                )
+                ),
+                const SizedBox(height: 20),
+                _ShortenButton(formKey: _formKey),
               ],
             )
           : Row(
               children: [
                 Expanded(
-                  flex: 4,
                   child: TextFormField(
-                    controller: controller,
+                    controller: linkController.controller,
                     maxLength: 128,
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return "";
+                        return "Link must be not null";
                       }
                       return null;
                     },
-                    onSaved: (value) {},
+                    onSaved: (value) {
+                      linkController.targetLink = value!;
+                    },
                   ),
                 ),
-                const SizedBox(width: 30),
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () async {
-                      final form = _formKey.currentState!;
-                      if (form.validate()) {
-                        form.save();
-                        final _receivedLinkInfo = await RemoteDataSourceImplementation()
-                            .createLink(LinkCreate(target: "https://youtu.be/dQw4w9WgXcQ"));
-                        linkController.receivedLinkKey.value = _receivedLinkInfo.key;
-                      }
-                    },
-                    child: const Text("Shorten"),
-                  ),
-                )
+                const SizedBox(width: 20),
+                _ShortenButton(formKey: _formKey)
               ],
             ),
     );
   }
+}
+
+class _ShortenButton extends StatelessWidget {
+  const _ShortenButton({
+    Key? key,
+    required GlobalKey<FormState> formKey,
+  })  : _formKey = formKey,
+        super(key: key);
+
+  final GlobalKey<FormState> _formKey;
 
   @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
+  Widget build(BuildContext context) {
+    return DefaultButton(
+      onPressed: () async {
+        final form = _formKey.currentState!;
+        if (form.validate()) {
+          form.save();
+          final _receivedLinkInfo =
+              await RemoteDataSourceImplementation().createLink(LinkCreate(target: linkController.targetLink));
+          linkController.receivedLinkKey.value = _receivedLinkInfo.key;
+        }
+      },
+      text: "Shorten",
+    );
   }
 }

@@ -6,9 +6,16 @@ final _lightTextTheme = GoogleFonts.montserratTextTheme().apply(bodyColor: AppCo
 final _darkTextTheme = GoogleFonts.montserratTextTheme().apply(bodyColor: Colors.white);
 
 extension TextThemeExt on TextTheme {
-  TextStyle get b24 => headline2!.copyWith(
+  TextStyle get b24 => bodyText1!.copyWith(
         fontSize: 24,
-        fontWeight: FontWeight.w700,
+        fontWeight: FontWeight.bold,
+        fontStyle: FontStyle.normal,
+        letterSpacing: 0.5,
+      );
+
+  TextStyle get n14 => bodyText2!.copyWith(
+        fontSize: 14,
+        fontWeight: FontWeight.normal,
         fontStyle: FontStyle.normal,
       );
 }
@@ -22,9 +29,15 @@ final ThemeData lightTheme = ThemeData.light().copyWith(
     },
   ),
   iconTheme: const IconThemeData(color: AppColors.darkText),
-  buttonTheme: const ButtonThemeData(buttonColor: Colors.white),
-  scaffoldBackgroundColor: Colors.white,
-  // colorScheme: _lightColorScheme,
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      primary: AppColors.dark,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      onSurface: Colors.red,
+    ),
+  ),
+  backgroundColor: Colors.white,
+  colorScheme: _lightColorScheme,
 );
 
 final ThemeData darkTheme = ThemeData.dark().copyWith(
@@ -36,15 +49,20 @@ final ThemeData darkTheme = ThemeData.dark().copyWith(
     },
   ),
   iconTheme: const IconThemeData(color: Colors.white),
-  buttonTheme: const ButtonThemeData(buttonColor: AppColors.darkText),
-  scaffoldBackgroundColor: Colors.black,
-  // colorScheme: _darkColorScheme,
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      primary: Colors.white,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+    ),
+  ),
+  backgroundColor: Colors.black,
+  colorScheme: _darkColorScheme,
 );
 
 const ColorScheme _lightColorScheme = ColorScheme(
   primary: AppColors.darkText,
   primaryVariant: AppColors.primaryVariant,
-  secondary: Color(0xFF03DAC5),
+  secondary: Colors.white,
   secondaryVariant: Color(0xFF0AE1C5),
   background: Color(0xFFE6EBEB),
   surface: Color(0xFFFAFBFB),
@@ -60,14 +78,14 @@ const ColorScheme _lightColorScheme = ColorScheme(
 const ColorScheme _darkColorScheme = ColorScheme(
   primary: AppColors.darkText,
   primaryVariant: AppColors.primaryVariant,
-  secondary: Color(0xFF03DAC5),
+  secondary: AppColors.darkText,
   secondaryVariant: Color(0xFF0AE1C5),
   background: Color(0xFFE6EBEB),
-  surface: Color(0xFFFAFBFB),
-  onBackground: Colors.white,
+  surface: Colors.red,
+  onBackground: Colors.red,
   error: Colors.red,
   onError: Colors.white,
-  onPrimary: Colors.white,
+  onPrimary: Colors.red,
   onSecondary: Color(0xFF322942),
   onSurface: Color(0xFF241E30),
   brightness: Brightness.dark,

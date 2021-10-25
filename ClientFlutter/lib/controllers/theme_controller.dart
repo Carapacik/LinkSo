@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:linkso/resources/theme.dart';
 
 class ThemeController extends GetxController {
   static ThemeController instance = Get.find();
@@ -19,11 +20,12 @@ class ThemeController extends GetxController {
 
   Future<void> _saveThemeToBox(bool isDarkMode) => _box.write(_key, isDarkMode);
 
+  ThemeData savedThemeData() => !isDarkMode.value ? lightTheme : darkTheme;
+
   void switchTheme(BuildContext context) {
-    final currentMode = isDarkMode.value;
-    final newThemeMode = currentMode ? ThemeMode.light : ThemeMode.dark;
-    Get.changeThemeMode(newThemeMode);
-    _saveThemeToBox(!currentMode);
-    isDarkMode.value = !currentMode;
+    final _currentMode = isDarkMode.value;
+    Get.changeTheme(_currentMode ? lightTheme : darkTheme);
+    _saveThemeToBox(!_currentMode);
+    isDarkMode.value = !_currentMode;
   }
 }

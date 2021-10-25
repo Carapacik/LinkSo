@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
+import 'package:linkso/controllers.dart';
 import 'package:linkso/layout.dart';
 import 'package:linkso/pages/auth/auth_page.dart';
 import 'package:linkso/pages/error/not_found_page.dart';
-import 'package:linkso/pages/main_page/main_page.dart';
-import 'package:linkso/resources/theme.dart';
+import 'package:linkso/pages/main/main_page.dart';
 import 'package:linkso/routing.dart';
 
 class App extends StatelessWidget {
@@ -26,8 +26,7 @@ class App extends StatelessWidget {
         GetPage(name: authenticationPageRoute, page: () => const AuthPage()),
         GetPage(name: homePageRoute, page: () => MainPage()),
       ],
-      theme: lightTheme,
-      darkTheme: darkTheme,
+      theme: themeController.savedThemeData(),
       onGenerateTitle: (context) => AppLocalizations.of(context)!.appTitle,
       localizationsDelegates: const [
         AppLocalizations.delegate,
