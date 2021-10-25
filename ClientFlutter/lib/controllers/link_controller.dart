@@ -6,17 +6,17 @@ class LinkController extends GetxController {
   RxString receivedLinkKey = "".obs;
   String targetLink = "";
 
-  late TextEditingController controller;
+  late TextEditingController textController;
 
   @override
   void onInit() {
     super.onInit();
-    controller = TextEditingController();
+    textController = TextEditingController();
   }
 
   @override
   void onClose() {
-    controller.dispose();
+    textController.dispose();
     super.onClose();
   }
 }

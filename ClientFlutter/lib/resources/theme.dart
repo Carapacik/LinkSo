@@ -29,6 +29,7 @@ final ThemeData lightTheme = ThemeData.light().copyWith(
     },
   ),
   iconTheme: const IconThemeData(color: AppColors.darkText),
+  textSelectionTheme: TextSelectionThemeData(selectionColor: _lightColorScheme.onSecondary),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       primary: AppColors.dark,
@@ -49,6 +50,7 @@ final ThemeData darkTheme = ThemeData.dark().copyWith(
     },
   ),
   iconTheme: const IconThemeData(color: Colors.white),
+  textSelectionTheme: TextSelectionThemeData(selectionColor: _darkColorScheme.onSecondary),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       primary: Colors.white,

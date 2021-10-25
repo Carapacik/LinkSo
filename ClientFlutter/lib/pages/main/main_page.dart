@@ -43,8 +43,7 @@ class _GlassLarge extends StatelessWidget {
   Widget build(BuildContext context) {
     return GlassmorphicContainer(
       width: 600,
-      // height: 270,
-      height: 400,
+      height: 270,
       borderRadius: 40,
       blur: 10,
       border: 1,
@@ -155,15 +154,22 @@ class _ResultLink extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() {
       final _key = linkController.receivedLinkKey.value;
-      if (_key != "") {
+      if (_key.isNotEmpty) {
         final fullLink = "linkso.su/$_key";
         return Center(
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              SelectableText(
-                fullLink,
-                style: const TextStyle(fontSize: 20),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Theme.of(context).colorScheme.secondary,
+                ),
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 11),
+                child: SelectableText(
+                  fullLink,
+                  style: const TextStyle(fontSize: 20),
+                ),
               ),
               const SizedBox(width: 20),
               DefaultButton(
@@ -199,44 +205,55 @@ class _LinkFormState extends State<_LinkForm> {
       child: ResponsiveWidget.isSmallScreen(context)
           ? Column(
               children: [
-                TextFormField(
-                  controller: linkController.controller,
-                  maxLength: 128,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return "Link must be not null";
-                    }
-                    return null;
-                  },
-                  onSaved: (value) {
-                    linkController.targetLink = value!;
-                  },
-                ),
+                const _LinkInputField(),
                 const SizedBox(height: 20),
                 _ShortenButton(formKey: _formKey),
               ],
             )
           : Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Expanded(
-                  child: TextFormField(
-                    controller: linkController.controller,
-                    maxLength: 128,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return "Link must be not null";
-                      }
-                      return null;
-                    },
-                    onSaved: (value) {
-                      linkController.targetLink = value!;
-                    },
-                  ),
-                ),
+                const Expanded(child: _LinkInputField()),
                 const SizedBox(width: 20),
-                _ShortenButton(formKey: _formKey)
+                _ShortenButton(formKey: _formKey),
               ],
             ),
+    );
+  }
+}
+
+class _LinkInputField extends StatelessWidget {
+  const _LinkInputField({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        color: Theme.of(context).colorScheme.secondary,
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: TextFormField(
+        controller: linkController.textController,
+        maxLength: 128,
+        validator: (value) {
+          if (value!.isEmpty) {
+            return "Link must be not null";
+          }
+          return null;
+        },
+        onSaved: (value) {
+          linkController.targetLink = value!;
+        },
+        decoration: const InputDecoration(
+          border: InputBorder.none,
+          hintText: "Your link",
+          counterText: "",
+          counterStyle: TextStyle(height: double.minPositive),
+        ),
+      ),
     );
   }
 }
