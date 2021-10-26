@@ -1,6 +1,13 @@
 {
-  "appTitle": "linkSO",
+  "appTitle": "LinkSo",
   "@appTitle": {
     "description": "The title of the application"
-  }
+  },
+  "yourLink": "Your link",
+  "copy": "Copy",
+  "makeYourLinkShorter": "Make your link shorter",
+  "shorten": "Shorten",
+  "requiredLink": "Link must me not null",
+  "login": "Log in",
+  "logout": "Log out"
 }

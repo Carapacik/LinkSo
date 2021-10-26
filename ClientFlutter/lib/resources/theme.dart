@@ -33,7 +33,7 @@ final ThemeData lightTheme = ThemeData.light().copyWith(
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       primary: AppColors.dark,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
       onSurface: Colors.red,
     ),
   ),
@@ -54,7 +54,7 @@ final ThemeData darkTheme = ThemeData.dark().copyWith(
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       primary: Colors.white,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
     ),
   ),
   backgroundColor: Colors.black,

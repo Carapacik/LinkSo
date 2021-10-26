@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:linkso/controllers.dart';
 import 'package:linkso/helpers/responsiveness.dart';
 import 'package:linkso/resources/palette.dart';
+import 'package:linkso/resources/theme.dart';
+import 'package:url_launcher/link.dart';
 
 AppBar topNav(BuildContext context, GlobalKey<ScaffoldState> key) {
   final locale = Localizations.localeOf(context);
@@ -44,6 +47,18 @@ AppBar topNav(BuildContext context, GlobalKey<ScaffoldState> key) {
                   color: AppColors.darkText,
                 ),
         ),
+      ),
+      Link(
+        uri: Uri.parse("/auth"),
+        builder: (context, followLink) {
+          return TextButton(
+            onPressed: followLink,
+            child: Text(
+              AppLocalizations.of(context)!.login,
+              style: Theme.of(context).textTheme.n14,
+            ),
+          );
+        },
       ),
 
       // IconButton(

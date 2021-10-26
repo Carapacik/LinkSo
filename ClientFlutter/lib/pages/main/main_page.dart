@@ -1,5 +1,6 @@
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import 'package:linkso/api/remote_data_source_implementation.dart';
@@ -43,7 +44,7 @@ class _GlassLarge extends StatelessWidget {
   Widget build(BuildContext context) {
     return GlassmorphicContainer(
       width: 600,
-      height: 270,
+      height: 280,
       borderRadius: 40,
       blur: 10,
       border: 1,
@@ -73,7 +74,7 @@ class _GlassLarge extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              "Make your link shorter",
+              AppLocalizations.of(context)!.makeYourLinkShorter,
               style: Theme.of(context).textTheme.b24,
             ),
             const SizedBox(height: 30),
@@ -99,7 +100,7 @@ class _GlassSmall extends StatelessWidget {
   Widget build(BuildContext context) {
     return GlassmorphicContainer(
       width: double.infinity,
-      height: 300,
+      height: 335,
       margin: const EdgeInsets.symmetric(horizontal: 25),
       borderRadius: 40,
       blur: 10,
@@ -131,7 +132,7 @@ class _GlassSmall extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              "Make your link shorter",
+              AppLocalizations.of(context)!.makeYourLinkShorter,
               style: Theme.of(context).textTheme.b24,
             ),
             const SizedBox(height: 20),
@@ -165,7 +166,7 @@ class _ResultLink extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                   color: Theme.of(context).colorScheme.secondary,
                 ),
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 11),
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                 child: SelectableText(
                   fullLink,
                   style: const TextStyle(fontSize: 20),
@@ -176,7 +177,7 @@ class _ResultLink extends StatelessWidget {
                 onPressed: () {
                   FlutterClipboard.copy(fullLink);
                 },
-                text: "Copy",
+                text: AppLocalizations.of(context)!.copy,
               ),
             ],
           ),
@@ -212,6 +213,7 @@ class _LinkFormState extends State<_LinkForm> {
             )
           : Row(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Expanded(child: _LinkInputField()),
                 const SizedBox(width: 20),
@@ -229,30 +231,23 @@ class _LinkInputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: Theme.of(context).colorScheme.secondary,
-      ),
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: TextFormField(
-        controller: linkController.textController,
-        maxLength: 128,
-        validator: (value) {
-          if (value!.isEmpty) {
-            return "Link must be not null";
-          }
-          return null;
-        },
-        onSaved: (value) {
-          linkController.targetLink = value!;
-        },
-        decoration: const InputDecoration(
-          border: InputBorder.none,
-          hintText: "Your link",
-          counterText: "",
-          counterStyle: TextStyle(height: double.minPositive),
-        ),
+    return TextFormField(
+      controller: linkController.textController,
+      maxLength: 128,
+      validator: (value) {
+        if (value!.isEmpty) {
+          return AppLocalizations.of(context)!.requiredLink;
+        }
+        return null;
+      },
+      onSaved: (value) {
+        linkController.targetLink = value!;
+      },
+      decoration: InputDecoration(
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(14)),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+        filled: true,
+        hintText: AppLocalizations.of(context)!.yourLink,
       ),
     );
   }
@@ -279,7 +274,7 @@ class _ShortenButton extends StatelessWidget {
           linkController.receivedLinkKey.value = _receivedLinkInfo.key;
         }
       },
-      text: "Shorten",
+      text: AppLocalizations.of(context)!.shorten,
     );
   }
 }

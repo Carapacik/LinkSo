@@ -29,6 +29,7 @@ dependencies:
   google_sign_in: ^5.2.0
   intl: ^0.17.0
   json_annotation: ^4.3.0
+  # reactive_forms: ^10.6.2
   retrofit: ^2.0.1
   url_launcher: ^6.0.12
   url_strategy: ^0.2.0
