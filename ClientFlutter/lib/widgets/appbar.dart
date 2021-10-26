@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:linkso/controllers.dart';
@@ -37,13 +38,16 @@ AppBar topNav(BuildContext context, GlobalKey<ScaffoldState> key) {
           onPressed: () {
             themeController.switchTheme(context);
           },
+          splashRadius: 26,
           icon: themeController.isDarkMode.value
               ? const Icon(
                   Icons.light_mode,
+                  size: 22,
                   color: Colors.white,
                 )
               : const Icon(
                   Icons.dark_mode,
+                  size: 22,
                   color: AppColors.darkText,
                 ),
         ),
@@ -51,11 +55,19 @@ AppBar topNav(BuildContext context, GlobalKey<ScaffoldState> key) {
       Link(
         uri: Uri.parse("/auth"),
         builder: (context, followLink) {
-          return TextButton(
-            onPressed: followLink,
-            child: Text(
-              AppLocalizations.of(context)!.login,
-              style: Theme.of(context).textTheme.n14,
+          return MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+              onTap: followLink,
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Text(
+                    AppLocalizations.of(context)!.login,
+                    style: Theme.of(context).textTheme.b18,
+                  ),
+                ),
+              ),
             ),
           );
         },

@@ -13,6 +13,20 @@ extension TextThemeExt on TextTheme {
         letterSpacing: 0.5,
       );
 
+  TextStyle get b18 => bodyText2!.copyWith(
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+        fontStyle: FontStyle.normal,
+        letterSpacing: 0.5,
+      );
+
+  TextStyle get n16 => bodyText2!.copyWith(
+        fontSize: 15,
+        fontWeight: FontWeight.w500,
+        fontStyle: FontStyle.normal,
+        letterSpacing: 0.5,
+      );
+
   TextStyle get n14 => bodyText2!.copyWith(
         fontSize: 14,
         fontWeight: FontWeight.normal,

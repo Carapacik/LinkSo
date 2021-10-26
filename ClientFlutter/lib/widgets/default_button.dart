@@ -19,7 +19,7 @@ class DefaultButton extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 16),
         child: Text(
           text,
-          style: Theme.of(context).textTheme.n14.copyWith(color: Theme.of(context).colorScheme.secondary),
+          style: Theme.of(context).textTheme.n16.copyWith(color: Theme.of(context).colorScheme.secondary),
         ),
       ),
     );
