@@ -183,7 +183,7 @@ class _ResultLink extends StatelessWidget {
           ),
         );
       } else {
-        return const SizedBox.shrink();
+        return const SizedBox();
       }
     });
   }
@@ -212,7 +212,6 @@ class _LinkFormState extends State<_LinkForm> {
               ],
             )
           : Row(
-              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Expanded(child: _LinkInputField()),

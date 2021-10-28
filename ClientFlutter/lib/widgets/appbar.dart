@@ -4,7 +4,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:linkso/controllers.dart';
 import 'package:linkso/helpers/responsiveness.dart';
-import 'package:linkso/resources/palette.dart';
 import 'package:linkso/resources/theme.dart';
 import 'package:url_launcher/link.dart';
 
@@ -43,12 +42,10 @@ AppBar topNav(BuildContext context, GlobalKey<ScaffoldState> key) {
               ? const Icon(
                   Icons.light_mode,
                   size: 22,
-                  color: Colors.white,
                 )
               : const Icon(
                   Icons.dark_mode,
                   size: 22,
-                  color: AppColors.darkText,
                 ),
         ),
       ),

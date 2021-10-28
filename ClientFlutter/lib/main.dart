@@ -15,5 +15,6 @@ void main() async {
   Get.put(NavigationController());
   Get.put(ThemeController());
   Get.put(LinkController());
+
   runApp(const App());
 }

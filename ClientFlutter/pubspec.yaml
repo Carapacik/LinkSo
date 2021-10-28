@@ -18,13 +18,14 @@ dependencies:
   cupertino_icons: ^1.0.3
   data_table_2: ^2.1.1
   dio: ^4.0.1
+  flex_color_scheme: ^3.0.1 # для палитры, возможно откажусь
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
   get: ^4.3.8
   get_storage: ^2.0.3
-  glassmorphism: ^3.0.0
+  glassmorphism: ^3.0.0 # возможно откажусь
   google_fonts: ^2.1.0
   google_sign_in: ^5.2.0
   intl: ^0.17.0

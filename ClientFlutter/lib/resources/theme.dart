@@ -1,9 +1,10 @@
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:linkso/resources/palette.dart';
 
-final _lightTextTheme = GoogleFonts.montserratTextTheme().apply(bodyColor: AppColors.darkText);
-final _darkTextTheme = GoogleFonts.montserratTextTheme().apply(bodyColor: Colors.white);
+final _lightTextTheme = GoogleFonts.nunitoSansTextTheme().apply(bodyColor: Color(0xFF222222));
+final _darkTextTheme = GoogleFonts.nunitoSansTextTheme().apply(bodyColor: Colors.white);
 
 extension TextThemeExt on TextTheme {
   TextStyle get b24 => bodyText1!.copyWith(
@@ -20,11 +21,10 @@ extension TextThemeExt on TextTheme {
         letterSpacing: 0.5,
       );
 
-  TextStyle get n16 => bodyText2!.copyWith(
-        fontSize: 15,
-        fontWeight: FontWeight.w500,
+  TextStyle get m16 => bodyText2!.copyWith(
+        fontSize: 16,
+        fontWeight: FontWeight.w600,
         fontStyle: FontStyle.normal,
-        letterSpacing: 0.5,
       );
 
   TextStyle get n14 => bodyText2!.copyWith(
@@ -34,7 +34,25 @@ extension TextThemeExt on TextTheme {
       );
 }
 
+final lightFlex = FlexColorScheme.light();
+
 final ThemeData lightTheme = ThemeData.light().copyWith(
+  primaryColor: AppColors.lightPrimary,
+  primaryColorDark: Color(0xFF301B70),
+  primaryColorLight: Color(0xFF8F7DC6),
+  secondaryHeaderColor: Color(0xFF9988CB),
+  toggleableActiveColor: AppColors.lightPrimary,
+  indicatorColor: Color(0xFF4527A0),
+  bottomAppBarColor: Color(0xFF1B1922),
+  dividerColor: Color(0x1FFFFFFF),
+  disabledColor: Color(0x62FFFFFF),
+  backgroundColor: Color(0xFF1B1922),
+  canvasColor: Color(0xFF1B1922),
+  cardColor: Color(0xFF17161B),
+  dialogBackgroundColor: Color(0xFF17161B),
+  scaffoldBackgroundColor: Color(0xFF121212),
+  errorColor: _darkColorScheme.error,
+  appBarTheme: AppBarTheme(color: Color(0xFF4527A0)),
   textTheme: _lightTextTheme,
   pageTransitionsTheme: const PageTransitionsTheme(
     builders: {
@@ -42,20 +60,49 @@ final ThemeData lightTheme = ThemeData.light().copyWith(
       TargetPlatform.android: FadeUpwardsPageTransitionsBuilder()
     },
   ),
-  iconTheme: const IconThemeData(color: AppColors.darkText),
+  iconTheme: const IconThemeData(),
   textSelectionTheme: TextSelectionThemeData(selectionColor: _lightColorScheme.onSecondary),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      primary: AppColors.dark,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-      onSurface: Colors.red,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
     ),
   ),
-  backgroundColor: Colors.white,
   colorScheme: _lightColorScheme,
 );
 
+const ColorScheme _lightColorScheme = ColorScheme(
+  primary: AppColors.lightPrimary,
+  primaryVariant: AppColors.lightPrimaryVariant,
+  secondary: AppColors.lightSecondary,
+  secondaryVariant: AppColors.lightSecondaryVariant,
+  background: AppColors.lightBackground,
+  error: AppColors.lightError,
+  surface: AppColors.lightSurface,
+  onBackground: AppColors.lightOnBackground,
+  onPrimary: AppColors.lightOnPrimary,
+  onSecondary: AppColors.lightOnSecondary,
+  onSurface: AppColors.lightOnSurface,
+  onError: AppColors.lightOnError,
+  brightness: Brightness.light,
+);
+
 final ThemeData darkTheme = ThemeData.dark().copyWith(
+  primaryColor: AppColors.darkPrimary,
+  primaryColorDark: Color(0xFF635296),
+  primaryColorLight: Color(0xFFB0A4D7),
+  secondaryHeaderColor: Color(0xFFB7ABDA),
+  toggleableActiveColor: AppColors.darkPrimary,
+  indicatorColor: Color(0xFF7C67BC),
+  bottomAppBarColor: Color(0xFFF2F0F7),
+  dividerColor: Color(0x1F000000),
+  disabledColor: Color(0x61000000),
+  backgroundColor: Color(0xFFF2F0F7),
+  canvasColor: Color(0xFFF2F0F7),
+  cardColor: Color(0xFFFBFAFD),
+  dialogBackgroundColor: Color(0xFFFBFAFD),
+  scaffoldBackgroundColor: Color(0xFFFFFFFF),
+  errorColor: _darkColorScheme.error,
+  appBarTheme: AppBarTheme(color: Color(0xFF121212)),
   textTheme: _darkTextTheme,
   pageTransitionsTheme: const PageTransitionsTheme(
     builders: {
@@ -67,42 +114,24 @@ final ThemeData darkTheme = ThemeData.dark().copyWith(
   textSelectionTheme: TextSelectionThemeData(selectionColor: _darkColorScheme.onSecondary),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      primary: Colors.white,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
     ),
   ),
-  backgroundColor: Colors.black,
   colorScheme: _darkColorScheme,
 );
 
-const ColorScheme _lightColorScheme = ColorScheme(
-  primary: AppColors.darkText,
-  primaryVariant: AppColors.primaryVariant,
-  secondary: Colors.white,
-  secondaryVariant: Color(0xFF0AE1C5),
-  background: Color(0xFFE6EBEB),
-  surface: Color(0xFFFAFBFB),
-  onBackground: Colors.white,
-  error: Colors.red,
-  onError: Colors.white,
-  onPrimary: Colors.white,
-  onSecondary: Color(0xFF322942),
-  onSurface: Color(0xFF241E30),
-  brightness: Brightness.light,
-);
-
 const ColorScheme _darkColorScheme = ColorScheme(
-  primary: AppColors.darkText,
-  primaryVariant: AppColors.primaryVariant,
-  secondary: AppColors.darkText,
-  secondaryVariant: Color(0xFF0AE1C5),
-  background: Color(0xFFE6EBEB),
-  surface: Colors.red,
-  onBackground: Colors.red,
-  error: Colors.red,
-  onError: Colors.white,
-  onPrimary: Colors.red,
-  onSecondary: Color(0xFF322942),
-  onSurface: Color(0xFF241E30),
+  primary: AppColors.darkPrimary,
+  primaryVariant: AppColors.darkPrimaryVariant,
+  secondary: AppColors.darkSecondary,
+  secondaryVariant: AppColors.darkSecondaryVariant,
+  background: AppColors.darkBackground,
+  error: AppColors.darkError,
+  surface: AppColors.darkSurface,
+  onBackground: AppColors.darkOnBackground,
+  onPrimary: AppColors.darkOnPrimary,
+  onSecondary: AppColors.darkOnSecondary,
+  onSurface: AppColors.darkOnSurface,
+  onError: AppColors.darkOnError,
   brightness: Brightness.dark,
 );

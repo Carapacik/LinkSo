@@ -18,7 +18,7 @@ class GradientBackground extends StatelessWidget {
   }
 
   LinearGradient _getBackgroundGradient(ThemeData themeData) {
-    if (themeData.backgroundColor == Colors.white) {
+    if (themeData.brightness == Brightness.light) {
       return AppColors.lightGradient;
     } else {
       return AppColors.darkGradient;

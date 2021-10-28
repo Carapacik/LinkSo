@@ -16,10 +16,10 @@ class DefaultButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16),
+        padding: const EdgeInsets.symmetric(vertical: 14),
         child: Text(
           text,
-          style: Theme.of(context).textTheme.n16.copyWith(color: Theme.of(context).colorScheme.secondary),
+          style: Theme.of(context).textTheme.m16.copyWith(color: Theme.of(context).colorScheme.onPrimary),
         ),
       ),
     );
