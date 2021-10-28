@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:glassmorphism/glassmorphism.dart';
-import 'package:linkso/api/remote_data_source_implementation.dart';
 import 'package:linkso/controllers.dart';
 import 'package:linkso/helpers/responsiveness.dart';
 import 'package:linkso/model/link_create.dart';
@@ -53,8 +52,8 @@ class _GlassLarge extends StatelessWidget {
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
         colors: [
-          const Color(0xFFffffff).withOpacity(0.3),
-          const Color(0xFFFFFFFF).withOpacity(0.2),
+          Colors.white.withOpacity(0.2),
+          Colors.white.withOpacity(0.3),
         ],
         stops: const [
           0.1,
@@ -100,7 +99,7 @@ class _GlassSmall extends StatelessWidget {
   Widget build(BuildContext context) {
     return GlassmorphicContainer(
       width: double.infinity,
-      height: 335,
+      height: 400,
       margin: const EdgeInsets.symmetric(horizontal: 25),
       borderRadius: 40,
       blur: 10,
@@ -110,8 +109,8 @@ class _GlassSmall extends StatelessWidget {
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
         colors: [
-          const Color(0xFFffffff).withOpacity(0.3),
-          const Color(0xFFFFFFFF).withOpacity(0.2),
+          Colors.white.withOpacity(0.2),
+          Colors.white.withOpacity(0.3),
         ],
         stops: const [
           0.1,
@@ -156,31 +155,55 @@ class _ResultLink extends StatelessWidget {
     return Obx(() {
       final _key = linkController.receivedLinkKey.value;
       if (_key.isNotEmpty) {
-        final fullLink = "linkso.su/$_key";
+        final fullLink = "${linkController.baseUri}/$_key";
         return Center(
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Theme.of(context).colorScheme.secondary,
+          child: ResponsiveWidget.isSmallScreen(context)
+              ? Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Theme.of(context).colorScheme.surface,
+                      ),
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 11),
+                      child: SelectableText(
+                        fullLink,
+                        style: Theme.of(context).textTheme.b18.copyWith(color: Theme.of(context).colorScheme.onSurface),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    DefaultButton(
+                      onPressed: () {
+                        FlutterClipboard.copy(fullLink);
+                      },
+                      text: AppLocalizations.of(context)!.copy,
+                    ),
+                  ],
+                )
+              : Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Theme.of(context).colorScheme.surface,
+                      ),
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 11),
+                      child: SelectableText(
+                        fullLink,
+                        style: Theme.of(context).textTheme.b18.copyWith(color: Theme.of(context).colorScheme.onSurface),
+                      ),
+                    ),
+                    const SizedBox(width: 20),
+                    DefaultButton(
+                      onPressed: () {
+                        FlutterClipboard.copy(fullLink);
+                      },
+                      text: AppLocalizations.of(context)!.copy,
+                    ),
+                  ],
                 ),
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-                child: SelectableText(
-                  fullLink,
-                  style: const TextStyle(fontSize: 20),
-                ),
-              ),
-              const SizedBox(width: 20),
-              DefaultButton(
-                onPressed: () {
-                  FlutterClipboard.copy(fullLink);
-                },
-                text: AppLocalizations.of(context)!.copy,
-              ),
-            ],
-          ),
         );
       } else {
         return const SizedBox();
@@ -268,8 +291,9 @@ class _ShortenButton extends StatelessWidget {
         final form = _formKey.currentState!;
         if (form.validate()) {
           form.save();
-          final _receivedLinkInfo =
-              await RemoteDataSourceImplementation().createLink(LinkCreate(target: linkController.targetLink));
+          final _receivedLinkInfo = await linkController.remoteDataSource.createLink(
+            LinkCreate(target: linkController.targetLink),
+          );
           linkController.receivedLinkKey.value = _receivedLinkInfo.key;
         }
       },

@@ -16,7 +16,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: homePageRoute,
+      initialRoute: mainPageRoute,
       unknownRoute: GetPage(
         name: "/not-found",
         page: () => const NotFoundPage(),
@@ -24,7 +24,7 @@ class App extends StatelessWidget {
       getPages: [
         GetPage(name: rootRoute, page: () => SiteLayout()),
         GetPage(name: authenticationPageRoute, page: () => const AuthPage()),
-        GetPage(name: homePageRoute, page: () => MainPage()),
+        GetPage(name: mainPageRoute, page: () => MainPage()),
       ],
       theme: themeController.savedThemeData(),
       onGenerateTitle: (context) => AppLocalizations.of(context)!.appTitle,

@@ -50,7 +50,7 @@ class ClientsPage extends StatelessWidget {
         const SizedBox(height: 30),
         ElevatedButton(
           onPressed: () {
-            Get.offAllNamed(homePageRoute);
+            Get.offAllNamed(mainPageRoute);
           },
           child: const Text("Short link"),
         ),

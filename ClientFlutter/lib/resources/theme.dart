@@ -1,15 +1,21 @@
-import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:linkso/resources/palette.dart';
 
-final _lightTextTheme = GoogleFonts.nunitoSansTextTheme().apply(bodyColor: Color(0xFF222222));
+final _lightTextTheme = GoogleFonts.nunitoSansTextTheme().apply(bodyColor: const Color(0xFF222222));
 final _darkTextTheme = GoogleFonts.nunitoSansTextTheme().apply(bodyColor: Colors.white);
 
 extension TextThemeExt on TextTheme {
   TextStyle get b24 => bodyText1!.copyWith(
         fontSize: 24,
         fontWeight: FontWeight.bold,
+        fontStyle: FontStyle.normal,
+        letterSpacing: 0.5,
+      );
+
+  TextStyle get b20 => bodyText1!.copyWith(
+        fontSize: 20,
+        fontWeight: FontWeight.w700,
         fontStyle: FontStyle.normal,
         letterSpacing: 0.5,
       );
@@ -33,8 +39,6 @@ extension TextThemeExt on TextTheme {
         fontStyle: FontStyle.normal,
       );
 }
-
-final lightFlex = FlexColorScheme.light();
 
 final ThemeData lightTheme = ThemeData.light().copyWith(
   primaryColor: AppColors.lightPrimary,
@@ -61,10 +65,10 @@ final ThemeData lightTheme = ThemeData.light().copyWith(
     },
   ),
   iconTheme: const IconThemeData(),
-  textSelectionTheme: TextSelectionThemeData(selectionColor: _lightColorScheme.onSecondary),
+  textSelectionTheme: TextSelectionThemeData(selectionColor: _lightColorScheme.secondaryVariant),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
     ),
   ),
   colorScheme: _lightColorScheme,
@@ -111,10 +115,10 @@ final ThemeData darkTheme = ThemeData.dark().copyWith(
     },
   ),
   iconTheme: const IconThemeData(color: Colors.white),
-  textSelectionTheme: TextSelectionThemeData(selectionColor: _darkColorScheme.onSecondary),
+  textSelectionTheme: TextSelectionThemeData(selectionColor: _darkColorScheme.secondaryVariant),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
     ),
   ),
   colorScheme: _darkColorScheme,

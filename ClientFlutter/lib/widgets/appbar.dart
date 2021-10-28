@@ -42,10 +42,12 @@ AppBar topNav(BuildContext context, GlobalKey<ScaffoldState> key) {
               ? const Icon(
                   Icons.light_mode,
                   size: 22,
+                  color: Colors.white,
                 )
               : const Icon(
                   Icons.dark_mode,
                   size: 22,
+                  color: Color(0xFF222222),
                 ),
         ),
       ),
@@ -98,8 +100,6 @@ AppBar topNav(BuildContext context, GlobalKey<ScaffoldState> key) {
       //     )
       //   ],
       // ),
-
-      // Сделать тут Login и logout справа сверху
     ],
   );
 }
