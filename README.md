@@ -1,2 +1,2 @@
 # linkso.su
-Smart link shorter
+Smart link shorter in future
