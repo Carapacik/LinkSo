@@ -5,8 +5,8 @@ import 'package:linkso/widgets/large_screen.dart';
 import 'package:linkso/widgets/side_menu.dart';
 import 'package:linkso/widgets/small_screen.dart';
 
-class SiteLayout extends StatelessWidget {
-  SiteLayout({Key? key}) : super(key: key);
+class StatLayout extends StatelessWidget {
+  StatLayout({Key? key}) : super(key: key);
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 

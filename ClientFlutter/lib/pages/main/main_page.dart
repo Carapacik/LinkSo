@@ -135,7 +135,7 @@ class _GlassSmall extends StatelessWidget {
               style: Theme.of(context).textTheme.b24,
             ),
             const SizedBox(height: 20),
-            const _LinkForm(),
+            _LinkForm(),
             const SizedBox(height: 30),
             const _ResultLink(),
           ],
@@ -221,6 +221,13 @@ class _LinkForm extends StatefulWidget {
 
 class _LinkFormState extends State<_LinkForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  late TextEditingController? _textEditingController;
+
+  @override
+  void initState() {
+    super.initState();
+    _textEditingController = TextEditingController();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -229,7 +236,7 @@ class _LinkFormState extends State<_LinkForm> {
       child: ResponsiveWidget.isSmallScreen(context)
           ? Column(
               children: [
-                const _LinkInputField(),
+                _LinkInputField(textEditingController: _textEditingController),
                 const SizedBox(height: 20),
                 _ShortenButton(formKey: _formKey),
               ],
@@ -237,24 +244,33 @@ class _LinkFormState extends State<_LinkForm> {
           : Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Expanded(child: _LinkInputField()),
+                Expanded(child: _LinkInputField(textEditingController: _textEditingController)),
                 const SizedBox(width: 20),
                 _ShortenButton(formKey: _formKey),
               ],
             ),
     );
   }
+
+  @override
+  void dispose() {
+    _textEditingController?.dispose();
+    super.dispose();
+  }
 }
 
 class _LinkInputField extends StatelessWidget {
   const _LinkInputField({
     Key? key,
+    required this.textEditingController,
   }) : super(key: key);
+
+  final TextEditingController? textEditingController;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: linkController.textController,
+      controller: textEditingController,
       maxLength: 128,
       validator: (value) {
         if (value!.isEmpty) {

@@ -6,6 +6,12 @@ final _lightTextTheme = GoogleFonts.nunitoSansTextTheme().apply(bodyColor: const
 final _darkTextTheme = GoogleFonts.nunitoSansTextTheme().apply(bodyColor: Colors.white);
 
 extension TextThemeExt on TextTheme {
+  TextStyle get b48 => bodyText1!.copyWith(
+        fontSize: 48,
+        fontWeight: FontWeight.w800,
+        letterSpacing: 0.6,
+      );
+
   TextStyle get b24 => bodyText1!.copyWith(
         fontSize: 24,
         fontWeight: FontWeight.bold,

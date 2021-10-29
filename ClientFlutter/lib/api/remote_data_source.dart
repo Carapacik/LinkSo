@@ -3,4 +3,6 @@ import 'package:linkso/model/link_info.dart';
 
 abstract class RemoteDataSource {
   Future<LinkInfo> createLink(LinkCreate link);
+
+  Future<String> checkPassword(String password);
 }
