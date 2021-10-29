@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:linkso/widgets/custom_text.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:linkso/resources/theme.dart';
 
 class NotFoundPage extends StatelessWidget {
   const NotFoundPage({Key? key}) : super(key: key);
@@ -7,27 +8,21 @@ class NotFoundPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          CustomText(
-            text: "Error",
-            size: 48,
-            weight: FontWeight.bold,
-            color: Colors.red,
-          ),
-          const SizedBox(height: 10),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CustomText(
-                text: "Page not found",
-                size: 24,
-                weight: FontWeight.bold,
-              ),
-            ],
-          )
-        ],
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              AppLocalizations.of(context)!.code404,
+              style: Theme.of(context).textTheme.b48.copyWith(color: Theme.of(context).colorScheme.error),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              AppLocalizations.of(context)!.notFound,
+              style: Theme.of(context).textTheme.b24.copyWith(color: Theme.of(context).colorScheme.error),
+            ),
+          ],
+        ),
       ),
     );
   }

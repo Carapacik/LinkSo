@@ -6,7 +6,7 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=2.14.0 <3.0.0"
 
 dependencies:
   # animated_theme_switcher: ^2.0.1 # не обновлено для flutter 2.5
@@ -18,7 +18,6 @@ dependencies:
   cupertino_icons: ^1.0.3
   data_table_2: ^2.1.1
   dio: ^4.0.1
-  # flex_color_scheme: ^3.0.1 # возможно откажусь
   flutter:
     sdk: flutter
   flutter_localizations:
@@ -30,7 +29,6 @@ dependencies:
   google_sign_in: ^5.2.0
   intl: ^0.17.0
   json_annotation: ^4.3.0
-  # reactive_forms: ^10.6.2
   retrofit: ^2.0.1
   url_launcher: ^6.0.12
   url_strategy: ^0.2.0

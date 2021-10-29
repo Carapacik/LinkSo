@@ -76,7 +76,7 @@ class AuthPage extends StatelessWidget {
               const SizedBox(height: 15),
               InkWell(
                 onTap: () {
-                  Get.offAllNamed(rootRoute);
+                  Get.offAllNamed(statRoute);
                 },
                 child: Container(
                   decoration: BoxDecoration(color: AppColors.active, borderRadius: BorderRadius.circular(20)),
@@ -117,6 +117,6 @@ class AuthPage extends StatelessWidget {
   Future signIn() async {
     final user = await GoogleSignInApi.login();
     print(user?.email);
-    Get.offAllNamed(rootRoute);
+    Get.offAllNamed(statRoute);
   }
 }
