@@ -29,8 +29,7 @@ namespace Application.Services
             var queryString = System.Web.HttpUtility.ParseQueryString(string.Empty);
             queryString.Add("key", link.Key);
 
-            // TODO: добавить адрес фронта
-            return Path.Combine("frontAddr", "password", queryString.ToQueryString());
+            return Path.Combine("password", queryString.ToQueryString());
         }
     }
 }

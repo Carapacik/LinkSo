@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Recipes.Application.Services.User;
 using WebApi.AutoMapper;
+using WebApi.ExceptionHandling;
 
 namespace WebApi
 {
@@ -104,6 +105,8 @@ namespace WebApi
                     .AllowAnyHeader()
                     .AllowAnyOrigin());
             }
+            
+            app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseRouting();
             app.UseHttpsRedirection();
@@ -114,7 +117,7 @@ namespace WebApi
             {
                 endpoints.MapControllers();
                 endpoints.MapControllerRoute("redirect", 
-                    "/{*key}", 
+                    "/{*key:length(8)}", 
                     new {controller = "Redirect", action = "ProcessRedirect"});
             });
             

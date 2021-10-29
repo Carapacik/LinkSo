@@ -1,12 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Application.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    [Produces("application/json")]
     public class RedirectController : ControllerBase
     {
         private readonly RedirectService _redirectService;
@@ -17,9 +15,17 @@ namespace WebApi.Controllers
         }
         
         [HttpGet]
-        public async Task<ActionResult<string>> ProcessRedirect(string key)
+        public async Task ProcessRedirect(string key)
         {
-            return await _redirectService.GetLink(key);
+            try
+            {
+                var link = await _redirectService.GetLink(key);
+                Redirect(link);
+            }
+            catch (Exception ex)
+            {
+                Redirect("/");
+            }
         }
     }
 }
