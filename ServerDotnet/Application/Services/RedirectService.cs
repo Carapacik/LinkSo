@@ -26,10 +26,7 @@ namespace Application.Services
             if (link.LinkType == LinkType.Public)
                 return link.Target;
 
-            var queryString = System.Web.HttpUtility.ParseQueryString(string.Empty);
-            queryString.Add("key", link.Key);
-
-            return Path.Combine("password", queryString.ToQueryString());
+            return $"/p/{shortUrl}";
         }
     }
 }

@@ -118,7 +118,7 @@ namespace WebApi
                 endpoints.MapControllers();
                 endpoints.MapControllerRoute("redirect", 
                     "/{*key:length(8)}", 
-                    new {controller = "Redirect", action = "ProcessRedirect"});
+                    new {controller = "RedirectProcessor", action = "ProcessRedirect"});
             });
             
             app.UseSpaFallback();

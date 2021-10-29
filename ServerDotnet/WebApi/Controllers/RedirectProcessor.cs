@@ -5,26 +5,26 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
 {
-    public class RedirectController : ControllerBase
+    public class RedirectProcessor : ControllerBase
     {
         private readonly RedirectService _redirectService;
 
-        public RedirectController(RedirectService redirectService)
+        public RedirectProcessor(RedirectService redirectService)
         {
             _redirectService = redirectService;
         }
         
         [HttpGet]
-        public async Task ProcessRedirect(string key)
+        public async Task<IActionResult> ProcessRedirect(string key)
         {
             try
             {
                 var link = await _redirectService.GetLink(key);
-                Redirect(link);
+                return Redirect(link);
             }
             catch (Exception ex)
             {
-                Redirect("/");
+                return Redirect("/not-found");
             }
         }
     }
