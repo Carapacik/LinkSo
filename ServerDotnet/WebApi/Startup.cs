@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Application;
 using FluentValidation.AspNetCore;
+using Hellang.Middleware.SpaFallback;
 using Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -38,6 +39,7 @@ namespace WebApi
             // Web Api
             services.AddSingleton(WebApiMappingConfig.CreateWebApiMapper());
             services.AddLogging();
+            services.AddSpaFallback();
             services.AddControllers();
             services.AddFluentValidation(x =>
             {
@@ -103,15 +105,23 @@ namespace WebApi
                     .AllowAnyOrigin());
             }
 
-            app.UseHttpsRedirection();
-
-            app.UseAuthentication();
-
             app.UseRouting();
-
+            app.UseHttpsRedirection();
+            app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapControllerRoute("redirect", 
+                    "/{*key}", 
+                    new {controller = "Redirect", action = "ProcessRedirect"});
+            });
+            
+            app.UseSpaFallback();
+            
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
         }
     }
 }
