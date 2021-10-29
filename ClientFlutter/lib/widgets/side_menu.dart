@@ -46,9 +46,9 @@ class SideMenu extends StatelessWidget {
                   (item) => SideMenuItem(
                     itemName: item.name,
                     onTap: () {
-                      if (item.route == authenticationPageRoute) {
+                      if (item.route == authRoute) {
                         menuController.activeItem.value = overviewPageDisplayName;
-                        Get.offAllNamed(authenticationPageRoute);
+                        Get.offAllNamed(authRoute);
                       }
 
                       if (!menuController.isActive(item.name)) {

@@ -11,4 +11,7 @@ abstract class RestClient {
 
   @POST("linkmanager/create")
   Future<LinkInfo> createLink(@Body() LinkCreate link);
+
+  @POST("linkmanager/password")
+  Future<String> checkPassword(@Body() String password);
 }

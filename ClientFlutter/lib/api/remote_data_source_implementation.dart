@@ -28,4 +28,9 @@ class RemoteDataSourceImplementation implements RemoteDataSource {
   Future<LinkInfo> createLink(LinkCreate link) {
     return _restClient.createLink(link);
   }
+
+  @override
+  Future<String> checkPassword(String password) {
+    return _restClient.checkPassword(password);
+  }
 }

@@ -9,5 +9,10 @@
   "shorten": "Shorten",
   "requiredLink": "Link must me not null",
   "login": "Log in",
-  "logout": "Log out"
+  "logout": "Log out",
+  "code404": "404",
+  "notFound": "Page not found",
+  "enterPassword": "Enter password",
+  "requiredPassword": "Password must me not null",
+  "go": "Go"
 }
