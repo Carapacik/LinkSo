@@ -26,7 +26,7 @@ dependencies:
   get_storage: ^2.0.3
   glassmorphism: ^3.0.0 # возможно откажусь
   google_fonts: ^2.1.0
-  google_sign_in: ^5.2.0
+  google_sign_in: ^5.2.1
   intl: ^0.17.0
   json_annotation: ^4.3.0
   retrofit: ^2.0.1
@@ -35,11 +35,9 @@ dependencies:
 
 dev_dependencies:
   build_runner: ^2.1.4
-  flutter_test:
-    sdk: flutter
   json_serializable: ^6.0.1
   lint: ^1.7.2
-  retrofit_generator: ^2.0.1+2
+  retrofit_generator: ^2.1.0
 
 flutter:
   uses-material-design: true

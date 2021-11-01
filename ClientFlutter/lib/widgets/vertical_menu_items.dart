@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:linkso/controllers.dart';
+import 'package:linkso/controller_instances.dart';
 import 'package:linkso/resources/palette.dart';
 import 'package:linkso/widgets/custom_text.dart';
 

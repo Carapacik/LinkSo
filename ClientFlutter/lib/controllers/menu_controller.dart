@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:linkso/helpers/routing.dart';
 import 'package:linkso/resources/palette.dart';
-import 'package:linkso/routing.dart';
 
 class MenuController extends GetxController {
   static MenuController instance = Get.find();
-  RxString activeItem = overviewPageRoute.obs;
+  RxString activeItem = overviewRouteName.obs;
   RxString hoverItem = "".obs;
 
   void onHover(String itemName) {
@@ -19,14 +19,17 @@ class MenuController extends GetxController {
 
   Widget returnIconFor(String itemName) {
     switch (itemName) {
-      case overviewPageDisplayName:
+      case overviewRouteName:
         return _customIcon(Icons.trending_up, itemName);
-      case clientsPageDisplayName:
+      case shortRouteName:
+        return _customIcon(Icons.shortcut, itemName);
+      case clientsRouteName:
         return _customIcon(Icons.people_alt_outlined, itemName);
-      case authenticationPageDisplayName:
-        return _customIcon(Icons.exit_to_app, itemName);
+      case linksRouteName:
+        return _customIcon(Icons.link, itemName);
+      case settingsRouteName:
       default:
-        return _customIcon(Icons.exit_to_app, itemName);
+        return _customIcon(Icons.manage_accounts, itemName);
     }
   }
 

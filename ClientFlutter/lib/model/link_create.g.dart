@@ -12,7 +12,8 @@ LinkCreate _$LinkCreateFromJson(Map<String, dynamic> json) => LinkCreate(
       password: json['password'] as String?,
     );
 
-Map<String, dynamic> _$LinkCreateToJson(LinkCreate instance) => <String, dynamic>{
+Map<String, dynamic> _$LinkCreateToJson(LinkCreate instance) =>
+    <String, dynamic>{
       'target': instance.target,
       'linkType': instance.linkType,
       'password': instance.password,

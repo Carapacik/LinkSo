@@ -2,42 +2,46 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
-import 'package:linkso/controllers.dart';
+import 'package:linkso/controller_instances.dart';
 import 'package:linkso/helpers/responsiveness.dart';
+import 'package:linkso/helpers/routing.dart';
 import 'package:linkso/resources/theme.dart';
 import 'package:url_launcher/link.dart';
 
-AppBar topNav(BuildContext context, GlobalKey<ScaffoldState> key) {
-  final locale = Localizations.localeOf(context);
-
-  Locale _getLocale(Locale l) {
-    switch (l.languageCode) {
-      case 'en':
-        return const Locale('ru', 'RU');
-      case 'ru':
-      default:
-        return const Locale('en', '');
-    }
-  }
+AppBar appBar(BuildContext context, GlobalKey<ScaffoldState> key) {
+  // final locale = Localizations.localeOf(context);
+  //
+  // Locale _getLocale(Locale l) {
+  //   switch (l.languageCode) {
+  //     case 'en':
+  //       return const Locale('ru', 'RU');
+  //     case 'ru':
+  //     default:
+  //       return const Locale('en', '');
+  //   }
+  // }
 
   return AppBar(
     backgroundColor: Colors.transparent,
     elevation: 0,
-    leading: !ResponsiveWidget.isSmallScreen(context)
-        ? null
-        : IconButton(
-            icon: const Icon(Icons.menu),
-            onPressed: () {
-              key.currentState?.openDrawer();
-            },
-          ),
+    leading: accountController.isAuth.value
+        ? ResponsiveWidget.isSmallScreen(context)
+            ? IconButton(
+                onPressed: () {
+                  key.currentState?.openDrawer();
+                },
+                splashRadius: 25,
+                icon: const Icon(Icons.menu),
+              )
+            : const SizedBox()
+        : const SizedBox(),
     actions: [
       Obx(
         () => IconButton(
           onPressed: () {
             themeController.switchTheme(context);
           },
-          splashRadius: 26,
+          splashRadius: 25,
           icon: themeController.isDarkMode.value
               ? const Icon(
                   Icons.light_mode,
@@ -47,30 +51,11 @@ AppBar topNav(BuildContext context, GlobalKey<ScaffoldState> key) {
               : const Icon(
                   Icons.dark_mode,
                   size: 22,
-                  color: Color(0xFF222222),
+                  color: Color(0xFF222222), // TODO: сменить цвет обоих
                 ),
         ),
       ),
-      Link(
-        uri: Uri.parse("/auth"),
-        builder: (context, followLink) {
-          return MouseRegion(
-            cursor: SystemMouseCursors.click,
-            child: GestureDetector(
-              onTap: followLink,
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Text(
-                    AppLocalizations.of(context)!.login,
-                    style: Theme.of(context).textTheme.b18,
-                  ),
-                ),
-              ),
-            ),
-          );
-        },
-      ),
+      signIn(context),
 
       // IconButton(
       //   onPressed: () {
@@ -102,4 +87,48 @@ AppBar topNav(BuildContext context, GlobalKey<ScaffoldState> key) {
       // ),
     ],
   );
+}
+
+Widget signIn(BuildContext context) {
+  if (accountController.isAuth.value) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: () {
+          accountController.isAuth.value = false;
+          Get.offAllNamed(mainRoute);
+        },
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Text(
+              AppLocalizations.of(context)!.logout,
+              style: Theme.of(context).textTheme.b18,
+            ),
+          ),
+        ),
+      ),
+    );
+  } else {
+    return Link(
+      uri: Uri.parse("/signin"),
+      builder: (context, followLink) {
+        return MouseRegion(
+          cursor: SystemMouseCursors.click,
+          child: GestureDetector(
+            onTap: followLink,
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Text(
+                  AppLocalizations.of(context)!.login,
+                  style: Theme.of(context).textTheme.b18,
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
 }
