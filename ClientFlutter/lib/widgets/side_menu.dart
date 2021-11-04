@@ -10,31 +10,28 @@ class SideMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.transparent,
-      child: ListView(
-        children: [
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            children: sideMenuItems
-                .map(
-                  (item) => SideMenuItem(
-                    itemName: item.routeName,
-                    onTap: () {
-                      if (!menuController.isActive(item.routeName)) {
-                        menuController.activeItem.value = item.routeName;
-                        if (ResponsiveWidget.isSmallScreen(context)) {
-                          Get.back();
-                        }
-                        navigationController.navigateTo(item.route);
+    return ListView(
+      children: [
+        Column(
+          mainAxisSize: MainAxisSize.min,
+          children: sideMenuItems
+              .map(
+                (item) => SideMenuItem(
+                  itemName: item.routeName,
+                  onTap: () {
+                    if (!menuController.isActive(item.routeName)) {
+                      menuController.activeItem.value = item.routeName;
+                      if (ResponsiveWidget.isSmallScreen(context)) {
+                        Get.back();
                       }
-                    },
-                  ),
-                )
-                .toList(),
-          ),
-        ],
-      ),
+                      navigationController.navigateTo(item.route);
+                    }
+                  },
+                ),
+              )
+              .toList(),
+        ),
+      ],
     );
   }
 }

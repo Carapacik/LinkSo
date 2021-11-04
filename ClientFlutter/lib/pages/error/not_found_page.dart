@@ -15,12 +15,12 @@ class NotFoundPage extends StatelessWidget {
           children: [
             Text(
               AppLocalizations.of(context)!.code404,
-              style: Theme.of(context).textTheme.b48.copyWith(color: Theme.of(context).colorScheme.error),
+              style: Theme.of(context).textTheme.b48.copyWith(color: Theme.of(context).colorScheme.onError),
             ),
             const SizedBox(height: 10),
             Text(
               AppLocalizations.of(context)!.notFound,
-              style: Theme.of(context).textTheme.b24.copyWith(color: Theme.of(context).colorScheme.error),
+              style: Theme.of(context).textTheme.b24.copyWith(color: Theme.of(context).colorScheme.onError),
             ),
           ],
         ),

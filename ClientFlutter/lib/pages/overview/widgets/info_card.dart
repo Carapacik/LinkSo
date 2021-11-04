@@ -1,68 +1,71 @@
 import 'package:flutter/material.dart';
-import 'package:linkso/resources/palette.dart';
+import 'package:linkso/helpers/responsiveness.dart';
+import 'package:linkso/resources/theme.dart';
 
 class InfoCard extends StatelessWidget {
   const InfoCard({
     Key? key,
-    this.title,
-    this.value,
-    this.topColor,
-    this.isActive = false,
-    this.onTap,
+    required this.title,
+    required this.value,
   }) : super(key: key);
 
-  final String? title;
-  final String? value;
-  final Color? topColor;
-  final bool isActive;
-  final GestureTapCallback? onTap;
+  final String title;
+  final String value;
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: InkWell(
-        onTap: onTap,
+    if (ResponsiveWidget.isSmallScreen(context)) {
+      return Container(
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.4),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              title,
+              style: Theme.of(context).textTheme.m24,
+            ),
+            Text(
+              value,
+              style: Theme.of(context).textTheme.b24,
+            ),
+          ],
+        ),
+      );
+    } else {
+      return Expanded(
         child: Container(
-          height: 136,
-          alignment: Alignment.center,
+          height: 120,
           decoration: BoxDecoration(
-            color: Colors.white,
-            boxShadow: [BoxShadow(offset: const Offset(0, 6), color: AppColors.lightGrey.withOpacity(.1), blurRadius: 12)],
-            borderRadius: BorderRadius.circular(8),
+            color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.4),
+            borderRadius: BorderRadius.circular(20),
           ),
+          alignment: Alignment.center,
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      color: topColor ?? AppColors.active,
-                      height: 5,
-                    ),
-                  )
-                ],
-              ),
-              Expanded(child: Container()),
               RichText(
                 textAlign: TextAlign.center,
                 text: TextSpan(
                   children: [
                     TextSpan(
                       text: "$title\n",
-                      style: TextStyle(fontSize: 16, color: isActive ? AppColors.active : AppColors.lightGrey),
+                      style: Theme.of(context).textTheme.m16,
                     ),
                     TextSpan(
-                      text: "$value",
-                      style: TextStyle(fontSize: 40, color: isActive ? AppColors.active : AppColors.dark),
+                      text: value,
+                      style: Theme.of(context).textTheme.b36,
                     ),
                   ],
                 ),
               ),
-              Expanded(child: Container()),
             ],
           ),
         ),
-      ),
-    );
+      );
+    }
   }
 }

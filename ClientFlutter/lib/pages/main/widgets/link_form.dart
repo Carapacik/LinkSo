@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:linkso/controller_instances.dart';
 import 'package:linkso/helpers/responsiveness.dart';
-import 'package:linkso/model/link_create.dart';
 import 'package:linkso/widgets/default_button.dart';
 
 class LinkForm extends StatefulWidget {
@@ -96,16 +95,7 @@ class _ShortenButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultButton(
-      onPressed: () async {
-        final form = _formKey.currentState!;
-        if (form.validate()) {
-          form.save();
-          final _receivedLinkInfo = await linkController.remoteDataSource.createLink(
-            LinkCreate(target: linkController.targetLink),
-          );
-          linkController.receivedLinkKey.value = _receivedLinkInfo.key;
-        }
-      },
+      onPressed: () => mainPageController.getResultKey(_formKey.currentState!),
       text: AppLocalizations.of(context)!.shorten,
     );
   }

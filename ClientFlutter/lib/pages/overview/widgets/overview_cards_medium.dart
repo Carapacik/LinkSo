@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:linkso/pages/overview/widgets/info_card.dart';
 
-class OverviewCardsMediumScreen extends StatelessWidget {
-  const OverviewCardsMediumScreen({Key? key}) : super(key: key);
+class OverviewCardsMedium extends StatelessWidget {
+  const OverviewCardsMedium({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,41 +13,29 @@ class OverviewCardsMediumScreen extends StatelessWidget {
       children: [
         Row(
           children: [
-            SizedBox(width: _width / 64),
             InfoCard(
-              title: "Links",
+              title: AppLocalizations.of(context)!.totalLinks,
               value: "7",
-              onTap: () {},
-              topColor: Colors.cyan,
             ),
             SizedBox(width: _width / 64),
             InfoCard(
-              title: "Redirect",
+              title: AppLocalizations.of(context)!.totalClicks,
               value: "70",
-              onTap: () {},
-              topColor: Colors.red,
             ),
-            SizedBox(width: _width / 64),
           ],
         ),
         SizedBox(height: _width / 64),
         Row(
           children: [
-            SizedBox(width: _width / 64),
             InfoCard(
-              title: "Stat1",
+              title: AppLocalizations.of(context)!.stat1,
               value: "1",
-              onTap: () {},
-              topColor: Colors.pink,
             ),
             SizedBox(width: _width / 64),
             InfoCard(
-              title: "Stat2",
+              title: AppLocalizations.of(context)!.stat1,
               value: "1",
-              onTap: () {},
-              topColor: Colors.orangeAccent,
             ),
-            SizedBox(width: _width / 64),
           ],
         )
       ],

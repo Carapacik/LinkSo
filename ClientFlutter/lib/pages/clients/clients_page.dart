@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:linkso/api/google_sign_in.dart';
-import 'package:linkso/helpers/routing.dart';
 import 'package:linkso/pages/clients/widgets/clients_table.dart';
 
 class ClientsPage extends StatelessWidget {

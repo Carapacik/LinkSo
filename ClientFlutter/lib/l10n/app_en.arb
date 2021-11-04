@@ -14,5 +14,8 @@
   "notFound": "Page not found",
   "enterPassword": "Enter password",
   "requiredPassword": "Password must me not null",
-  "go": "Go"
+  "go": "Go",
+  "totalLinks": "Total links",
+  "totalClicks": "Total clicks",
+  "stat1": "Stat1"
 }
