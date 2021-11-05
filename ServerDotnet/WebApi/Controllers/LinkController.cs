@@ -28,7 +28,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("info")]
-        public async Task<ActionResult<LinkInfoResponseDTO>> GetLinkInfo([FromQuery] string key)
+        public async Task<ActionResult<LinkInfoResponseDTO>> GetLinkInfo([FromQuery]string key)
         {
             var link = await _linkService.GetLinkInfo(key);
             return _mapper.Map<LinkInfoResponseDTO>(link);

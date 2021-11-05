@@ -26,12 +26,12 @@ namespace WebApi.Controllers
 
         [HttpPost("create")]
         [AllowAnonymous]
-        public async Task<ActionResult<LinkInfoResponseDTO>> CreateLink([FromBody]LinkCreateRequestDTO linkCreateRequestDto)
+        public async Task<ActionResult<LinkCreateResponseDTO>> CreateLink([FromBody]LinkCreateRequestDTO linkCreateRequestDto)
         {
             var createdLink = await _linkManagerService.CreateLink(linkCreateRequestDto.Target,
                 linkCreateRequestDto.LinkType, HttpContext.User.GetClaims(), linkCreateRequestDto.Password);
 
-            return _mapper.Map<LinkInfoResponseDTO>(createdLink);
+            return _mapper.Map<LinkCreateResponseDTO>(createdLink);
         }
         
         [HttpDelete("delete")]
