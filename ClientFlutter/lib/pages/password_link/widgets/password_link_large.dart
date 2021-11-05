@@ -8,7 +8,7 @@ class PasswordLinkPageLarge extends StatefulWidget {
 }
 
 class _PasswordLinkPageLargeState extends State<PasswordLinkPageLarge> {
-  late String? key;
+  late String key;
 
   @override
   void initState() {
@@ -16,12 +16,13 @@ class _PasswordLinkPageLargeState extends State<PasswordLinkPageLarge> {
     final uriBase = Uri.base;
     if (uriBase.pathSegments.length > 1) {
       key = uriBase.pathSegments[1];
+    } else {
+      key = "";
     }
-    print(key ?? "key is null");
   }
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text(key ?? "key is null"));
+    return Center(child: Text(key));
   }
 }

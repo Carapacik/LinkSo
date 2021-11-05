@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:linkso/controller_instances.dart';
 import 'package:linkso/helpers/responsiveness.dart';
-import 'package:linkso/helpers/routing.dart';
+import 'package:linkso/helpers/routes.dart';
 import 'package:linkso/widgets/side_menu_item.dart';
 
 class SideMenu extends StatelessWidget {

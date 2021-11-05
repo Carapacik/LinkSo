@@ -4,7 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:linkso/controller_instances.dart';
 import 'package:linkso/helpers/responsiveness.dart';
-import 'package:linkso/helpers/routing.dart';
+import 'package:linkso/helpers/routes.dart';
 import 'package:linkso/resources/theme.dart';
 import 'package:url_launcher/link.dart';
 

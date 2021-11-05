@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:linkso/helpers/routing.dart';
+import 'package:linkso/helpers/routes.dart';
 import 'package:linkso/resources/palette.dart';
 
 class MenuController extends GetxController {

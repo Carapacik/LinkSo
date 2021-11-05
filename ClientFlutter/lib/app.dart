@@ -3,7 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:linkso/controller_instances.dart';
-import 'package:linkso/helpers/routing.dart';
+import 'package:linkso/helpers/routes.dart';
 import 'package:linkso/pages/error/not_found_page.dart';
 import 'package:linkso/pages/main/main_page.dart';
 import 'package:linkso/pages/password_link/password_link_page.dart';

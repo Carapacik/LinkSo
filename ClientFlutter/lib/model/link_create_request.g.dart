@@ -1,19 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'link_info.dart';
+part of 'link_create_request.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-LinkInfo _$LinkInfoFromJson(Map<String, dynamic> json) => LinkInfo(
+LinkCreateRequest _$LinkCreateRequestFromJson(Map<String, dynamic> json) =>
+    LinkCreateRequest(
       target: json['target'] as String,
       linkType: json['linkType'] as int? ?? 0,
-      key: json['key'] as String,
+      password: json['password'] as String?,
     );
 
-Map<String, dynamic> _$LinkInfoToJson(LinkInfo instance) => <String, dynamic>{
+Map<String, dynamic> _$LinkCreateRequestToJson(LinkCreateRequest instance) =>
+    <String, dynamic>{
       'target': instance.target,
       'linkType': instance.linkType,
-      'key': instance.key,
+      'password': instance.password,
     };

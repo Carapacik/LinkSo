@@ -68,6 +68,11 @@ class _LinkInputField extends StatelessWidget {
         if (value!.isEmpty) {
           return AppLocalizations.of(context)!.requiredLink;
         }
+        final regExp = RegExp(r'^(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+');
+        if (regExp.hasMatch(value)) {
+          return AppLocalizations.of(context)!.incorrectLink;
+        }
+        // TODO: проверка ссылка с нашего сайта
         return null;
       },
       onSaved: (value) {
