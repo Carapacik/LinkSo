@@ -2,11 +2,12 @@
 using Application.Services;
 using Application.Tools.Permissions;
 using AutoMapper;
-using Domain;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.DTOs.Requests;
 using WebApi.DTOs.Responses;
+using WebApi.ExceptionHandling;
 
 namespace WebApi.Controllers
 {   
@@ -27,15 +28,21 @@ namespace WebApi.Controllers
 
         [HttpPost("create")]
         [AllowAnonymous]
-        public async Task<ActionResult<LinkInfoResponseDTO>> CreateLink([FromBody]LinkCreateRequestDTO linkCreateRequestDto)
+        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorDetails), StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<LinkCreateResponseDTO>> CreateLink([FromBody]LinkCreateRequestDTO linkCreateRequestDto)
         {
             var createdLink = await _linkManagerService.CreateLink(linkCreateRequestDto.Target,
                 linkCreateRequestDto.LinkType, HttpContext.User.GetClaims(), linkCreateRequestDto.Password);
 
-            return _mapper.Map<LinkInfoResponseDTO>(createdLink);
+            return _mapper.Map<LinkCreateResponseDTO>(createdLink);
         }
         
         [HttpDelete("delete")]
+        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ErrorDetails), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(ErrorDetails), StatusCodes.Status403Forbidden)]
         public async Task<IActionResult> DeleteLink([FromQuery]string key)
         {
             await _linkManagerService.DeleteLink(key, HttpContext.User.GetClaims());

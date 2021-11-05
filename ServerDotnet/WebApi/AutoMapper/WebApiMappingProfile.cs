@@ -9,6 +9,7 @@ namespace WebApi.AutoMapper
         public WebApiMappingProfile()
         {
             CreateMap<Link, LinkInfoResponseDTO>();
+            CreateMap<Link, LinkCreateResponseDTO>();
         }
     }
 }

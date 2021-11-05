@@ -1,44 +1,59 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using Application.Exceptions;
-using Application.Tools;
-using Application.Tools.Hash;
+using Application.Tools.Common;
 using Application.Tools.Permissions;
 using Domain;
 using Domain.Entities;
 using Domain.Repositories;
+using Microsoft.Extensions.Options;
+
+using static Application.Exceptions.ExceptionList;
 
 namespace Application.Services
 {
     public class LinkManagerService
     {
+        private readonly IOptions<CommonSettings> _commonSettings;
         private readonly ILinkRepository _linkRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly LinkGenerator _linkGenerator;
 
-        public LinkManagerService(ILinkRepository linkRepository, IUnitOfWork unitOfWork, LinkGenerator linkGenerator)
+        public LinkManagerService(IOptions<CommonSettings> commonSettings, ILinkRepository linkRepository, IUnitOfWork unitOfWork, LinkGenerator linkGenerator)
         {
+            _commonSettings = commonSettings;
             _linkRepository = linkRepository;
             _unitOfWork = unitOfWork;
             _linkGenerator = linkGenerator;
         }
 
+
         public async Task<Link> CreateLink(string targetUrl, LinkType linkType, UserClaims userClaims,
             string password = null)
         {
-            Password generatedPassword = null;
+            // Adds http:// if needed
+            var uri = new UriBuilder(targetUrl).Uri;
+            targetUrl = uri.ToString();
+
+            if (!ValidateUrl(targetUrl))
+                throw new BadRequestException(LinkEx.InvalidTarget);
+
+            var backendUri = new Uri(_commonSettings.Value.BackendAddress);
+            if (backendUri.Host == uri.Host)
+                throw new BadRequestException(LinkEx.InvalidTargetEndPoint);
+            
             if (linkType == LinkType.Private)
             {
                 if (string.IsNullOrWhiteSpace(password))
                 {
-                    throw new InvalidInputDataException(InvalidInputDataException.LinkConflictingData);
+                    throw new BadRequestException(LinkEx.InvalidPassword);
                 }
-                
-                generatedPassword = HashingTools.QuickHash(password);
             }
 
             var key = _linkGenerator.GenerateFullUrl();
 
-            var addedLink =  await _linkRepository.AddLink(key, targetUrl, linkType, userClaims.UserId, generatedPassword);
+            var addedLink =  await _linkRepository.AddLink(key, targetUrl, linkType, userClaims.UserId, password);
             await _unitOfWork.Commit();
             return addedLink;
         }
@@ -47,6 +62,13 @@ namespace Application.Services
         {
             await _linkRepository.DeleteLink(shortUrl);
             await _unitOfWork.Commit();
+        }
+
+        private static bool ValidateUrl(string url)
+        {
+            string pattern = @"^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$";
+            Regex rgx = new(pattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            return rgx.IsMatch(url);
         }
     }
 }

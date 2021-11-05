@@ -7,7 +7,6 @@ using Application.Tools.Permissions;
 using Domain.Entities;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using Recipes.Application.Services.User;
 
 namespace Application.Tools.Jwt
 {

@@ -10,7 +10,7 @@
         
         public User User { get; set; }
 
-        public Password Password { get; set; }
+        public string Password { get; set; }
 
         public LinkType LinkType { get; set; } = LinkType.Public;
     }
