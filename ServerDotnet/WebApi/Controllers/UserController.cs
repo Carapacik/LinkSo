@@ -28,13 +28,13 @@ namespace WebApi.Controllers
         /// <param name="registerRequestDto"></param>
         /// <response code="200">Successfully registered</response>
         /// <response code="400">Invalid input data</response>
-        /// <response code="409">Cannot register account with the specified data</response>
+        /// <response code="403">Cannot register account with the specified data</response>
         /// <returns></returns>
         [HttpPost("register")]
         [AllowAnonymous]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(ErrorDetails), StatusCodes.Status409Conflict)]
+        [ProducesResponseType(typeof(ErrorDetails), StatusCodes.Status403Forbidden)]
         public async Task<ActionResult<string>> Register([FromBody] RegisterRequestDTO registerRequestDto)
         {
             return await _userService.Register(registerRequestDto.Login,  registerRequestDto.Email, registerRequestDto.Password);
