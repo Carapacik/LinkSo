@@ -12,11 +12,22 @@ extension TextThemeExt on TextTheme {
         letterSpacing: 0.6,
       );
 
+  TextStyle get b36 => bodyText1!.copyWith(
+        fontSize: 36,
+        fontWeight: FontWeight.w700,
+      );
+
   TextStyle get b24 => bodyText1!.copyWith(
         fontSize: 24,
         fontWeight: FontWeight.bold,
         fontStyle: FontStyle.normal,
         letterSpacing: 0.5,
+      );
+
+  TextStyle get m24 => bodyText1!.copyWith(
+        fontSize: 24,
+        fontWeight: FontWeight.w300,
+        fontStyle: FontStyle.normal,
       );
 
   TextStyle get b20 => bodyText1!.copyWith(

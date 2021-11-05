@@ -7,12 +7,17 @@
   "copy": "Copy",
   "makeYourLinkShorter": "Make your link shorter",
   "shorten": "Shorten",
-  "requiredLink": "Link must me not null",
+  "requiredLink": "Link is required",
+  "incorrectLink": "Incorrect link",
+  "alreadyOurLink": "Already linkso link",
   "login": "Log in",
   "logout": "Log out",
   "code404": "404",
   "notFound": "Page not found",
   "enterPassword": "Enter password",
   "requiredPassword": "Password must me not null",
-  "go": "Go"
+  "go": "Go",
+  "totalLinks": "Total links",
+  "totalClicks": "Total clicks",
+  "stat1": "Stat1"
 }

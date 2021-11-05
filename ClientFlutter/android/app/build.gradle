@@ -59,7 +59,7 @@ android {
         debug {
             keyAlias 'signin'
             keyPassword 'android'
-            storeFile file('signin-keystore.jks')
+            storeFile file('signin.jks')
             storePassword 'android'
         }
         release {

@@ -1,8 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:linkso/api/remote_data_source.dart';
 import 'package:linkso/api/rest_client.dart';
-import 'package:linkso/model/link_create.dart';
-import 'package:linkso/model/link_info.dart';
+import 'package:linkso/model/link_access_request.dart';
+import 'package:linkso/model/link_create_request.dart';
+import 'package:linkso/model/link_create_response.dart';
 
 class RemoteDataSourceImplementation implements RemoteDataSource {
   final _dio = Dio(
@@ -25,12 +26,17 @@ class RemoteDataSourceImplementation implements RemoteDataSource {
   }
 
   @override
-  Future<LinkInfo> createLink(LinkCreate link) {
+  Future<LinkCreateResponse> createLink(LinkCreateRequest link) {
     return _restClient.createLink(link);
   }
 
   @override
-  Future<String> checkPassword(String password) {
-    return _restClient.checkPassword(password);
+  Future<void> deleteLink(String key) {
+    return _restClient.deleteLink(key);
+  }
+
+  @override
+  Future<String> checkAccess(LinkAccessRequest linkAccessRequest) {
+    return _restClient.checkAccess(linkAccessRequest);
   }
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:linkso/resources/palette.dart';
 
-class GradientBackground extends StatelessWidget {
-  const GradientBackground({
+class AnimatedGradientBackground extends StatelessWidget {
+  const AnimatedGradientBackground({
     Key? key,
     required this.child,
   }) : super(key: key);
@@ -11,9 +11,14 @@ class GradientBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(gradient: _getBackgroundGradient(Theme.of(context))),
-      child: child,
+    return Stack(
+      children: [
+        AnimatedContainer(
+          duration: const Duration(milliseconds: 500),
+          decoration: BoxDecoration(gradient: _getBackgroundGradient(Theme.of(context))),
+        ),
+        child,
+      ],
     );
   }
 

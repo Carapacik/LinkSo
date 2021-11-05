@@ -1,8 +1,11 @@
-import 'package:linkso/model/link_create.dart';
-import 'package:linkso/model/link_info.dart';
+import 'package:linkso/model/link_access_request.dart';
+import 'package:linkso/model/link_create_request.dart';
+import 'package:linkso/model/link_create_response.dart';
 
 abstract class RemoteDataSource {
-  Future<LinkInfo> createLink(LinkCreate link);
+  Future<LinkCreateResponse> createLink(LinkCreateRequest link);
 
-  Future<String> checkPassword(String password);
+  Future<void> deleteLink(String key);
+
+  Future<String> checkAccess(LinkAccessRequest linkAccessRequest);
 }

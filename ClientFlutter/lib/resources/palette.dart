@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
 class AppColors {
@@ -35,27 +34,30 @@ class AppColors {
   static const dark = Color(0xFF262626);
   static const active = Color(0xFF3C19C0);
 
-  static const g5 = Color(0xFF463DBC);
-  static const g6 = Color(0xFF5F49A3);
-  static const g7 = Color(0xFF6A568B);
-  static const g8 = Color(0xFF6C6475);
+  static const g1 = Color(0xFFDE9FF8);
+  static const g2 = Color(0xFFF64A77);
+  static const g3 = Color(0xFFA723D8);
+
+  static const g4 = Color(0xFF1F1761);
+  static const g5 = Color(0xFF241857);
+  static const g6 = Color(0xFF1C142A);
 
   static const darkGradient = LinearGradient(
     begin: Alignment.topRight,
     end: Alignment.bottomLeft,
     colors: [
-      darkBackground,
-      darkSurface,
+      g4,
+      g5,
+      g6,
     ],
   );
   static const lightGradient = LinearGradient(
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
+    begin: Alignment.topRight,
+    end: Alignment.bottomLeft,
     colors: [
-      g5,
-      g6,
-      g7,
-      g8,
+      g1,
+      g2,
+      g3,
     ],
   );
 }
