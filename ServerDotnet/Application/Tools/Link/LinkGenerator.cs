@@ -1,11 +1,12 @@
 ﻿using System;
 
-namespace Application.Tools
+namespace Application.Tools.Common
 {
     public class LinkGenerator
     {
         private readonly Random _random = new();
-        private readonly string Alphabet = "abcdefghijklmnopqrstuvwyxz0123456789";
+        private const string Alphabet = "abcdefghijklmnopqrstuvwyxz0123456789";
+
         private string GenerateString(int size)
         {
             var chars = new char[size];

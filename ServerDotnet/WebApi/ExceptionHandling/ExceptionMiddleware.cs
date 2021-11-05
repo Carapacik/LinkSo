@@ -33,14 +33,16 @@ namespace WebApi.ExceptionHandling
         private async Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
             var statusCode = HttpStatusCode.InternalServerError;
-            var message = "При обработке запроса произошла неизвестная ошибка.";
+            var message = "UnknownException";
 
             if (exception is ValueException valueException)
             {
                 statusCode = exception switch
                 {
+                    BadRequestException => HttpStatusCode.BadRequest,
+                    UnauthorizedException => HttpStatusCode.Unauthorized,
+                    ForbiddenException => HttpStatusCode.Forbidden,
                     NotFoundException => HttpStatusCode.NotFound,
-                    InvalidInputDataException => HttpStatusCode.BadRequest,
                     _ => HttpStatusCode.InternalServerError
                 };
                 message = valueException.Value;

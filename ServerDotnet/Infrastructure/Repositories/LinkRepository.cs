@@ -15,7 +15,7 @@ namespace Infrastructure.Repositories
         }
 
         public async Task<Link> AddLink(string key, string target, LinkType linkType, int authorId,
-            Password password)
+            string password)
         {
             var newLink = new Link
             {
