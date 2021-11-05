@@ -10,12 +10,6 @@ namespace Infrastructure.Configurations
         {
             builder.ToTable("link");
 
-            builder.OwnsOne(x => x.Password, password =>
-            {
-                password.Property(x => x.PasswordHash).HasColumnName("password_hash");
-                password.Property(x => x.PasswordSalt).HasColumnName("password_salt");
-            });
-
             builder.HasKey(x => x.Key);
             builder.HasIndex(x => x.Key).IsUnique();
             

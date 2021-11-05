@@ -1,22 +1,28 @@
 ﻿using System.Text;
 using Application.Services;
 using Application.Tools;
+using Application.Tools.Common;
 using Application.Tools.Jwt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using Recipes.Application.Services.User;
 
 namespace Application
 {
     public static class ApplicationServicesExtensions
     {
-        public static void AddAuthorization(this IServiceCollection services, IConfigurationSection jwtSection)
+        public static void AddAuthorization(this IServiceCollection services, IConfigurationSection commonSection,
+            IConfigurationSection jwtSection)
         {
+            services.Configure<CommonSettings>(commonSection);
+            var commonSettings = new CommonSettings();
+            commonSection.Bind(commonSettings);
+            
             services.Configure<JwtSettings>(jwtSection);
             var jwtSettings = new JwtSettings();
-            jwtSection.Bind(jwtSettings);
+            jwtSection.Bind(jwtSettings); 
+            jwtSettings.SetCommonSettings(commonSettings);
 
             services.AddAuthentication(opt =>
             {
@@ -44,7 +50,7 @@ namespace Application
             
             services.AddScoped<UserService>();
             services.AddScoped<LinkManagerService>();
-            services.AddScoped<RedirectService>();
+            services.AddScoped<LinkService>();
             services.AddScoped<UserService>();
         }
     }

@@ -2,7 +2,6 @@
 using Application.Services;
 using Application.Tools.Permissions;
 using AutoMapper;
-using Domain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.DTOs.Requests;

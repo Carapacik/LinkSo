@@ -7,6 +7,8 @@ using Application.Tools.Permissions;
 using Domain;
 using Domain.Repositories;
 
+using static Application.Exceptions.ExceptionList;
+
 namespace Application.Services
 {
     public class UserService
@@ -25,7 +27,7 @@ namespace Application.Services
         public async Task<string> Register(string login, string email, string password)
         {
             if (await _userRepository.GetUserByLogin(login) != null)
-                throw new UserModificationException(UserModificationException.LoginIsTaken);
+                throw new ForbiddenException(UserEx.TakenLogin);
 
             var generatedPassword  = HashingTools.QuickHash(password);
             var user = await _userRepository.AddUser(login, email, generatedPassword);
@@ -33,16 +35,15 @@ namespace Application.Services
 
             return new JwtSecurityTokenHandler().WriteToken(_jwtHandler.GenerateTokenOptions(user));
         }
-
         
         public async Task<string> Login(string login, string password)
         {
             var user = await _userRepository.GetUserByLogin(login);
             if (user == null)
-                throw new UserAuthenticationException(UserAuthenticationException.LoginDoesNotExist);
+                throw new UnauthorizedException(UserEx.NonExistingLogin);
 
             if (!HashingTools.ValidatePassword(password, user.Password)) 
-                throw new UserAuthenticationException(UserAuthenticationException.PasswordIsIncorrect);
+                throw new UnauthorizedException(UserEx.WrongPassword);
             
             return new JwtSecurityTokenHandler().WriteToken(_jwtHandler.GenerateTokenOptions(user));
         }
@@ -50,11 +51,11 @@ namespace Application.Services
         public async Task ValidateUser(UserClaims userClaims)
         {
             if (!userClaims.IsAuthenticated)
-                throw new UserAuthenticationException(UserAuthenticationException.UserIsInvalid);
+                throw new UnauthorizedException(UserEx.FailedValidation);
 
             var dbUser = await _userRepository.GetUserById(userClaims.UserId);
             if (dbUser == null)
-                throw new UserAuthenticationException(UserAuthenticationException.UserIsInvalid);
+                throw new UnauthorizedException(UserEx.FailedValidation);
         }
     }
 }
