@@ -11,7 +11,6 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScaffold(
       appBarEnabled: true,
-      drawerEnabled: true,
       largeScreen: const MainPageLarge(),
       smallScreen: const MainPageSmall(),
     );
@@ -23,7 +22,7 @@ class MainPageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const ResponsiveWidget(
+    return ResponsiveWidget(
       largeScreen: MainPageLarge(),
       smallScreen: MainPageSmall(),
     );

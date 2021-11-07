@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:linkso/controller_instances.dart';
+import 'package:linkso/pages/password_link/widgets/password_form.dart';
 
 class PasswordLinkPageLarge extends StatefulWidget {
   const PasswordLinkPageLarge({Key? key}) : super(key: key);
@@ -8,21 +10,17 @@ class PasswordLinkPageLarge extends StatefulWidget {
 }
 
 class _PasswordLinkPageLargeState extends State<PasswordLinkPageLarge> {
-  late String key;
-
   @override
   void initState() {
     super.initState();
     final uriBase = Uri.base;
     if (uriBase.pathSegments.length > 1) {
-      key = uriBase.pathSegments[1];
-    } else {
-      key = "";
+      passwordLinkPageController.key.value = uriBase.pathSegments[1];
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text(key));
+    return const Center(child: PasswordForm());
   }
 }

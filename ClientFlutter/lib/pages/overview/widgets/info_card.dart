@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:linkso/helpers/responsiveness.dart';
 import 'package:linkso/resources/theme.dart';
+import 'package:linkso/widgets/custom_card_container.dart';
 
 class InfoCard extends StatelessWidget {
   const InfoCard({
@@ -15,12 +16,7 @@ class InfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (ResponsiveWidget.isSmallScreen(context)) {
-      return Container(
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.4),
-          borderRadius: BorderRadius.circular(10),
-        ),
+      return CustomCardContainer(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -37,13 +33,8 @@ class InfoCard extends StatelessWidget {
       );
     } else {
       return Expanded(
-        child: Container(
+        child: CustomCardContainer(
           height: 120,
-          decoration: BoxDecoration(
-            color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.4),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          alignment: Alignment.center,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [

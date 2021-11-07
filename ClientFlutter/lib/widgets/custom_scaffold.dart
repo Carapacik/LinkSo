@@ -27,7 +27,7 @@ class CustomScaffold extends StatelessWidget {
       key: _scaffoldKey,
       extendBodyBehindAppBar: true,
       appBar: appBarEnabled ? appBar(context, _scaffoldKey) : null,
-      drawer: drawerEnabled ? drawer(context) : null,
+      drawer: drawerEnabled ? Drawer(child: drawer(context)) : null,
       body: AnimatedGradientBackground(
         child: ResponsiveWidget(
           largeScreen: largeScreen,

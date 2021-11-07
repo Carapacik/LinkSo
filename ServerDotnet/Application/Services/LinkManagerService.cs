@@ -66,7 +66,7 @@ namespace Application.Services
 
         private static bool ValidateUrl(string url)
         {
-            string pattern = @"^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$";
+            string pattern = @"^http(s)?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)$";
             Regex rgx = new(pattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
             return rgx.IsMatch(url);
         }

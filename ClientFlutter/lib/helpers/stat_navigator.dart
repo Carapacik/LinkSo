@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:linkso/controller_instances.dart';
 import 'package:linkso/helpers/routes.dart';
+import 'package:linkso/pages/all_links/all_links_page.dart';
 import 'package:linkso/pages/clients/clients_page.dart';
 import 'package:linkso/pages/main/main_page.dart';
 import 'package:linkso/pages/overview/overview_page.dart';
@@ -43,14 +44,14 @@ Navigator statNavigator() {
 }
 
 Route _onGenerateRoute(RouteSettings settings) {
-  html.window.history.pushState(null, 'Stat', '/stat${settings.name}');
+  html.window.history.pushState(null, 'Stat', '/stat${settings.name}'); // delete this for mobile
   switch (settings.name) {
     case shortRoute:
       return _getPageRoute(const MainPageContent());
     case clientsRoute:
       return _getPageRoute(const ClientsPage());
     case linksRoute:
-      return _getPageRoute(const SettingsPage()); //
+      return _getPageRoute(const AllLinksPage());
     case settingsRoute:
       return _getPageRoute(const SettingsPage());
     case overviewRoute:
