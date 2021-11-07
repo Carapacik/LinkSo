@@ -13,16 +13,13 @@ class OverviewPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: Column(
-            children: [
-              if (ResponsiveWidget.isLargeScreen(context) || ResponsiveWidget.isMediumScreen(context))
-                if (ResponsiveWidget.isCustomSize(context)) const OverviewCardsMedium() else const OverviewCardsLarge()
-              else
-                const OverviewCardsSmall(),
-            ],
-          ),
+        Column(
+          children: [
+            if (ResponsiveWidget.isLargeScreen(context) || ResponsiveWidget.isMediumScreen(context))
+              if (ResponsiveWidget.isCustomSize(context)) const OverviewCardsMedium() else const OverviewCardsLarge()
+            else
+              const OverviewCardsSmall(),
+          ],
         ),
         if (!ResponsiveWidget.isSmallScreen(context)) const RevenueLarge() else const RevenueSmall(),
       ],

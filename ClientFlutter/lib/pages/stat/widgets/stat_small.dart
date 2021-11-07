@@ -6,6 +6,9 @@ class StatPageSmall extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return statNavigator();
+    return Padding(
+      padding: const EdgeInsets.only(top: 20, right: 15, left: 15, bottom: 15),
+      child: statNavigator(),
+    );
   }
 }

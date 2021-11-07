@@ -12,7 +12,10 @@ class StatPageLarge extends StatelessWidget {
         Expanded(child: drawer(context)),
         Expanded(
           flex: 5,
-          child: statNavigator(),
+          child: Padding(
+            padding: const EdgeInsets.only(top: 20, right: 15, left: 15, bottom: 15),
+            child: statNavigator(),
+          ),
         ),
       ],
     );
