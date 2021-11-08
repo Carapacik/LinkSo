@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:linkso/controller_instances.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:linkso/helpers/responsiveness.dart';
 import 'package:linkso/helpers/routes.dart';
-import 'package:linkso/widgets/side_menu_item.dart';
+
+import '../controller_instances.dart';
+import 'side_menu_item.dart';
 
 class SideMenu extends StatelessWidget {
   const SideMenu({Key? key}) : super(key: key);

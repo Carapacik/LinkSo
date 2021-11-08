@@ -12,6 +12,7 @@
   "alreadyOurLink": "Already linkso link",
   "login": "Log in",
   "logout": "Log out",
+  "register": "Register",
   "code404": "404",
   "notFound": "Page not found",
   "enterPassword": "Enter password",
@@ -23,5 +24,13 @@
   "go": "Go",
   "totalLinks": "Total links",
   "totalClicks": "Total clicks",
-  "stat1": "Stat1"
+  "clicks": "Clicks",
+  "stat1": "Stat1",
+  "requiredEmail": "Email is required",
+  "incorrectEmail": "Email incorrect",
+  "requiredLogin": "Login is required",
+  "yourEmail": "Your Email",
+  "yourLogin": "Your login",
+  "signin": "Sign in",
+  "registration": "Register"
 }

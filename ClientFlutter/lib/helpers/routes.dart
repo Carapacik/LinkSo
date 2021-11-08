@@ -1,10 +1,12 @@
+// / routes
 const mainRoute = "/main";
 const authRoute = "/auth";
-const statRoute = "/stat";
 const signInRoute = "/signin";
 const passwordLinkRoute = "/p";
 const notFoundRoute = "/not-found";
+const statRoute = "/stat";
 
+// /stat routes
 const shortRoute = "/short";
 const shortRouteName = "Short";
 

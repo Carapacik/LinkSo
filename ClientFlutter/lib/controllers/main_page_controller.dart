@@ -1,9 +1,7 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:linkso/api/remote_data_source.dart';
-import 'package:linkso/api/remote_data_source_implementation.dart';
-import 'package:linkso/controller_instances.dart';
 import 'package:linkso/model/link_create_request.dart';
 
 class MainPageController extends GetxController {
@@ -15,14 +13,6 @@ class MainPageController extends GetxController {
   String? passwordLink;
 
   final baseUri = "http://localhost:5000";
-
-  late RemoteDataSource remoteDataSource;
-
-  @override
-  void onInit() {
-    super.onInit();
-    remoteDataSource = RemoteDataSourceImplementation();
-  }
 
   Future<void> getResultKey(FormState form) async {
     if (form.validate()) {
@@ -39,6 +29,6 @@ class MainPageController extends GetxController {
   }
 
   void changeCheckBoolValue() {
-    mainPageController.checkBool.value = !mainPageController.checkBool.value;
+    checkBool.value = !checkBool.value;
   }
 }

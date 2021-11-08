@@ -9,6 +9,7 @@
   "alreadyOurLink": "Ссылка с этого сайта",
   "login": "Войти",
   "logout": "Выйти",
+  "register": "Зарегистрироваться",
   "code404": "404",
   "notFound": "Страница не найдена",
   "enterPassword": "Введите пароль",
@@ -20,5 +21,13 @@
   "go": "Перейти",
   "totalLinks": "Всего ссылок",
   "totalClicks": "Всего кликов",
-  "stat1": "Стат1"
+  "clicks": "Переходы",
+  "stat1": "Стата 1",
+  "requiredEmail": "Email не может быть пустой",
+  "incorrectEmail": "Email некорректный",
+  "requiredLogin": "Логин не может быть пустой",
+  "yourEmail": "Ваш Email",
+  "yourLogin": "Ваш логин",
+  "signin": "Вход",
+  "registration": "Регистрация"
 }

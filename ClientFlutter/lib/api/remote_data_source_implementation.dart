@@ -4,6 +4,8 @@ import 'package:linkso/api/rest_client.dart';
 import 'package:linkso/model/link_access_request.dart';
 import 'package:linkso/model/link_create_request.dart';
 import 'package:linkso/model/link_create_response.dart';
+import 'package:linkso/model/login_request.dart';
+import 'package:linkso/model/register_request.dart';
 
 class RemoteDataSourceImplementation implements RemoteDataSource {
   final _dio = Dio(
@@ -38,5 +40,15 @@ class RemoteDataSourceImplementation implements RemoteDataSource {
   @override
   Future<String> checkAccess(LinkAccessRequest linkAccessRequest) {
     return _restClient.checkAccess(linkAccessRequest);
+  }
+
+  @override
+  Future<String> login(LoginRequest loginRequest) {
+    return _restClient.login(loginRequest);
+  }
+
+  @override
+  Future<String> register(RegisterRequest registerRequest) {
+    return _restClient.register(registerRequest);
   }
 }

@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:get/get.dart';
-import 'package:linkso/controller_instances.dart';
-import 'package:linkso/helpers/routes.dart';
-import 'package:linkso/pages/error/not_found_page.dart';
-import 'package:linkso/pages/main/main_page.dart';
-import 'package:linkso/pages/password_link/password_link_page.dart';
-import 'package:linkso/pages/signin/signin_page.dart';
-import 'package:linkso/pages/stat/stat_page.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:get/get_navigation/src/routes/get_route.dart';
+
+import 'controller_instances.dart';
+import 'helpers/routes.dart';
+import 'pages/error/not_found_page.dart';
+import 'pages/main/main_page.dart';
+import 'pages/password_link/password_link_page.dart';
+import 'pages/signin/signin_page.dart';
+import 'pages/stat/stat_page.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);

@@ -22,7 +22,7 @@ class MainPageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveWidget(
+    return const ResponsiveWidget(
       largeScreen: MainPageLarge(),
       smallScreen: MainPageSmall(),
     );

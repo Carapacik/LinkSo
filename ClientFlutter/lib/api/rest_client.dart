@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:linkso/model/link_access_request.dart';
 import 'package:linkso/model/link_create_request.dart';
 import 'package:linkso/model/link_create_response.dart';
+import 'package:linkso/model/login_request.dart';
+import 'package:linkso/model/register_request.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'rest_client.g.dart';
@@ -18,4 +20,10 @@ abstract class RestClient {
 
   @POST("link/access")
   Future<String> checkAccess(@Body() LinkAccessRequest linkAccessRequest);
+
+  @POST("user/register")
+  Future<String> register(@Body() RegisterRequest registerRequest);
+
+  @POST("user/login")
+  Future<String> login(@Body() LoginRequest loginRequest);
 }

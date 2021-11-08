@@ -29,10 +29,7 @@ class AppColors {
   static const darkOnSurface = Color(0xFFFFFFFF);
   static const darkOnError = Color(0xFFFFFFFF);
 
-  static const light = Color(0xFFF7F8FC);
-  static const lightGrey = Color(0xFFA4A6B3);
-  static const dark = Color(0xFF262626);
-  static const active = Color(0xFF3C19C0);
+  static const grey = Color(0xFFA4A6B3);
 
   static const g1 = Color(0xFFDE9FF8);
   static const g2 = Color(0xFFF64A77);

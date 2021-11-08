@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:linkso/controller_instances.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:linkso/resources/palette.dart';
-import 'package:linkso/widgets/custom_text.dart';
+import 'package:linkso/resources/theme.dart';
+
+import '../controller_instances.dart';
 
 class VerticalMenuItem extends StatelessWidget {
   const VerticalMenuItem({
@@ -23,7 +24,7 @@ class VerticalMenuItem extends StatelessWidget {
       },
       child: Obx(
         () => Container(
-          color: menuController.isHover(itemName) ? AppColors.lightGrey.withOpacity(0.2) : Colors.transparent,
+          color: menuController.isHover(itemName) ? AppColors.lightPrimary.withOpacity(0.3) : Colors.transparent,
           child: Row(
             children: [
               Visibility(
@@ -34,7 +35,7 @@ class VerticalMenuItem extends StatelessWidget {
                 child: Container(
                   width: 3,
                   height: 72,
-                  color: AppColors.dark,
+                  color: AppColors.darkPrimary,
                 ),
               ),
               Expanded(
@@ -47,18 +48,20 @@ class VerticalMenuItem extends StatelessWidget {
                     ),
                     if (!menuController.isActive(itemName))
                       Flexible(
-                        child: CustomText(
-                          text: itemName,
-                          color: menuController.isHover(itemName) ? AppColors.dark : AppColors.lightGrey,
+                        child: Text(
+                          itemName,
+                          style: Theme.of(context).textTheme.m16.copyWith(
+                                color: menuController.isHover(itemName) ? AppColors.lightPrimaryVariant : AppColors.lightPrimary,
+                              ),
                         ),
                       )
                     else
                       Flexible(
-                        child: CustomText(
-                          text: itemName,
-                          color: AppColors.dark,
-                          size: 18,
-                          weight: FontWeight.bold,
+                        child: Text(
+                          itemName,
+                          style: Theme.of(context).textTheme.m16.copyWith(
+                                color: AppColors.darkPrimary,
+                              ),
                         ),
                       ),
                   ],

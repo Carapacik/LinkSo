@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:linkso/helpers/responsiveness.dart';
-import 'package:linkso/widgets/horizontal_menu_items.dart';
-import 'package:linkso/widgets/vertical_menu_items.dart';
+
+import 'horizontal_menu_items.dart';
+import 'vertical_menu_items.dart';
 
 class SideMenuItem extends StatelessWidget {
   const SideMenuItem({

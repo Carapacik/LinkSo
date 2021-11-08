@@ -1,6 +1,8 @@
 import 'package:linkso/model/link_access_request.dart';
 import 'package:linkso/model/link_create_request.dart';
 import 'package:linkso/model/link_create_response.dart';
+import 'package:linkso/model/login_request.dart';
+import 'package:linkso/model/register_request.dart';
 
 abstract class RemoteDataSource {
   Future<LinkCreateResponse> createLink(LinkCreateRequest link);
@@ -8,4 +10,8 @@ abstract class RemoteDataSource {
   Future<void> deleteLink(String key);
 
   Future<String> checkAccess(LinkAccessRequest linkAccessRequest);
+
+  Future<String> register(RegisterRequest registerRequest);
+
+  Future<String> login(LoginRequest loginRequest);
 }

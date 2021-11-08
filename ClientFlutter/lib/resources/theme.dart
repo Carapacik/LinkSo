@@ -74,6 +74,7 @@ final ThemeData lightTheme = ThemeData.light().copyWith(
   scaffoldBackgroundColor: Color(0xFF121212),
   errorColor: _darkColorScheme.error,
   appBarTheme: AppBarTheme(color: Color(0xFF4527A0)),
+  // Icon theme here
   textTheme: _lightTextTheme,
   pageTransitionsTheme: const PageTransitionsTheme(
     builders: {

@@ -1,5 +1,6 @@
 import 'package:google_sign_in/google_sign_in.dart';
 
+//TODO: переделать нормально
 class GoogleSignInApi {
   static final _googleSignIn = GoogleSignIn();
 

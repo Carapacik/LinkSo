@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:linkso/resources/palette.dart';
+import 'package:linkso/resources/theme.dart';
 
 class RevenueInfo extends StatelessWidget {
   const RevenueInfo({
@@ -18,8 +18,14 @@ class RevenueInfo extends StatelessWidget {
         textAlign: TextAlign.center,
         text: TextSpan(
           children: [
-            TextSpan(text: "$title \n\n", style: TextStyle(color: AppColors.lightGrey, fontSize: 16)),
-            TextSpan(text: "\$ $amount", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+            TextSpan(
+              text: "$title\n",
+              style: Theme.of(context).textTheme.m16,
+            ),
+            TextSpan(
+              text: amount,
+              style: Theme.of(context).textTheme.b24.copyWith(color: Theme.of(context).colorScheme.secondary),
+            ),
           ],
         ),
       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:linkso/controller_instances.dart';
+import 'package:linkso/helpers/regex.dart';
 import 'package:linkso/widgets/custom_text_field.dart';
 import 'package:linkso/widgets/default_button.dart';
 
@@ -30,7 +31,7 @@ class _PasswordFormState extends State<PasswordForm> {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(child: _PasswordInputField(textEditingController: _passwordController)),
+            Expanded(child: _PasswordInputField(controller: _passwordController)),
             const SizedBox(width: 20),
             _SubmitButton(formKey: _formKey),
           ],
@@ -49,21 +50,21 @@ class _PasswordFormState extends State<PasswordForm> {
 class _PasswordInputField extends StatelessWidget {
   const _PasswordInputField({
     Key? key,
-    required this.textEditingController,
+    required this.controller,
   }) : super(key: key);
 
-  final TextEditingController? textEditingController;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
     return CustomTextFormField(
-      textEditingController: textEditingController,
+      controller: controller,
+      keyboardType: TextInputType.visiblePassword,
       validator: (value) {
         if (value!.isEmpty) {
           return AppLocalizations.of(context)!.requiredPassword;
         }
-        final regExp = RegExp(r'^(?=.*[0-9]).{5,30}$');
-        if (!regExp.hasMatch(value)) {
+        if (!passwordRegex.hasMatch(value)) {
           return AppLocalizations.of(context)!.incorrectPassword;
         }
         return null;

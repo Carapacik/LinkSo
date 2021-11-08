@@ -21,7 +21,7 @@ class OverviewPage extends StatelessWidget {
               const OverviewCardsSmall(),
           ],
         ),
-        if (!ResponsiveWidget.isSmallScreen(context)) const RevenueLarge() else const RevenueSmall(),
+        if (ResponsiveWidget.isSmallScreen(context)) const RevenueSmall() else const RevenueLarge(),
       ],
     );
   }

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:linkso/helpers/routes.dart';
@@ -34,8 +33,10 @@ class MenuController extends GetxController {
   }
 
   Widget _customIcon(IconData icon, String itemName) {
-    if (isActive(itemName)) return Icon(icon, size: 22, color: AppColors.dark);
-
-    return Icon(icon, color: isHover(itemName) ? AppColors.dark : AppColors.light);
+    if (isActive(itemName)) {
+      return Icon(icon, size: 22, color: AppColors.darkPrimary);
+    } else {
+      return Icon(icon, color: isHover(itemName) ? AppColors.lightPrimaryVariant : AppColors.lightPrimary);
+    }
   }
 }
