@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:linkso/controller_instances.dart';
 import 'package:linkso/helpers/regex.dart';
 import 'package:linkso/widgets/custom_text_field.dart';
 import 'package:linkso/widgets/default_button.dart';
+
+import '../../../controller_instances.dart';
 
 class PasswordForm extends StatefulWidget {
   const PasswordForm({Key? key}) : super(key: key);

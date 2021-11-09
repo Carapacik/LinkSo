@@ -5,6 +5,6 @@ class AllLinksTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("Table being here"));
+    return const Center(child: Text("Table being here"));
   }
 }

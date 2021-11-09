@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:linkso/api/google_sign_in.dart';
-import 'package:linkso/controller_instances.dart';
 import 'package:linkso/helpers/routes.dart';
+
+import '../../controller_instances.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);

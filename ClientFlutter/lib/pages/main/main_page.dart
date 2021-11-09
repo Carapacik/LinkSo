@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:linkso/helpers/responsiveness.dart';
-import 'package:linkso/pages/main/widgets/main_large.dart';
-import 'package:linkso/pages/main/widgets/main_small.dart';
 import 'package:linkso/widgets/custom_scaffold.dart';
+
+import 'widgets/main_large.dart';
+import 'widgets/main_small.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({Key? key}) : super(key: key);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:linkso/pages/all_links/widgets/all_links_table.dart';
+
+import 'widgets/all_links_table.dart';
 
 class AllLinksPage extends StatelessWidget {
   const AllLinksPage({Key? key}) : super(key: key);

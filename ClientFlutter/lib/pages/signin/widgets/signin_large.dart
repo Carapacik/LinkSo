@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:linkso/api/google_sign_in.dart';
-import 'package:linkso/controller_instances.dart';
 import 'package:linkso/helpers/routes.dart';
 import 'package:linkso/resources/theme.dart';
 import 'package:linkso/widgets/custom_card_container.dart';
 
+import '../../../controller_instances.dart';
 import 'auth_form.dart';
 
 class SignInPageLarge extends StatelessWidget {

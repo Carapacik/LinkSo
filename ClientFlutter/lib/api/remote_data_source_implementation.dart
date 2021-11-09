@@ -1,11 +1,17 @@
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
-import 'package:linkso/api/remote_data_source.dart';
-import 'package:linkso/api/rest_client.dart';
+import 'package:linkso/model/error_detail.dart';
 import 'package:linkso/model/link_access_request.dart';
 import 'package:linkso/model/link_create_request.dart';
 import 'package:linkso/model/link_create_response.dart';
 import 'package:linkso/model/login_request.dart';
 import 'package:linkso/model/register_request.dart';
+
+import 'entity/api_response.dart';
+import 'remote_data_source.dart';
+import 'rest_client.dart';
 
 class RemoteDataSourceImplementation implements RemoteDataSource {
   final _dio = Dio(
@@ -38,17 +44,34 @@ class RemoteDataSourceImplementation implements RemoteDataSource {
   }
 
   @override
-  Future<String> checkAccess(LinkAccessRequest linkAccessRequest) {
-    return _restClient.checkAccess(linkAccessRequest);
-  }
-
-  @override
   Future<String> login(LoginRequest loginRequest) {
-    return _restClient.login(loginRequest);
+    throw UnimplementedError();
   }
 
   @override
   Future<String> register(RegisterRequest registerRequest) {
-    return _restClient.register(registerRequest);
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<ApiResponse<String>> checkAccess(LinkAccessRequest linkAccessRequest) async {
+    ErrorDetail? errorDetail;
+
+    final successData = await _restClient.checkAccess(linkAccessRequest).catchError((obj) {
+      switch (obj.runtimeType) {
+        case DioError:
+          final _response = (obj as DioError).response;
+          errorDetail = ErrorDetail.fromJson(jsonDecode(_response?.data as String) as Map<String, dynamic>);
+          return errorDetail!.detail;
+        default:
+      }
+    });
+
+    final bool successResponse = errorDetail == null;
+    return ApiResponse<String>(
+      successResponse: successResponse,
+      errorDetail: errorDetail,
+      data: successResponse ? jsonDecode(successData) as String : null,
+    );
   }
 }

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:linkso/controller_instances.dart';
-import 'package:linkso/pages/overview/widgets/clicks_chart.dart';
-import 'package:linkso/pages/overview/widgets/revenue_info.dart';
 import 'package:linkso/resources/theme.dart';
 import 'package:linkso/widgets/custom_card_container.dart';
+
+import '../../../controller_instances.dart';
+import 'clicks_chart.dart';
+import 'revenue_info.dart';
 
 class RevenueLarge extends StatelessWidget {
   const RevenueLarge({Key? key}) : super(key: key);

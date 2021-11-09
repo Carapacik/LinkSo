@@ -1,11 +1,11 @@
-import 'dart:html' as html;
-
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:linkso/pages/all_links/all_links_page.dart';
 import 'package:linkso/pages/clients/clients_page.dart';
 import 'package:linkso/pages/main/main_page.dart';
 import 'package:linkso/pages/overview/overview_page.dart';
 import 'package:linkso/pages/settings/settings_page.dart';
+import 'package:universal_html/html.dart' as html;
 
 import '../controller_instances.dart';
 import 'routes.dart';
@@ -44,7 +44,9 @@ Navigator statNavigator() {
 }
 
 Route _onGenerateRoute(RouteSettings settings) {
-  html.window.history.pushState(null, 'Stat', '/stat${settings.name}'); // delete this for mobile
+  if (kIsWeb) {
+    html.window.history.pushState(null, 'Stat', '/stat${settings.name}');
+  }
   switch (settings.name) {
     case shortRoute:
       return _getPageRoute(const MainPageContent());

@@ -16,7 +16,7 @@ abstract class RestClient {
   Future<LinkCreateResponse> createLink(@Body() LinkCreateRequest link);
 
   @DELETE("linkmanager/delete")
-  Future<void> deleteLink(@Body() String key);
+  Future deleteLink(@Body() String key);
 
   @POST("link/access")
   Future<String> checkAccess(@Body() LinkAccessRequest linkAccessRequest);

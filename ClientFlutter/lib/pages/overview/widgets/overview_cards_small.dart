@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:linkso/pages/overview/widgets/info_card.dart';
+
+import 'info_card.dart';
 
 class OverviewCardsSmall extends StatelessWidget {
   const OverviewCardsSmall({Key? key}) : super(key: key);

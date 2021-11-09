@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:get/get.dart';
-import 'package:linkso/controller_instances.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:linkso/helpers/regex.dart';
 import 'package:linkso/helpers/responsiveness.dart';
-import 'package:linkso/pages/main/widgets/password_check_box.dart';
 import 'package:linkso/widgets/custom_text_field.dart';
 import 'package:linkso/widgets/default_button.dart';
+
+import '../../../controller_instances.dart';
+import 'password_check_box.dart';
 
 class LinkForm extends StatefulWidget {
   const LinkForm({Key? key}) : super(key: key);
