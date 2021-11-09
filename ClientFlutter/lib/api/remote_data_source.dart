@@ -7,13 +7,13 @@ import 'package:linkso/model/register_request.dart';
 import 'entity/api_response.dart';
 
 abstract class RemoteDataSource {
-  Future<LinkCreateResponse> createLink(LinkCreateRequest link);
+  Future<ApiResponse<LinkCreateResponse>> createLink(LinkCreateRequest link);
 
-  Future<void> deleteLink(String key);
+  Future<ApiResponse> deleteLink(String key);
 
   Future<ApiResponse<String>> checkAccess(LinkAccessRequest linkAccessRequest);
 
-  Future<String> register(RegisterRequest registerRequest);
+  Future<ApiResponse<String>> register(RegisterRequest registerRequest);
 
-  Future<String> login(LoginRequest loginRequest);
+  Future<ApiResponse<String>> login(LoginRequest loginRequest);
 }

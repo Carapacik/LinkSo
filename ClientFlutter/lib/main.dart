@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:url_strategy/url_strategy.dart';
 
+import 'api/entity/account.dart';
 import 'api/remote_data_source.dart';
 import 'api/remote_data_source_implementation.dart';
 import 'app.dart';
@@ -22,6 +23,7 @@ void main() async {
 
   final getIt = GetIt.instance;
   getIt.registerSingleton<RemoteDataSource>(RemoteDataSourceImplementation());
+  getIt.registerLazySingleton<UserAccount>(() => UserAccount());
 
   Get.put(AccountController());
   Get.put(MenuController());

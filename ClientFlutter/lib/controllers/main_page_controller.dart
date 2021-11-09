@@ -17,14 +17,18 @@ class MainPageController extends GetxController {
   Future<void> getResultKey(FormState form) async {
     if (form.validate()) {
       form.save();
-      final _receivedLink = await GetIt.instance.get<RemoteDataSource>().createLink(
+      final _apiResponse = await GetIt.instance.get<RemoteDataSource>().createLink(
             LinkCreateRequest(
               target: targetLink,
               password: passwordLink,
               linkType: checkBool.value ? 1 : 0,
             ),
           );
-      receivedLinkKey.value = _receivedLink.key;
+      if (_apiResponse.successResponse) {
+        receivedLinkKey.value = _apiResponse.data!.key;
+      } else {
+        print(_apiResponse.errorDetail!.detail);
+      }
     }
   }
 

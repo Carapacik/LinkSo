@@ -32,5 +32,7 @@
   "yourEmail": "Your Email",
   "yourLogin": "Your login",
   "signin": "Sign in",
-  "registration": "Register"
+  "registration": "Register",
+  "notYetRegistered": "Not yet registered?",
+  "alreadyRegistered": "Already registered?"
 }

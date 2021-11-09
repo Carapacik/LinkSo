@@ -29,5 +29,7 @@
   "yourEmail": "Ваш Email",
   "yourLogin": "Ваш логин",
   "signin": "Вход",
-  "registration": "Регистрация"
+  "registration": "Регистрация",
+  "notYetRegistered": "Ещё не зарегестрированы?",
+  "alreadyRegistered": "Уже зарегестрированы?"
 }

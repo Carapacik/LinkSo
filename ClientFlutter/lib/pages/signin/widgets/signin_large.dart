@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:linkso/api/google_sign_in.dart';
 import 'package:linkso/helpers/routes.dart';
-import 'package:linkso/resources/theme.dart';
+import 'package:linkso/pages/signin/widgets/register_form.dart';
 import 'package:linkso/widgets/custom_card_container.dart';
 
 import '../../../controller_instances.dart';
-import 'auth_form.dart';
+import 'login_form.dart';
 
 class SignInPageLarge extends StatelessWidget {
   const SignInPageLarge({Key? key}) : super(key: key);
@@ -16,7 +15,7 @@ class SignInPageLarge extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        const SizedBox(height: 50),
+        const SizedBox(height: 40),
         Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -27,12 +26,14 @@ class SignInPageLarge extends StatelessWidget {
               margin: const EdgeInsets.symmetric(horizontal: 15),
               child: Column(
                 children: [
-                  Text(
-                    AppLocalizations.of(context)!.signin,
-                    style: Theme.of(context).textTheme.b24,
-                  ),
-                  const SizedBox(height: 20),
-                  const AuthForm(),
+                  Obx(() {
+                    final registered = signInPageController.registered.value;
+                    if (registered) {
+                      return const LoginForm();
+                    } else {
+                      return const RegisterForm();
+                    }
+                  }),
                 ],
               ),
             ),

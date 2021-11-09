@@ -1,0 +1,3 @@
+class UserAccount {
+  // тут токен
+}
