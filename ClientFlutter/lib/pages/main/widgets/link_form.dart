@@ -128,7 +128,6 @@ class _LinkInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomTextFormField(
       controller: controller,
-      maxLength: 250,
       validator: (value) {
         if (value!.isEmpty) {
           return AppLocalizations.of(context)!.requiredLink;
