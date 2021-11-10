@@ -37,6 +37,15 @@ class MainPageLarge extends StatelessWidget {
             ),
             const SizedBox(height: 30),
             Obx(() {
+              final errorData = mainPageController.errorMessage.value;
+              if (errorData.isNotEmpty) {
+                return Text(errorData);
+              } else {
+                return const SizedBox.shrink();
+              }
+            }),
+            const SizedBox(height: 30),
+            Obx(() {
               if (mainPageController.receivedLinkKey.value.isNotEmpty) {
                 return const CustomCardContainer(
                   borderRadius: 40,

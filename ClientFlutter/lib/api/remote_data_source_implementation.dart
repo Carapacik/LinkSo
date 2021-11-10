@@ -27,7 +27,7 @@ class RemoteDataSourceImplementation implements RemoteDataSource {
   RemoteDataSourceImplementation() {
     _restClient = RestClient(_dio, baseUrl: "http://localhost:5000/api/");
 
-    // для отключение SSL сертификата
+    // // для отключение SSL сертификата
     // (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (HttpClient client) {
     //   client.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
     //   return client;
@@ -88,6 +88,7 @@ class RemoteDataSourceImplementation implements RemoteDataSource {
       switch (obj.runtimeType) {
         case DioError:
           final _response = (obj as DioError).response;
+          // тут обработка запроса, когда связи с бэком нет
           _errorDetail = ErrorDetail.fromJson(jsonDecode(_response?.data as String) as Map<String, dynamic>);
           return _errorDetail!.detail;
         default:

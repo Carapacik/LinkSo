@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:linkso/api/remote_data_source.dart';
+import 'package:linkso/controller_instances.dart';
 import 'package:linkso/model/login_request.dart';
 import 'package:linkso/model/register_request.dart';
 
@@ -17,7 +18,7 @@ class SignInPageController extends GetxController {
     registered.value = !registered.value;
   }
 
-  Future<void> register(FormState form) async {
+  Future register(FormState form) async {
     if (form.validate()) {
       form.save();
       final _apiResponse = await GetIt.instance.get<RemoteDataSource>().register(
@@ -27,11 +28,19 @@ class SignInPageController extends GetxController {
               password: password ?? "",
             ),
           );
-      print("Token = ${_apiResponse.data}");
+      if (_apiResponse.successResponse) {
+        accountController.saveToken(_apiResponse.data!);
+      } else {
+        print("""
+        ___________________________________________
+        Error with token ${_apiResponse.errorDetail}
+        ___________________________________________
+        """);
+      }
     }
   }
 
-  Future<void> logIn(FormState form) async {
+  Future logIn(FormState form) async {
     if (form.validate()) {
       form.save();
       final _apiResponse = await GetIt.instance.get<RemoteDataSource>().login(
@@ -40,7 +49,15 @@ class SignInPageController extends GetxController {
               password: password ?? "",
             ),
           );
-      print("Token = ${_apiResponse.data}");
+      if (_apiResponse.successResponse) {
+        accountController.saveToken(_apiResponse.data!);
+      } else {
+        print("""
+        ___________________________________________
+        Error with token ${_apiResponse.errorDetail}
+        ___________________________________________
+        """);
+      }
     }
   }
 }

@@ -38,6 +38,15 @@ class MainPageSmall extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Obx(() {
+              final errorData = mainPageController.errorMessage.value;
+              if (errorData.isNotEmpty) {
+                return Text(errorData);
+              } else {
+                return const SizedBox.shrink();
+              }
+            }),
+            const SizedBox(height: 20),
+            Obx(() {
               final _key = mainPageController.receivedLinkKey.value;
               if (_key.isNotEmpty) {
                 return const CustomCardContainer(

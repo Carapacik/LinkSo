@@ -37,20 +37,18 @@ class SignInPageLarge extends StatelessWidget {
                 ],
               ),
             ),
+            const SizedBox(height: 20),
+            SizedBox(
+              width: 150,
+              child: ElevatedButton(
+                onPressed: signIn,
+                child: const Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Text("Google"),
+                ),
+              ),
+            ),
           ],
-        ),
-        const SizedBox(height: 20),
-        ElevatedButton(
-          onPressed: () {
-            Get.offAllNamed(statRoute);
-            accountController.isAuth.value = true;
-          },
-          child: Text("Basic auth redirect"),
-        ),
-        const SizedBox(height: 50),
-        ElevatedButton(
-          onPressed: signIn,
-          child: const Text("Google"),
         ),
       ],
     );

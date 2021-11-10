@@ -9,6 +9,7 @@ class MainPageController extends GetxController {
 
   final RxBool checkBool = false.obs;
   RxString receivedLinkKey = "".obs;
+  RxString errorMessage = "".obs;
   String targetLink = "";
   String? passwordLink;
 
@@ -27,7 +28,7 @@ class MainPageController extends GetxController {
       if (_apiResponse.successResponse) {
         receivedLinkKey.value = _apiResponse.data!.key;
       } else {
-        print(_apiResponse.errorDetail!.detail);
+        errorMessage.value = _apiResponse.errorDetail!.detail;
       }
     }
   }

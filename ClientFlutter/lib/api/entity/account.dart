@@ -1,3 +1,3 @@
 class UserAccount {
-  // тут токен
+  String? token;
 }
