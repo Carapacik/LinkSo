@@ -21,7 +21,7 @@ class ResultLink extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   SizedBox(
-                    width: 280,
+                    width: 290,
                     child: SelectableText(
                       fullLink,
                       style: Theme.of(context).textTheme.b18.copyWith(color: Theme.of(context).colorScheme.onSurface),
