@@ -33,6 +33,11 @@ class SideMenu extends StatelessWidget {
               )
               .toList(),
         ),
+        DropdownButton<String>(
+          icon: const Icon(Icons.arrow_forward),
+          items: menuController.dropDownItems,
+          onChanged: (value) {},
+        )
       ],
     );
   }
