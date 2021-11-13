@@ -1,23 +1,24 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:linkso/model/error_validation.dart';
 
 part 'error_detail.g.dart';
 
 @JsonSerializable()
-class ErrorDetail {
-  final int status;
-  final String detail;
+class ErrorDetail extends ErrorValidation {
+  @override
+  final String message;
 
   ErrorDetail({
-    required this.status,
-    required this.detail,
-  });
+    required this.message,
+  }) : super(message: message, invalidFields: null);
 
   factory ErrorDetail.fromJson(Map<String, dynamic> json) => _$ErrorDetailFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() => _$ErrorDetailToJson(this);
 
   @override
   String toString() {
-    return 'ErrorDetail{status: $status, detail: $detail}';
+    return 'ErrorDetail{message: $message}';
   }
 }

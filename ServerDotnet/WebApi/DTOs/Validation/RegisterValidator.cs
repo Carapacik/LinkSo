@@ -8,8 +8,8 @@ namespace WebApi.DTOs.Validation
         public const int MinLoginLength = 3;
         public const int MaxLoginLength = 20;
 
-        public const int MinPasswordLength = 8;
-        public const int MaxPasswordLength = 24;
+        public const int MinPasswordLength = 6;
+        public const int MaxPasswordLength = 30;
         
         public const string LoginRegex = @"^[A-Za-z0-9_]+$";
         public const string PasswordRegex = @"^[\S]+$";

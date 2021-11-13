@@ -25,7 +25,7 @@ class PasswordLinkPageController extends GetxController {
       if (_apiResponse.successResponse) {
         await launch(_apiResponse.data!);
       } else {
-        errorMessage.value = _apiResponse.errorDetail!.detail;
+        errorMessage.value = _apiResponse.error!.message;
       }
     }
   }

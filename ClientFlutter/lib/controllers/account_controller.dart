@@ -19,6 +19,8 @@ class AccountController extends GetxController {
 
   Future _saveTokenToBox(String token) => _box.write(_key, token);
 
+  Future _deleteTokenFromBox() => _box.write(_key, null);
+
   Future _getTokenFromBox() async {
     final _tokenFromBox = _box.read(_key) as String?;
     if (_tokenFromBox != null) {
@@ -32,5 +34,12 @@ class AccountController extends GetxController {
     await _saveTokenToBox(token);
     isAuth.value = true;
     Get.offAllNamed(statRoute);
+  }
+
+  Future<void> logout() async {
+    GetIt.instance.get<UserAccount>().token = null;
+    await _deleteTokenFromBox();
+    isAuth.value = false;
+    Get.offAllNamed(mainRoute);
   }
 }

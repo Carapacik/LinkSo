@@ -34,5 +34,10 @@
   "signin": "Sign in",
   "registration": "Register",
   "notYetRegistered": "Not yet registered?",
-  "alreadyRegistered": "Already registered?"
+  "alreadyRegistered": "Already registered?",
+  "loginMustBeMore3": "Login must be more than 3",
+  "loginMustBeLess20": "Login must be less than 20",
+  "incorrectLogin": "Login incorrect",
+  "passwordMustBeMore6": "Password must be more than 6",
+  "passwordMustBeLess30": "Password must be less than 30"
 }

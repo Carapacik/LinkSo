@@ -10,6 +10,7 @@ class SignInPageController extends GetxController {
   static SignInPageController instance = Get.find();
 
   final RxBool registered = false.obs;
+  final RxString errorMessage = "".obs;
   String? email;
   String? login;
   String? password;
@@ -31,11 +32,7 @@ class SignInPageController extends GetxController {
       if (_apiResponse.successResponse) {
         accountController.saveToken(_apiResponse.data!);
       } else {
-        print("""
-        ___________________________________________
-        Error with token ${_apiResponse.errorDetail}
-        ___________________________________________
-        """);
+        errorMessage.value = _apiResponse.error!.message;
       }
     }
   }
@@ -52,11 +49,7 @@ class SignInPageController extends GetxController {
       if (_apiResponse.successResponse) {
         accountController.saveToken(_apiResponse.data!);
       } else {
-        print("""
-        ___________________________________________
-        Error with token ${_apiResponse.errorDetail}
-        ___________________________________________
-        """);
+        errorMessage.value = _apiResponse.error!.message;
       }
     }
   }

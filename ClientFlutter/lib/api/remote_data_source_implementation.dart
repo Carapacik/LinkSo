@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:linkso/model/error_detail.dart';
+import 'package:linkso/model/error_validation.dart';
 import 'package:linkso/model/link_access_request.dart';
 import 'package:linkso/model/link_create_request.dart';
 import 'package:linkso/model/link_create_response.dart';
@@ -10,7 +11,6 @@ import 'package:linkso/model/login_request.dart';
 import 'package:linkso/model/register_request.dart';
 
 import 'entity/api_response.dart';
-import 'exceptions.dart';
 import 'remote_data_source.dart';
 import 'rest_client.dart';
 
@@ -36,116 +36,127 @@ class RemoteDataSourceImplementation implements RemoteDataSource {
 
   @override
   Future<ApiResponse<String>> checkAccess(LinkAccessRequest linkAccessRequest) async {
-    ErrorDetail? _errorDetail;
-
-    final successData = await _restClient.checkAccess(linkAccessRequest).catchError((obj) {
+    ErrorValidation? _error;
+    final _successData = await _restClient.checkAccess(linkAccessRequest).catchError((obj) {
       switch (obj.runtimeType) {
         case DioError:
           final _response = (obj as DioError).response;
-          _errorDetail = ErrorDetail.fromJson(jsonDecode(_response?.data as String) as Map<String, dynamic>);
-          return _errorDetail!.detail;
+          _error = ErrorDetail.fromJson(jsonDecode(_response?.data as String) as Map<String, dynamic>);
+          break;
         default:
-          return ServerConnectionException();
+          break;
       }
     });
 
-    final bool successResponse = _errorDetail == null;
+    final bool _successResponse = _error == null;
     return ApiResponse<String>(
-      successResponse: successResponse,
-      errorDetail: _errorDetail,
-      data: successResponse ? jsonDecode(successData) as String : null,
+      successResponse: _successResponse,
+      error: _error,
+      data: _successResponse ? jsonDecode(_successData) as String : null,
     );
   }
 
   @override
   Future<ApiResponse<LinkCreateResponse>> createLink(LinkCreateRequest link) async {
-    ErrorDetail? _errorDetail;
-
-    final successData = await _restClient.createLink(link).catchError((obj) {
+    ErrorValidation? _error;
+    final _successData = await _restClient.createLink(link).catchError((obj) {
       switch (obj.runtimeType) {
         case DioError:
           final _response = (obj as DioError).response;
-          _errorDetail = ErrorDetail.fromJson(jsonDecode(_response?.data as String) as Map<String, dynamic>);
-          return _errorDetail!.detail;
+          _error = ErrorDetail.fromJson(_response?.data as Map<String, dynamic>);
+          break;
         default:
-          return ServerConnectionException();
+          break;
       }
     });
 
-    final bool successResponse = _errorDetail == null;
+    final bool _successResponse = _error == null;
     return ApiResponse<LinkCreateResponse>(
-      successResponse: successResponse,
-      errorDetail: _errorDetail,
-      data: successResponse ? successData : null,
+      successResponse: _successResponse,
+      error: _error,
+      data: _successResponse ? _successData : null,
     );
   }
 
   @override
   Future<ApiResponse> deleteLink(String key) async {
-    ErrorDetail? _errorDetail;
-
-    final successData = await _restClient.deleteLink(key).catchError((obj) {
+    ErrorValidation? _error;
+    final _successData = await _restClient.deleteLink(key).catchError((obj) {
       switch (obj.runtimeType) {
         case DioError:
           final _response = (obj as DioError).response;
-          // тут обработка запроса, когда связи с бэком нет
-          _errorDetail = ErrorDetail.fromJson(jsonDecode(_response?.data as String) as Map<String, dynamic>);
-          return _errorDetail!.detail;
+          _error = ErrorDetail.fromJson(jsonDecode(_response?.data as String) as Map<String, dynamic>);
+          break;
         default:
-          return ServerConnectionException();
+          break;
       }
     });
 
-    final bool successResponse = _errorDetail == null;
+    final bool _successResponse = _error == null;
     return ApiResponse(
-      successResponse: successResponse,
-      errorDetail: _errorDetail,
-      data: successResponse ? successData : null,
+      successResponse: _successResponse,
+      error: _error,
+      data: _successResponse ? _successData : null,
     );
   }
 
   @override
   Future<ApiResponse<String>> login(LoginRequest loginRequest) async {
-    ErrorDetail? _errorDetail;
-
-    final successData = await _restClient.login(loginRequest).catchError((obj) {
+    ErrorValidation? _error;
+    final _successData = await _restClient.login(loginRequest).catchError((obj) {
       switch (obj.runtimeType) {
         case DioError:
           final _response = (obj as DioError).response;
-          _errorDetail = ErrorDetail.fromJson(jsonDecode(_response?.data as String) as Map<String, dynamic>);
-          return _errorDetail!.detail;
+          switch (_response!.statusCode) {
+            case 400:
+              _error = ErrorValidation.fromJson(jsonDecode(_response.data as String) as Map<String, dynamic>);
+              break;
+            case 403:
+            default:
+              _error = ErrorDetail.fromJson(jsonDecode(_response.data as String) as Map<String, dynamic>);
+              break;
+          }
+          break;
         default:
-          return ServerConnectionException();
+          break;
       }
     });
 
-    final bool successResponse = _errorDetail == null;
+    final bool _successResponse = _error == null;
     return ApiResponse<String>(
-      successResponse: successResponse,
-      errorDetail: _errorDetail,
-      data: successResponse ? jsonDecode(successData) as String : null,
+      successResponse: _successResponse,
+      error: _error,
+      data: _successResponse ? jsonDecode(_successData) as String : null,
     );
   }
 
   @override
   Future<ApiResponse<String>> register(RegisterRequest registerRequest) async {
-    ErrorDetail? _errorDetail;
-    final successData = await _restClient.register(registerRequest).catchError((obj) {
+    ErrorValidation? _error;
+    final _successData = await _restClient.register(registerRequest).catchError((obj) {
       switch (obj.runtimeType) {
         case DioError:
           final _response = (obj as DioError).response;
-          _errorDetail = ErrorDetail.fromJson(jsonDecode(_response?.data as String) as Map<String, dynamic>);
-          return _errorDetail!.detail;
+          switch (_response!.statusCode) {
+            case 400:
+              _error = ErrorValidation.fromJson(jsonDecode(_response.data as String) as Map<String, dynamic>);
+              break;
+            case 403:
+            default:
+              _error = ErrorDetail.fromJson(jsonDecode(_response.data as String) as Map<String, dynamic>);
+              break;
+          }
+          break;
         default:
-          return ServerConnectionException();
+          break;
       }
     });
 
-    final bool successResponse = _errorDetail == null;
+    final bool _successResponse = _error == null;
     return ApiResponse<String>(
-      successResponse: successResponse,
-      errorDetail: _errorDetail,
-      data: successResponse ? jsonDecode(successData) as String : null,
+      successResponse: _successResponse,
+      error: _error,
+      data: _successResponse ? jsonDecode(_successData) as String : null,
     );
   }
 }
