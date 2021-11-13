@@ -53,8 +53,8 @@ namespace WebApi
             {
                 options.InvalidModelStateResponseFactory = actionContext =>
                 {
-                    var problems = new ValidationErrorDetails(actionContext.ModelState.Keys.ToArray());
-                    return new BadRequestObjectResult(problems);
+                    var errorDetails = new ValidationErrorDetails(actionContext.ModelState.Keys.ToArray());
+                    return new BadRequestObjectResult(errorDetails);
                 };
             });
 
