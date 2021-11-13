@@ -7,7 +7,7 @@ namespace WebApi.ExceptionHandling
         private const string InvalidFieldsMessage = "Validation.InputFieldsAreInvalid";
         [JsonPropertyName("invalidFields")] public string[] InvalidFields { get; }
         
-        public ValidationErrorDetails(string[] invalidFields): base(400, InvalidFieldsMessage)
+        public ValidationErrorDetails(string[] invalidFields): base(InvalidFieldsMessage)
         {
             InvalidFields = invalidFields;
         }

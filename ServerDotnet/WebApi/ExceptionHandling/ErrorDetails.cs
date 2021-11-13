@@ -5,13 +5,10 @@ namespace WebApi.ExceptionHandling
 {
     public class ErrorDetails
     {
-        [JsonPropertyName("status")] public int Status { get; }
-
         [JsonPropertyName("message")] public string Message { get; }    
 
-        public ErrorDetails(int status, string message)
+        public ErrorDetails(string message)
         {
-            Status = status;
             Message = message;
         }
         

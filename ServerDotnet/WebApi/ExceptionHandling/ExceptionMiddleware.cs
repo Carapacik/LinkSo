@@ -55,7 +55,7 @@ namespace WebApi.ExceptionHandling
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)statusCode;
 
-            await context.Response.WriteAsync(new ErrorDetails(context.Response.StatusCode, message).ToString());
+            await context.Response.WriteAsync(new ErrorDetails(message).ToString());
         }
     }
 }
