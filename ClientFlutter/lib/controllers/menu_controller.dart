@@ -39,15 +39,4 @@ class MenuController extends GetxController {
       return Icon(icon, color: isHover(itemName) ? AppColors.lightPrimaryVariant : AppColors.lightPrimary);
     }
   }
-
-  final dropDownItems =[
-    DropdownMenuItem(
-      child: Text("EN"),
-      value: "en",
-    ),
-    DropdownMenuItem(
-      child: Text("RU"),
-      value: "ru",
-    ),
-  ];
 }

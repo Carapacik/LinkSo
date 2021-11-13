@@ -58,39 +58,79 @@ AppBar appBar(BuildContext context, GlobalKey<ScaffoldState> key) {
                 ),
         ),
       ),
+      // PopupMenuNew(),
       signIn(context),
-
-      // IconButton(
-      //   onPressed: () {
-      //     Get.updateLocale(_getLocale(locale));
-      //   },
-      //   icon: const Icon(Icons.language),
-      // ),
-      // Stack(
-      //   children: [
-      //     Center(
-      //       child: IconButton(
-      //         onPressed: () {},
-      //         icon: const Icon(Icons.notifications),
-      //       ),
-      //     ),
-      //     Positioned(
-      //       top: 12,
-      //       right: 7,
-      //       child: Container(
-      //         width: 10,
-      //         height: 10,
-      //         decoration: const BoxDecoration(
-      //           color: Colors.red,
-      //           shape: BoxShape.circle,
-      //         ),
-      //       ),
-      //     )
-      //   ],
-      // ),
     ],
   );
 }
+
+//
+// class PopupMenuNew extends StatefulWidget {
+//   const PopupMenuNew({Key? key}) : super(key: key);
+//
+//   @override
+//   _PopupMenuNewState createState() => _PopupMenuNewState();
+// }
+//
+// class _PopupMenuNewState extends State<PopupMenuNew> {
+//   @override
+//   // Item _selection = Item.i1;
+//
+//   Widget build(BuildContext context) {
+//     return PopupMenuButton(
+//       itemBuilder: (BuildContext context) => [
+//         PopupMenuItem(
+//           child: PopupMenuButton(
+//             child: Text('Language'),
+//             onSelected: (Item result) {
+//               Navigator.pop(context);
+//               setState(() {
+//                 result = Item.i1;
+//               });
+//             },
+//             itemBuilder: (BuildContext context) => <PopupMenuEntry<Item>>[
+//               const PopupMenuItem<Item>(
+//                 value: Item.i1,
+//                 child: Text('Ru'),
+//               ),
+//               const PopupMenuItem<Item>(
+//                 value: Item.i2,
+//                 child: Text('En'),
+//               ),
+//               const PopupMenuItem<Item>(
+//                 value: Item.i2,
+//                 child: Text('GG'),
+//               ),
+//             ],
+//           ),
+//         ),
+//         PopupMenuItem(
+//           child: PopupMenuButton(
+//             child: Text('Theme'),
+//             onSelected: (Item result) {
+//               // setState(() {
+//               //   _selection = result;
+//               // });
+//               Navigator.pop(context);
+//             },
+//             itemBuilder: (BuildContext context) => <PopupMenuEntry<Item>>[
+//               PopupMenuItem<Item>(
+//                 value: Item.i3,
+//                 child: Text('Dark'),
+//                 onTap: () => print("Dark"),
+//               ),
+//               PopupMenuItem<Item>(
+//                 value: Item.i4,
+//                 child: Text('Light'),
+//                 onTap: () => print("Light"),
+//               ),
+//             ],
+//           ),
+//         ),
+//       ],
+//     );
+//   }
+// }
 
 Widget signIn(BuildContext context) {
   if (accountController.isAuth.value) {
