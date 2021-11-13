@@ -7,7 +7,7 @@ namespace WebApi.ExceptionHandling
     {
         [JsonPropertyName("status")] public int Status { get; set; }
 
-        [JsonPropertyName("detail")] public string Message { get; set; }
+        [JsonPropertyName("message")] public string Message { get; set; }    
 
         public override string ToString()
         {

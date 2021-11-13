@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Net;
 using Application;
 using Application.Tools.Common;
 using Application.Tools.Jwt;
@@ -9,6 +10,7 @@ using Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -47,18 +49,24 @@ namespace WebApi
             {
                 x.RegisterValidatorsFromAssemblyContaining<Startup>();
             });
-            
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.InvalidModelStateResponseFactory = actionContext =>
+                {
+                    var problems = new ValidationErrorDetails(actionContext.ModelState.Keys.ToArray());
+                    return new BadRequestObjectResult(problems);
+                };
+            });
+
             services.AddSwaggerGen(c =>
             {
-                // Dont't drive
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "LinkSo.WebApi", Version = "v1" });
 
                 // Set the comments path for the Swagger JSON and UI.
                 // var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 // var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 // c.IncludeXmlComments(xmlPath);
-
-
+                
                 var jwtSecurityScheme = new OpenApiSecurityScheme
                 {
                     Scheme = "bearer",
