@@ -27,6 +27,6 @@ abstract class RestClient {
   @POST("user/login")
   Future<String> login(@Body() LoginRequest loginRequest);
 
-  // @GET("user/validateCredentials")
-  // Future<String> validateToken(@Header("Content-Type") String contentType );
+  @GET("user/validateCredentials")
+  Future validateToken(@Header("Authorization") String token);
 }
