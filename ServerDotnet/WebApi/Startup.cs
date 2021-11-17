@@ -120,7 +120,6 @@ namespace WebApi
             app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseRouting();
-            app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseAuthorization();
 
@@ -128,7 +127,7 @@ namespace WebApi
             {
                 endpoints.MapControllers();
                 endpoints.MapControllerRoute("redirect", 
-                    "/{*key:length(8)}", 
+                    $"/{{*key:length({Constants.LinkDefaultLength})}}", 
                     new {controller = "RedirectProcessor", action = "ProcessRedirect"});
             });
             
