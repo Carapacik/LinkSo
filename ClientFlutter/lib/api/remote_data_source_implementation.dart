@@ -41,11 +41,10 @@ class RemoteDataSourceImplementation implements RemoteDataSource {
     ErrorValidation? _error;
     try {
       final _currentToken = GetIt.instance.get<UserAccount>().token;
-      if (_currentToken == null){
+      if (_currentToken == null) {
         throw Exception("token null");
       }
-      final _data = await _restClient.validateToken("Bearer $_currentToken");
-      print("Data is $_data");
+      await _restClient.validateToken("Bearer $_currentToken");
     } catch (e) {
       print(e);
     }
