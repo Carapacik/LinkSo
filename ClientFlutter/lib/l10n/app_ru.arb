@@ -31,5 +31,10 @@
   "signin": "Вход",
   "registration": "Регистрация",
   "notYetRegistered": "Ещё не зарегестрированы?",
-  "alreadyRegistered": "Уже зарегестрированы?"
+  "alreadyRegistered": "Уже зарегестрированы?",
+  "loginMustBeMore3": "Логин должен быть длиннее 3-х символов",
+  "loginMustBeLess20": "Логин должен быть короче 20-ти символов",
+  "incorrectLogin": "Логин некорректный",
+  "passwordMustBeMore6": "Пароль должен быть длиннее 6-х символов",
+  "passwordMustBeLess30": "Пароль должен быть короче 30-ти символов"
 }

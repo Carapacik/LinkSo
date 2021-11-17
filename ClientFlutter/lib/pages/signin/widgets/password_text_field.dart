@@ -23,6 +23,12 @@ class PasswordTextField extends StatelessWidget {
         if (value!.isEmpty) {
           return AppLocalizations.of(context)!.requiredPassword;
         }
+        if (value.length < 6) {
+          return AppLocalizations.of(context)!.passwordMustBeMore6;
+        }
+        if (value.length > 30) {
+          return AppLocalizations.of(context)!.passwordMustBeLess30;
+        }
         if (!passwordRegex.hasMatch(value)) {
           return AppLocalizations.of(context)!.incorrectPassword;
         }

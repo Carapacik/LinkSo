@@ -1,4 +1,5 @@
-final passwordRegex = RegExp(r"^(?=.*[0-9]).{5,30}$");
+final passwordRegex = RegExp(r"^[\S]+$");
+final loginRegex = RegExp(r"^[A-Za-z0-9_]+$");
 final emailRegex = RegExp(
   r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$",
 );

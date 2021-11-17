@@ -1,13 +1,13 @@
-import 'package:linkso/model/error_detail.dart';
+import 'package:linkso/model/error_validation.dart';
 
 class ApiResponse<T> {
   ApiResponse({
     required this.successResponse,
     required this.data,
-    this.errorDetail,
+    this.error,
   });
 
   final bool successResponse;
-  final ErrorDetail? errorDetail;
+  final ErrorValidation? error;
   final T? data;
 }

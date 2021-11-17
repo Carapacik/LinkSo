@@ -16,4 +16,6 @@ abstract class RemoteDataSource {
   Future<ApiResponse<String>> register(RegisterRequest registerRequest);
 
   Future<ApiResponse<String>> login(LoginRequest loginRequest);
+
+  Future<ApiResponse> validateToken();
 }

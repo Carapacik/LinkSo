@@ -38,6 +38,14 @@ class SignInPageLarge extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
+            Obx(() {
+              final errorData = signInPageController.errorMessage.value;
+              if (errorData.isNotEmpty) {
+                return Text(errorData);
+              } else {
+                return const SizedBox.shrink();
+              }
+            }),
             SizedBox(
               width: 150,
               child: ElevatedButton(

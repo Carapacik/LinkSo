@@ -2,15 +2,17 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:get_it/get_it.dart';
 import 'package:linkso/model/error_detail.dart';
+import 'package:linkso/model/error_validation.dart';
 import 'package:linkso/model/link_access_request.dart';
 import 'package:linkso/model/link_create_request.dart';
 import 'package:linkso/model/link_create_response.dart';
 import 'package:linkso/model/login_request.dart';
 import 'package:linkso/model/register_request.dart';
 
+import 'entity/account.dart';
 import 'entity/api_response.dart';
-import 'exceptions.dart';
 import 'remote_data_source.dart';
 import 'rest_client.dart';
 
@@ -35,117 +37,140 @@ class RemoteDataSourceImplementation implements RemoteDataSource {
   }
 
   @override
-  Future<ApiResponse<String>> checkAccess(LinkAccessRequest linkAccessRequest) async {
-    ErrorDetail? _errorDetail;
-
-    final successData = await _restClient.checkAccess(linkAccessRequest).catchError((obj) {
-      switch (obj.runtimeType) {
-        case DioError:
-          final _response = (obj as DioError).response;
-          _errorDetail = ErrorDetail.fromJson(jsonDecode(_response?.data as String) as Map<String, dynamic>);
-          return _errorDetail!.detail;
-        default:
-          return ServerConnectionException();
+  Future<ApiResponse> validateToken() async {
+    ErrorValidation? _error;
+    try {
+      final _currentToken = GetIt.instance.get<UserAccount>().token;
+      if (_currentToken == null){
+        throw Exception("token null");
       }
-    });
+      final _data = await _restClient.validateToken("Bearer $_currentToken");
+      print("Data is $_data");
+    } catch (e) {
+      print(e);
+    }
 
-    final bool successResponse = _errorDetail == null;
+    final bool _successResponse = _error == null;
+    return ApiResponse(
+      successResponse: _successResponse,
+      error: _error,
+      data: null,
+    );
+  }
+
+  @override
+  Future<ApiResponse<String>> checkAccess(LinkAccessRequest linkAccessRequest) async {
+    ErrorValidation? _error;
+    String? _successData;
+    try {
+      _successData = jsonDecode(await _restClient.checkAccess(linkAccessRequest)) as String;
+    } catch (e) {
+      _error = _catchErrorDetail(e);
+    }
+
+    final bool _successResponse = _error == null;
     return ApiResponse<String>(
-      successResponse: successResponse,
-      errorDetail: _errorDetail,
-      data: successResponse ? jsonDecode(successData) as String : null,
+      successResponse: _successResponse,
+      error: _error,
+      data: _successResponse ? _successData : null,
     );
   }
 
   @override
   Future<ApiResponse<LinkCreateResponse>> createLink(LinkCreateRequest link) async {
-    ErrorDetail? _errorDetail;
+    ErrorValidation? _error;
+    LinkCreateResponse? _successData;
+    try {
+      _successData = await _restClient.createLink(link);
+    } catch (e) {
+      _error = _catchErrorDetail(e);
+    }
 
-    final successData = await _restClient.createLink(link).catchError((obj) {
-      switch (obj.runtimeType) {
-        case DioError:
-          final _response = (obj as DioError).response;
-          _errorDetail = ErrorDetail.fromJson(jsonDecode(_response?.data as String) as Map<String, dynamic>);
-          return _errorDetail!.detail;
-        default:
-          return ServerConnectionException();
-      }
-    });
-
-    final bool successResponse = _errorDetail == null;
+    final bool _successResponse = _error == null;
     return ApiResponse<LinkCreateResponse>(
-      successResponse: successResponse,
-      errorDetail: _errorDetail,
-      data: successResponse ? successData : null,
+      successResponse: _successResponse,
+      error: _error,
+      data: _successResponse ? _successData : null,
     );
   }
 
   @override
   Future<ApiResponse> deleteLink(String key) async {
-    ErrorDetail? _errorDetail;
+    ErrorValidation? _error;
+    dynamic _successData;
+    try {
+      _successData = await _restClient.deleteLink(key);
+    } catch (e) {
+      _error = _catchErrorDetail(e);
+    }
 
-    final successData = await _restClient.deleteLink(key).catchError((obj) {
-      switch (obj.runtimeType) {
-        case DioError:
-          final _response = (obj as DioError).response;
-          // тут обработка запроса, когда связи с бэком нет
-          _errorDetail = ErrorDetail.fromJson(jsonDecode(_response?.data as String) as Map<String, dynamic>);
-          return _errorDetail!.detail;
-        default:
-          return ServerConnectionException();
-      }
-    });
-
-    final bool successResponse = _errorDetail == null;
+    final bool _successResponse = _error == null;
     return ApiResponse(
-      successResponse: successResponse,
-      errorDetail: _errorDetail,
-      data: successResponse ? successData : null,
+      successResponse: _successResponse,
+      error: _error,
+      data: _successResponse ? _successData : null,
     );
   }
 
   @override
   Future<ApiResponse<String>> login(LoginRequest loginRequest) async {
-    ErrorDetail? _errorDetail;
+    ErrorValidation? _error;
+    String? _successData;
+    try {
+      _successData = jsonDecode(await _restClient.login(loginRequest)) as String;
+    } catch (e) {
+      _error = _catchErrorValidation(e);
+    }
 
-    final successData = await _restClient.login(loginRequest).catchError((obj) {
-      switch (obj.runtimeType) {
-        case DioError:
-          final _response = (obj as DioError).response;
-          _errorDetail = ErrorDetail.fromJson(jsonDecode(_response?.data as String) as Map<String, dynamic>);
-          return _errorDetail!.detail;
-        default:
-          return ServerConnectionException();
-      }
-    });
-
-    final bool successResponse = _errorDetail == null;
+    final bool _successResponse = _error == null;
     return ApiResponse<String>(
-      successResponse: successResponse,
-      errorDetail: _errorDetail,
-      data: successResponse ? jsonDecode(successData) as String : null,
+      successResponse: _successResponse,
+      error: _error,
+      data: _successResponse ? _successData : null,
     );
   }
 
   @override
   Future<ApiResponse<String>> register(RegisterRequest registerRequest) async {
-    ErrorDetail? _errorDetail;
-    final successData = await _restClient.register(registerRequest).catchError((obj) {
-      switch (obj.runtimeType) {
-        case DioError:
-          final _response = (obj as DioError).response;
-          _errorDetail = ErrorDetail.fromJson(jsonDecode(_response?.data as String) as Map<String, dynamic>);
-          return _errorDetail!.detail;
-        default:
-          return ServerConnectionException();
-      }
-    });
+    ErrorValidation? _error;
+    String? _successData;
+    try {
+      _successData = jsonDecode(await _restClient.register(registerRequest)) as String;
+    } catch (e) {
+      _error = _catchErrorValidation(e);
+    }
 
-    final bool successResponse = _errorDetail == null;
+    final bool _successResponse = _error == null;
     return ApiResponse<String>(
-      successResponse: successResponse,
-      errorDetail: _errorDetail,
-      data: successResponse ? jsonDecode(successData) as String : null,
+      successResponse: _successResponse,
+      error: _error,
+      data: _successResponse ? _successData : null,
     );
+  }
+
+  ErrorValidation? _catchErrorValidation(Object object) {
+    if (object is DioError) {
+      final _response = object.response;
+      switch (_response?.statusCode) {
+        case 400:
+          return ErrorValidation.fromJson(jsonDecode(_response?.data as String) as Map<String, dynamic>);
+        case 403:
+        default:
+          return ErrorDetail.fromJson(jsonDecode(_response?.data as String) as Map<String, dynamic>);
+      }
+    } else {
+      print(object);
+      return null;
+    }
+  }
+
+  ErrorDetail? _catchErrorDetail(Object object) {
+    if (object is DioError) {
+      final _response = object.response;
+      return ErrorDetail.fromJson(_response?.data as Map<String, dynamic>);
+    } else {
+      print(object);
+      return null;
+    }
   }
 }

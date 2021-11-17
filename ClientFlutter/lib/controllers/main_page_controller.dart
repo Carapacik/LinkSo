@@ -28,7 +28,7 @@ class MainPageController extends GetxController {
       if (_apiResponse.successResponse) {
         receivedLinkKey.value = _apiResponse.data!.key;
       } else {
-        errorMessage.value = _apiResponse.errorDetail!.detail;
+        errorMessage.value = _apiResponse.error!.message;
       }
     }
   }
