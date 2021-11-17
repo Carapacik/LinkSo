@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:linkso/pages/stat/widgets/stat_large.dart';
-import 'package:linkso/pages/stat/widgets/stat_small.dart';
 import 'package:linkso/widgets/custom_scaffold.dart';
+
+import 'widgets/stat_large.dart';
+import 'widgets/stat_small.dart';
 
 class StatPage extends StatelessWidget {
   const StatPage({Key? key}) : super(key: key);

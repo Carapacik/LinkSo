@@ -22,7 +22,7 @@ class InfoCard extends StatelessWidget {
           children: [
             Text(
               title,
-              style: Theme.of(context).textTheme.m24,
+              style: Theme.of(context).textTheme.m16,
             ),
             Text(
               value,

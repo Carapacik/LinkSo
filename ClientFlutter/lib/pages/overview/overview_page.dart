@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:linkso/helpers/responsiveness.dart';
-import 'package:linkso/pages/overview/widgets/overview_cards_large.dart';
-import 'package:linkso/pages/overview/widgets/overview_cards_medium.dart';
-import 'package:linkso/pages/overview/widgets/overview_cards_small.dart';
-import 'package:linkso/pages/overview/widgets/revenue_section_large.dart';
-import 'package:linkso/pages/overview/widgets/revenue_section_small.dart';
+
+import 'widgets/overview_cards_large.dart';
+import 'widgets/overview_cards_medium.dart';
+import 'widgets/overview_cards_small.dart';
+import 'widgets/revenue_section_large.dart';
+import 'widgets/revenue_section_small.dart';
 
 class OverviewPage extends StatelessWidget {
   const OverviewPage({Key? key}) : super(key: key);
@@ -21,7 +22,7 @@ class OverviewPage extends StatelessWidget {
               const OverviewCardsSmall(),
           ],
         ),
-        if (!ResponsiveWidget.isSmallScreen(context)) const RevenueLarge() else const RevenueSmall(),
+        if (ResponsiveWidget.isSmallScreen(context)) const RevenueSmall() else const RevenueLarge(),
       ],
     );
   }

@@ -1,6 +1,4 @@
-import 'dart:convert';
-
-import 'package:flutter/src/widgets/form.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:linkso/api/remote_data_source.dart';
@@ -12,18 +10,23 @@ class PasswordLinkPageController extends GetxController {
 
   final RxString password = "".obs;
   final RxString key = "".obs;
+  final RxString errorMessage = "".obs;
 
   Future<void> requestAccess(FormState form) async {
     if (form.validate()) {
       form.save();
-      final _link = await GetIt.instance.get<RemoteDataSource>().checkAccess(
+      final _apiResponse = await GetIt.instance.get<RemoteDataSource>().checkAccess(
             LinkAccessRequest(
               password: password.value,
               key: key.value,
             ),
           );
 
-      await launch(jsonDecode(_link) as String);
+      if (_apiResponse.successResponse) {
+        await launch(_apiResponse.data!);
+      } else {
+        errorMessage.value = _apiResponse.error!.message;
+      }
     }
   }
 }

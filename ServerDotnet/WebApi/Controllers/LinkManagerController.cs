@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
 using Application.Services;
 using Application.Tools.Permissions;
 using AutoMapper;
@@ -43,7 +45,7 @@ namespace WebApi.Controllers
         [ProducesResponseType(typeof(ErrorDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorDetails), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(ErrorDetails), StatusCodes.Status403Forbidden)]
-        public async Task<IActionResult> DeleteLink([FromQuery]string key)
+        public async Task<IActionResult> DeleteLink([FromQuery, Required]string key)
         {
             await _linkManagerService.DeleteLink(key, HttpContext.User.GetClaims());
             return Ok();

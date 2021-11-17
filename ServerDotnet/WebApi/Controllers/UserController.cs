@@ -33,7 +33,7 @@ namespace WebApi.Controllers
         [HttpPost("register")]
         [AllowAnonymous]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ValidationErrorDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorDetails), StatusCodes.Status403Forbidden)]
         public async Task<ActionResult<string>> Register([FromBody] RegisterRequestDTO registerRequestDto)
         {
@@ -51,7 +51,7 @@ namespace WebApi.Controllers
         [HttpPost("login")]
         [AllowAnonymous]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ValidationErrorDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorDetails), StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult<string>> Login([FromBody] LoginRequestDTO loginRequestDto)
         {

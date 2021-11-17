@@ -31,17 +31,18 @@ class _RestClient implements RestClient {
   }
 
   @override
-  Future<void> deleteLink(key) async {
+  Future<dynamic> deleteLink(key) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = key;
-    await _dio.fetch<void>(_setStreamType<void>(
+    final _result = await _dio.fetch(_setStreamType<dynamic>(
         Options(method: 'DELETE', headers: _headers, extra: _extra)
             .compose(_dio.options, 'linkmanager/delete',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    return null;
+    final value = _result.data;
+    return value;
   }
 
   @override
@@ -57,6 +58,54 @@ class _RestClient implements RestClient {
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = _result.data!;
+    return value;
+  }
+
+  @override
+  Future<String> register(registerRequest) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(registerRequest.toJson());
+    final _result = await _dio.fetch<String>(_setStreamType<String>(
+        Options(method: 'POST', headers: _headers, extra: _extra)
+            .compose(_dio.options, 'user/register',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data!;
+    return value;
+  }
+
+  @override
+  Future<String> login(loginRequest) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(loginRequest.toJson());
+    final _result = await _dio.fetch<String>(_setStreamType<String>(
+        Options(method: 'POST', headers: _headers, extra: _extra)
+            .compose(_dio.options, 'user/login',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data!;
+    return value;
+  }
+
+  @override
+  Future<dynamic> validateToken(token) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch(_setStreamType<dynamic>(
+        Options(method: 'GET', headers: _headers, extra: _extra)
+            .compose(_dio.options, 'user/validateCredentials',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data;
     return value;
   }
 

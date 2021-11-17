@@ -1,8 +1,8 @@
 ﻿namespace Application.Exceptions
 {
-    internal static class ExceptionList
+    public static class ExceptionList
     {
-        public static class LinkEx
+        internal static class LinkEx
         {
             // Bad Request
             public const string InvalidPassword = "Link.InvalidPassword";
@@ -16,7 +16,7 @@
             public const string NotFound = "Link.NotFound";
         }
 
-        public static class UserEx
+        internal static class UserEx
         {
             // Forbidden
             public const string TakenLogin = "User.TakenLogin";

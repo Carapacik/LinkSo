@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:linkso/pages/overview/widgets/info_card.dart';
+
+import 'info_card.dart';
 
 class OverviewCardsLarge extends StatelessWidget {
   const OverviewCardsLarge({Key? key}) : super(key: key);

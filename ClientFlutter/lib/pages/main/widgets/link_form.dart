@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:get/get.dart';
-import 'package:linkso/controller_instances.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:linkso/helpers/regex.dart';
 import 'package:linkso/helpers/responsiveness.dart';
-import 'package:linkso/pages/main/widgets/password_check_box.dart';
 import 'package:linkso/widgets/custom_text_field.dart';
 import 'package:linkso/widgets/default_button.dart';
+
+import '../../../controller_instances.dart';
+import 'password_check_box.dart';
 
 class LinkForm extends StatefulWidget {
   const LinkForm({Key? key}) : super(key: key);
@@ -33,7 +35,7 @@ class _LinkFormState extends State<LinkForm> {
       child: ResponsiveWidget.isSmallScreen(context)
           ? Column(
               children: [
-                _LinkInputField(textEditingController: _linkController),
+                _LinkInputField(controller: _linkController),
                 const SizedBox(height: 20),
                 _ShortenButton(formKey: _formKey),
                 const PasswordCheckBox(),
@@ -41,7 +43,7 @@ class _LinkFormState extends State<LinkForm> {
                   if (mainPageController.checkBool.value) {
                     return Padding(
                       padding: const EdgeInsets.only(top: 20),
-                      child: _PasswordInputField(textEditingController: _passwordController),
+                      child: _PasswordInputField(controller: _passwordController),
                     );
                   } else {
                     return const SizedBox.shrink();
@@ -54,7 +56,7 @@ class _LinkFormState extends State<LinkForm> {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Expanded(child: _LinkInputField(textEditingController: _linkController)),
+                    Expanded(child: _LinkInputField(controller: _linkController)),
                     const SizedBox(width: 20),
                     _ShortenButton(formKey: _formKey),
                   ],
@@ -64,7 +66,7 @@ class _LinkFormState extends State<LinkForm> {
                   if (mainPageController.checkBool.value) {
                     return Padding(
                       padding: const EdgeInsets.only(top: 20),
-                      child: _PasswordInputField(textEditingController: _passwordController),
+                      child: _PasswordInputField(controller: _passwordController),
                     );
                   } else {
                     return const SizedBox.shrink();
@@ -86,21 +88,22 @@ class _LinkFormState extends State<LinkForm> {
 class _PasswordInputField extends StatelessWidget {
   const _PasswordInputField({
     Key? key,
-    required this.textEditingController,
+    required this.controller,
   }) : super(key: key);
 
-  final TextEditingController? textEditingController;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
     return CustomTextFormField(
-      textEditingController: textEditingController,
+      controller: controller,
+      obscureText: true,
+      keyboardType: TextInputType.visiblePassword,
       validator: (value) {
         if (value!.isEmpty) {
           return AppLocalizations.of(context)!.requiredPassword;
         }
-        final regExp = RegExp(r'^(?=.*[0-9]).{5,30}$');
-        if (!regExp.hasMatch(value)) {
+        if (!passwordRegex.hasMatch(value)) {
           return AppLocalizations.of(context)!.incorrectPassword;
         }
         return null;
@@ -116,23 +119,20 @@ class _PasswordInputField extends StatelessWidget {
 class _LinkInputField extends StatelessWidget {
   const _LinkInputField({
     Key? key,
-    required this.textEditingController,
+    required this.controller,
   }) : super(key: key);
 
-  final TextEditingController? textEditingController;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
     return CustomTextFormField(
-      textEditingController: textEditingController,
-      maxLength: 250,
+      controller: controller,
       validator: (value) {
         if (value!.isEmpty) {
           return AppLocalizations.of(context)!.requiredLink;
         }
-        final regExp =
-            RegExp(r'^http(s)?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)$');
-        if (!regExp.hasMatch(value)) {
+        if (!linkRegex.hasMatch(value)) {
           return AppLocalizations.of(context)!.incorrectLink;
         }
         // TODO: проверка ссылка с нашего сайта

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:linkso/controller_instances.dart';
-import 'package:linkso/pages/password_link/widgets/password_form.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+
+import '../../../controller_instances.dart';
+import 'password_form.dart';
 
 class PasswordLinkPageLarge extends StatefulWidget {
   const PasswordLinkPageLarge({Key? key}) : super(key: key);
@@ -21,6 +23,21 @@ class _PasswordLinkPageLargeState extends State<PasswordLinkPageLarge> {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: PasswordForm());
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const PasswordForm(),
+          Obx(() {
+            final errorData = passwordLinkPageController.errorMessage.value;
+            if (errorData.isNotEmpty) {
+              return Text(errorData);
+            } else {
+              return const SizedBox.shrink();
+            }
+          }),
+        ],
+      ),
+    );
   }
 }

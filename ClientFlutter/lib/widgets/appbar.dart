@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:get/get.dart';
-import 'package:linkso/controller_instances.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:linkso/helpers/responsiveness.dart';
-import 'package:linkso/helpers/routes.dart';
 import 'package:linkso/resources/theme.dart';
 import 'package:url_launcher/link.dart';
+
+import '../controller_instances.dart';
 
 AppBar appBar(BuildContext context, GlobalKey<ScaffoldState> key) {
   // final locale = Localizations.localeOf(context);
@@ -31,7 +30,10 @@ AppBar appBar(BuildContext context, GlobalKey<ScaffoldState> key) {
                   key.currentState?.openDrawer();
                 },
                 splashRadius: 25,
-                icon: const Icon(Icons.menu),
+                icon: const Icon(
+                  Icons.menu,
+                  size: 22,
+                ),
               )
             : const SizedBox()
         : const SizedBox(),
@@ -46,58 +48,93 @@ AppBar appBar(BuildContext context, GlobalKey<ScaffoldState> key) {
               ? const Icon(
                   Icons.light_mode,
                   size: 22,
-                  color: Colors.white,
                 )
               : const Icon(
                   Icons.dark_mode,
                   size: 22,
-                  color: Color(0xFF222222), // TODO: сменить цвет обоих
                 ),
         ),
       ),
+      // PopupMenuNew(),
       signIn(context),
-
-      // IconButton(
-      //   onPressed: () {
-      //     Get.updateLocale(_getLocale(locale));
-      //   },
-      //   icon: const Icon(Icons.language),
-      // ),
-      // Stack(
-      //   children: [
-      //     Center(
-      //       child: IconButton(
-      //         onPressed: () {},
-      //         icon: const Icon(Icons.notifications),
-      //       ),
-      //     ),
-      //     Positioned(
-      //       top: 12,
-      //       right: 7,
-      //       child: Container(
-      //         width: 10,
-      //         height: 10,
-      //         decoration: const BoxDecoration(
-      //           color: Colors.red,
-      //           shape: BoxShape.circle,
-      //         ),
-      //       ),
-      //     )
-      //   ],
-      // ),
     ],
   );
 }
+
+//
+// class PopupMenuNew extends StatefulWidget {
+//   const PopupMenuNew({Key? key}) : super(key: key);
+//
+//   @override
+//   _PopupMenuNewState createState() => _PopupMenuNewState();
+// }
+//
+// class _PopupMenuNewState extends State<PopupMenuNew> {
+//   @override
+//   // Item _selection = Item.i1;
+//
+//   Widget build(BuildContext context) {
+//     return PopupMenuButton(
+//       itemBuilder: (BuildContext context) => [
+//         PopupMenuItem(
+//           child: PopupMenuButton(
+//             child: Text('Language'),
+//             onSelected: (Item result) {
+//               Navigator.pop(context);
+//               setState(() {
+//                 result = Item.i1;
+//               });
+//             },
+//             itemBuilder: (BuildContext context) => <PopupMenuEntry<Item>>[
+//               const PopupMenuItem<Item>(
+//                 value: Item.i1,
+//                 child: Text('Ru'),
+//               ),
+//               const PopupMenuItem<Item>(
+//                 value: Item.i2,
+//                 child: Text('En'),
+//               ),
+//               const PopupMenuItem<Item>(
+//                 value: Item.i2,
+//                 child: Text('GG'),
+//               ),
+//             ],
+//           ),
+//         ),
+//         PopupMenuItem(
+//           child: PopupMenuButton(
+//             child: Text('Theme'),
+//             onSelected: (Item result) {
+//               // setState(() {
+//               //   _selection = result;
+//               // });
+//               Navigator.pop(context);
+//             },
+//             itemBuilder: (BuildContext context) => <PopupMenuEntry<Item>>[
+//               PopupMenuItem<Item>(
+//                 value: Item.i3,
+//                 child: Text('Dark'),
+//                 onTap: () => print("Dark"),
+//               ),
+//               PopupMenuItem<Item>(
+//                 value: Item.i4,
+//                 child: Text('Light'),
+//                 onTap: () => print("Light"),
+//               ),
+//             ],
+//           ),
+//         ),
+//       ],
+//     );
+//   }
+// }
 
 Widget signIn(BuildContext context) {
   if (accountController.isAuth.value) {
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
-        onTap: () {
-          accountController.isAuth.value = false;
-          Get.offAllNamed(mainRoute);
-        },
+        onTap: accountController.logout,
         child: Center(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),

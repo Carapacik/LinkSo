@@ -5,10 +5,13 @@ namespace WebApi.ExceptionHandling
 {
     public class ErrorDetails
     {
-        [JsonPropertyName("status")] public int Status { get; set; }
+        [JsonPropertyName("message")] public string Message { get; }    
 
-        [JsonPropertyName("detail")] public string Message { get; set; }
-
+        public ErrorDetails(string message)
+        {
+            Message = message;
+        }
+        
         public override string ToString()
         {
             return JsonSerializer.Serialize(this);

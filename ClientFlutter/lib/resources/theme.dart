@@ -44,6 +44,13 @@ extension TextThemeExt on TextTheme {
         letterSpacing: 0.5,
       );
 
+  TextStyle get m18 => bodyText1!.copyWith(
+        fontSize: 18,
+        fontWeight: FontWeight.w400,
+        fontStyle: FontStyle.normal,
+        letterSpacing: 0.6,
+      );
+
   TextStyle get m16 => bodyText2!.copyWith(
         fontSize: 16,
         fontWeight: FontWeight.w600,
@@ -69,11 +76,15 @@ final ThemeData lightTheme = ThemeData.light().copyWith(
   disabledColor: Color(0x62FFFFFF),
   backgroundColor: Color(0xFF1B1922),
   canvasColor: Color(0xFF1B1922),
-  cardColor: Color(0xFF17161B),
+  cardColor: Color(0xFFFFFFFF),
   dialogBackgroundColor: Color(0xFF17161B),
   scaffoldBackgroundColor: Color(0xFF121212),
   errorColor: _darkColorScheme.error,
-  appBarTheme: AppBarTheme(color: Color(0xFF4527A0)),
+  appBarTheme: AppBarTheme(
+    color: Color(0xFF4527A0),
+    iconTheme: IconThemeData(color: _lightColorScheme.onSurface),
+  ),
+  // Icon theme here
   textTheme: _lightTextTheme,
   pageTransitionsTheme: const PageTransitionsTheme(
     builders: {
@@ -81,7 +92,7 @@ final ThemeData lightTheme = ThemeData.light().copyWith(
       TargetPlatform.android: FadeUpwardsPageTransitionsBuilder()
     },
   ),
-  iconTheme: const IconThemeData(),
+  iconTheme: IconThemeData(color: _lightColorScheme.onSurface),
   textSelectionTheme: TextSelectionThemeData(selectionColor: _lightColorScheme.secondaryVariant),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
@@ -119,11 +130,14 @@ final ThemeData darkTheme = ThemeData.dark().copyWith(
   disabledColor: Color(0x61000000),
   backgroundColor: Color(0xFFF2F0F7),
   canvasColor: Color(0xFFF2F0F7),
-  cardColor: Color(0xFFFBFAFD),
+  cardColor: Color(0xFF100F0F),
   dialogBackgroundColor: Color(0xFFFBFAFD),
   scaffoldBackgroundColor: Color(0xFFFFFFFF),
   errorColor: _darkColorScheme.error,
-  appBarTheme: AppBarTheme(color: Color(0xFF121212)),
+  appBarTheme: AppBarTheme(
+    color: Color(0xFF121212),
+    iconTheme: IconThemeData(color: _darkColorScheme.onSurface),
+  ),
   textTheme: _darkTextTheme,
   pageTransitionsTheme: const PageTransitionsTheme(
     builders: {
@@ -131,7 +145,7 @@ final ThemeData darkTheme = ThemeData.dark().copyWith(
       TargetPlatform.android: FadeUpwardsPageTransitionsBuilder()
     },
   ),
-  iconTheme: const IconThemeData(color: Colors.white),
+  iconTheme: IconThemeData(color: _darkColorScheme.onSurface),
   textSelectionTheme: TextSelectionThemeData(selectionColor: _darkColorScheme.secondaryVariant),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(

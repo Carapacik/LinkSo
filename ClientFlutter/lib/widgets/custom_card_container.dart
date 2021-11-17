@@ -27,7 +27,7 @@ class CustomCardContainer extends StatelessWidget {
       margin: margin,
       padding: padding ?? const EdgeInsets.all(15),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.3),
+        color: Colors.white.withOpacity(0.5),
         borderRadius: BorderRadius.circular(borderRadius ?? 20),
       ),
       child: child,

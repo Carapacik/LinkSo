@@ -1,6 +1,5 @@
 ﻿using System.Text;
 using Application.Services;
-using Application.Tools;
 using Application.Tools.Common;
 using Application.Tools.Jwt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -22,7 +21,6 @@ namespace Application
             services.Configure<JwtSettings>(jwtSection);
             var jwtSettings = new JwtSettings();
             jwtSection.Bind(jwtSettings); 
-            jwtSettings.SetCommonSettings(commonSettings);
 
             services.AddAuthentication(opt =>
             {
@@ -36,8 +34,8 @@ namespace Application
                     ValidateAudience = true,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    ValidIssuer = jwtSettings.ValidIssuer,
-                    ValidAudience = jwtSettings.ValidAudience,
+                    ValidIssuer = commonSettings.BackendAddress,
+                    ValidAudience = commonSettings.BackendAddress,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.SecurityKey))
                 };
             });

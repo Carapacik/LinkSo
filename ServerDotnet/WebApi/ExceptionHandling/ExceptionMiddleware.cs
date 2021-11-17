@@ -49,17 +49,13 @@ namespace WebApi.ExceptionHandling
             }
             else
             {
-                _logger.LogError("An unhandled exception has reached the middleware:\r\n" + exception);
+                _logger.LogError(exception, "An unhandled exception has reached the middleware:\r\n");
             }
 
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)statusCode;
 
-            await context.Response.WriteAsync(new ErrorDetails
-            {
-                Status = context.Response.StatusCode,
-                Message = message
-            }.ToString());
+            await context.Response.WriteAsync(new ErrorDetails(message).ToString());
         }
     }
 }

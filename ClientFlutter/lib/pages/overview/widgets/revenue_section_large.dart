@@ -1,53 +1,49 @@
 import 'package:flutter/material.dart';
-import 'package:linkso/pages/overview/widgets/bar_chart.dart';
-import 'package:linkso/pages/overview/widgets/revenue_info.dart';
-import 'package:linkso/resources/palette.dart';
-import 'package:linkso/widgets/custom_text.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:linkso/resources/theme.dart';
+import 'package:linkso/widgets/custom_card_container.dart';
+
+import '../../../controller_instances.dart';
+import 'clicks_chart.dart';
+import 'revenue_info.dart';
 
 class RevenueLarge extends StatelessWidget {
   const RevenueLarge({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 30),
-      padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(8),
-        boxShadow: [
-          BoxShadow(
-            offset: const Offset(0, 6),
-            color: AppColors.lightGrey.withOpacity(0.1),
-            blurRadius: 12,
-          )
-        ],
-        border: Border.all(color: AppColors.lightGrey, width: 0.5),
-      ),
+    return CustomCardContainer(
+      margin: const EdgeInsets.only(top: 30),
+      borderRadius: 40,
+      padding: const EdgeInsets.all(25),
+      // boxShadow: [
+      //   BoxShadow(
+      //     offset: const Offset(0, 6),
+      //     color: AppColors.lightGrey.withOpacity(0.1),
+      //     blurRadius: 12,
+      //   )
+      // ],
       child: Row(
         children: [
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                const CustomText(
-                  text: "Clicks",
-                  size: 20,
-                  weight: FontWeight.bold,
-                  color: AppColors.lightGrey,
+                Text(
+                  AppLocalizations.of(context)!.clicks,
+                  style: Theme.of(context).textTheme.b20,
                 ),
                 SizedBox(
-                  width: 600,
                   height: 200,
-                  child: SimpleBarChart.withSampleData(),
+                  child: ClicksChart.withRequestData(overviewPageController.listForChart),
                 ),
               ],
             ),
           ),
           Container(
             width: 1,
-            height: 120,
-            color: AppColors.lightGrey,
+            height: 150,
+            color: Theme.of(context).colorScheme.background,
           ),
           Expanded(
             child: Column(
@@ -58,7 +54,7 @@ class RevenueLarge extends StatelessWidget {
                     RevenueInfo(title: "Last 7 days", amount: "150"),
                   ],
                 ),
-                const SizedBox(height: 30),
+                const SizedBox(height: 20),
                 Row(
                   children: const [
                     RevenueInfo(title: "Last 30 days", amount: "1500"),

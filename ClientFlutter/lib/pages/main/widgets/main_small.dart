@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:get/get.dart';
-import 'package:linkso/controller_instances.dart';
-import 'package:linkso/pages/main/widgets/link_form.dart';
-import 'package:linkso/pages/main/widgets/result_link.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:linkso/resources/theme.dart';
 import 'package:linkso/widgets/custom_card_container.dart';
+
+import '../../../controller_instances.dart';
+import 'link_form.dart';
+import 'result_link.dart';
 
 class MainPageSmall extends StatelessWidget {
   const MainPageSmall({Key? key}) : super(key: key);
@@ -35,6 +36,15 @@ class MainPageSmall extends StatelessWidget {
                 ],
               ),
             ),
+            const SizedBox(height: 20),
+            Obx(() {
+              final errorData = mainPageController.errorMessage.value;
+              if (errorData.isNotEmpty) {
+                return Text(errorData);
+              } else {
+                return const SizedBox.shrink();
+              }
+            }),
             const SizedBox(height: 20),
             Obx(() {
               final _key = mainPageController.receivedLinkKey.value;

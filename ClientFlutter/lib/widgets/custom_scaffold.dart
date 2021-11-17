@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:linkso/helpers/responsiveness.dart';
-import 'package:linkso/widgets/animated_gradient_background.dart';
-import 'package:linkso/widgets/appbar.dart';
-import 'package:linkso/widgets/drawer.dart';
+
+import 'animated_gradient_background.dart';
+import 'appbar.dart';
+import 'drawer.dart';
 
 class CustomScaffold extends StatelessWidget {
   CustomScaffold({

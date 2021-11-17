@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Application.Tools.Common;
 using Application.Tools.Permissions;
 using Domain.Entities;
 using Microsoft.Extensions.Options;
@@ -13,17 +14,19 @@ namespace Application.Tools.Jwt
     public class JwtHandler
     {
         private readonly IOptions<JwtSettings> _jwtSettings;
+        private readonly IOptions<CommonSettings> _commonSettings;
 
-        public JwtHandler(IOptions<JwtSettings> jwtSettings)
+        public JwtHandler(IOptions<JwtSettings> jwtSettings, IOptions<CommonSettings> commonSettings)
         {
             _jwtSettings = jwtSettings;
+            _commonSettings = commonSettings;
         }
 
         public JwtSecurityToken GenerateTokenOptions(User user)
         {
             var tokenOptions = new JwtSecurityToken(
-                _jwtSettings.Value.ValidIssuer,
-                _jwtSettings.Value.ValidAudience,
+                _commonSettings.Value.BackendAddress,
+                _commonSettings.Value.BackendAddress,
                 GetClaims(user),
                 expires: DateTime.Now.AddMinutes(Convert.ToDouble(_jwtSettings.Value.ExpiryInMinutes)),
                 signingCredentials: GetSigningCredentials());
