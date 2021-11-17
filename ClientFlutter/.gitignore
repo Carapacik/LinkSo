@@ -1,3 +1,6 @@
+# Generated
+*.g.*
+
 # Miscellaneous
 *.class
 *.log
