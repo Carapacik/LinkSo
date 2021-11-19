@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:get_it/get_it.dart';
 import 'package:linkso/model/error_detail.dart';
 import 'package:linkso/model/error_validation.dart';
 import 'package:linkso/model/link_access_request.dart';
@@ -11,7 +10,6 @@ import 'package:linkso/model/link_create_response.dart';
 import 'package:linkso/model/login_request.dart';
 import 'package:linkso/model/register_request.dart';
 
-import 'entity/account.dart';
 import 'entity/api_response.dart';
 import 'remote_data_source.dart';
 import 'rest_client.dart';
@@ -37,16 +35,12 @@ class RemoteDataSourceImplementation implements RemoteDataSource {
   }
 
   @override
-  Future<ApiResponse> validateToken() async {
+  Future<ApiResponse> validateToken(String token) async {
     ErrorValidation? _error;
     try {
-      final _currentToken = GetIt.instance.get<UserAccount>().token;
-      if (_currentToken == null) {
-        throw Exception("token null");
-      }
-      await _restClient.validateToken("Bearer $_currentToken");
+      await _restClient.validateToken("Bearer $token");
     } catch (e) {
-      print(e);
+      _error = _catchErrorDetail(e);
     }
 
     final bool _successResponse = _error == null;
@@ -64,7 +58,7 @@ class RemoteDataSourceImplementation implements RemoteDataSource {
     try {
       _successData = jsonDecode(await _restClient.checkAccess(linkAccessRequest)) as String;
     } catch (e) {
-      _error = _catchErrorDetail(e);
+      _error = _catchErrorValidation(e);
     }
 
     final bool _successResponse = _error == null;

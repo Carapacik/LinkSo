@@ -29,9 +29,9 @@ class _PasswordLinkPageLargeState extends State<PasswordLinkPageLarge> {
         children: [
           const PasswordForm(),
           Obx(() {
-            final errorData = passwordLinkPageController.errorMessage.value;
-            if (errorData.isNotEmpty) {
-              return Text(errorData);
+            final _errorData = passwordLinkPageController.errorMessage.value;
+            if (_errorData.isNotEmpty) {
+              return Text(_errorData);
             } else {
               return const SizedBox.shrink();
             }

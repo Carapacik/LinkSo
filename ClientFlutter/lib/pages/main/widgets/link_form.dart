@@ -103,9 +103,6 @@ class _PasswordInputField extends StatelessWidget {
         if (value!.isEmpty) {
           return AppLocalizations.of(context)!.requiredPassword;
         }
-        if (!passwordRegex.hasMatch(value)) {
-          return AppLocalizations.of(context)!.incorrectPassword;
-        }
         return null;
       },
       onSaved: (value) {

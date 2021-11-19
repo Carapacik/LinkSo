@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:linkso/helpers/regex.dart';
 import 'package:linkso/widgets/custom_text_field.dart';
 import 'package:linkso/widgets/default_button.dart';
 
@@ -64,9 +63,6 @@ class _PasswordInputField extends StatelessWidget {
       validator: (value) {
         if (value!.isEmpty) {
           return AppLocalizations.of(context)!.requiredPassword;
-        }
-        if (!passwordRegex.hasMatch(value)) {
-          return AppLocalizations.of(context)!.incorrectPassword;
         }
         return null;
       },
