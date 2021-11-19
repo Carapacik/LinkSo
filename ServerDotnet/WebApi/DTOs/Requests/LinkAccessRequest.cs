@@ -14,7 +14,7 @@ namespace WebApi.DTOs.Requests
     {
         public LinkAccessValidator()
         {
-            RuleFor(x => x.Password).Length(Constants.LinkDefaultLength);
+            RuleFor(x => x.Key).Length(Constants.LinkDefaultLength);
 
             RuleFor(x => x.Password).Length(MinPasswordLength, MaxPasswordLength)
                 .Matches(PasswordRegex);
