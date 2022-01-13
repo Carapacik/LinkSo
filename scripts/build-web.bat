@@ -1,3 +1,4 @@
+CALL cd ..
 CALL .flutter\bin\flutter.bat doctor
 CALL cd ClientFlutter
 CALL ..\.flutter\bin\flutter.bat clean
@@ -10,3 +11,4 @@ CALL del ServerDotnet\WebApi\wwwroot /F /Q
 CALL mkdir ServerDotnet\WebApi\wwwroot
 CALL robocopy ClientFlutter\build\web ServerDotnet\WebApi\wwwroot /s
 echo "Copy finished"
+cd scripts
