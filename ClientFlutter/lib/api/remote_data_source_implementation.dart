@@ -25,7 +25,7 @@ class RemoteDataSourceImplementation implements RemoteDataSource {
   late RestClient _restClient;
 
   RemoteDataSourceImplementation() {
-    _restClient = RestClient(_dio, baseUrl: "http://localhost:5000/api/");
+    _restClient = RestClient(_dio, baseUrl: "http://localhost:8080/api/");
 
     // // для отключение SSL сертификата
     // (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (HttpClient client) {

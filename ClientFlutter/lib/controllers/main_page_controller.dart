@@ -13,7 +13,7 @@ class MainPageController extends GetxController {
   String targetLink = "";
   String? passwordLink;
 
-  final baseUri = "http://localhost:5000";
+  final baseUri = "http://localhost:8080";
 
   Future<void> getResultKey(FormState form) async {
     if (form.validate()) {
