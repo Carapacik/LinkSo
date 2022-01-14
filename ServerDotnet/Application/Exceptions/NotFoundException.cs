@@ -1,11 +1,8 @@
-﻿namespace Application.Exceptions
-{
-    public class NotFoundException: ValueException
-    {
+﻿namespace Application.Exceptions;
 
-        public NotFoundException(string message) : base(message)
-        {
-            
-        }
+public class NotFoundException : ValueException
+{
+    public NotFoundException(string message) : base(message)
+    {
     }
 }

@@ -2,14 +2,13 @@
 using Domain.Entities;
 using WebApi.DTOs.Responses;
 
-namespace WebApi.AutoMapper
+namespace WebApi.AutoMapper;
+
+public class WebApiMappingProfile : Profile
 {
-    public class WebApiMappingProfile : Profile
+    public WebApiMappingProfile()
     {
-        public WebApiMappingProfile()
-        {
-            CreateMap<Link, LinkInfoResponseDTO>();
-            CreateMap<Link, LinkCreateResponseDTO>();
-        }
+        CreateMap<Link, LinkInfoResponseDTO>();
+        CreateMap<Link, LinkCreateResponseDTO>();
     }
 }

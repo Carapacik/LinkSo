@@ -1,8 +1,7 @@
-﻿namespace Domain.Entities
+﻿namespace Domain.Entities;
+
+public enum LinkType
 {
-    public enum LinkType
-    {
-        Public,
-        Private
-    }
+    Public,
+    Private
 }

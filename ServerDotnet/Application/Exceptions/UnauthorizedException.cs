@@ -1,9 +1,8 @@
-﻿namespace Application.Exceptions
+﻿namespace Application.Exceptions;
+
+public class UnauthorizedException : ValueException
 {
-    public class UnauthorizedException : ValueException
+    public UnauthorizedException(string message) : base(message)
     {
-        public UnauthorizedException(string message) : base(message)
-        {
-        }
     }
 }

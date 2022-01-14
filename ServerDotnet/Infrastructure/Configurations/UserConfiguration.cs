@@ -2,27 +2,26 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Infrastructure.Configurations
+namespace Infrastructure.Configurations;
+
+public class UserConfiguration : IEntityTypeConfiguration<User>
 {
-    public class UserConfiguration : IEntityTypeConfiguration<User>
+    public void Configure(EntityTypeBuilder<User> builder)
     {
-        public void Configure(EntityTypeBuilder<User> builder)
+        builder.ToTable("user");
+
+        builder.OwnsOne(x => x.Password, password =>
         {
-            builder.ToTable("user");
+            password.Property(x => x.PasswordHash).HasColumnName("password_hash");
+            password.Property(x => x.PasswordSalt).HasColumnName("password_salt");
+        });
 
-            builder.OwnsOne(x => x.Password, password =>
-            {
-                password.Property(x => x.PasswordHash).HasColumnName("password_hash");
-                password.Property(x => x.PasswordSalt).HasColumnName("password_salt");
-            });
+        builder.HasIndex(p => p.Login).IsUnique();
+        builder.Property(x => x.Login).IsRequired().HasMaxLength(20);
 
-            builder.HasIndex(p => p.Login).IsUnique();
-            builder.Property(x => x.Login).IsRequired().HasMaxLength(20);
-            
-            builder.Property(x => x.Email).IsRequired();
-            
+        builder.Property(x => x.Email).IsRequired();
 
-            builder.Property(x => x.RegisterDate).IsRequired();
-        }
+
+        builder.Property(x => x.RegisterDate).IsRequired();
     }
 }

@@ -4,25 +4,24 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 
-namespace Migrations
+namespace Migrations;
+
+public class LinkSoDbContextFactory : IDesignTimeDbContextFactory<LinkSoDbContext>
 {
-    public class LinkSoDbContextFactory : IDesignTimeDbContextFactory<LinkSoDbContext>
+    public LinkSoDbContext CreateDbContext(string[] args)
     {
-        public LinkSoDbContext CreateDbContext(string[] args)
-        {
-            var configuration = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", true)
-                .AddEnvironmentVariables()
-                .Build();
+        var configuration = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json", true)
+            .AddEnvironmentVariables()
+            .Build();
 
-            var builder = new DbContextOptionsBuilder<LinkSoDbContext>();
+        var builder = new DbContextOptionsBuilder<LinkSoDbContext>();
 
-            var connectionString = configuration.GetConnectionString("MigrationsConnection");
+        var connectionString = configuration.GetConnectionString("MigrationsConnection");
 
-            builder.ConfigureDatabase(connectionString);
+        builder.ConfigureDatabase(connectionString);
 
-            return new LinkSoDbContext(builder.Options);
-        }
+        return new LinkSoDbContext(builder.Options);
     }
 }

@@ -1,14 +1,13 @@
 ﻿using System.Threading.Tasks;
 using Domain.Entities;
 
-namespace Domain.Repositories
+namespace Domain.Repositories;
+
+public interface ILinkRepository
 {
-    public interface ILinkRepository
-    {
-        Task<Link> AddLink(string key, string target, LinkType linkType, int authorId, string password);
+    Task<Link> AddLink(string key, string target, LinkType linkType, int authorId, string password);
 
-        Task<Link> GetLink(string key);
+    Task<Link> GetLink(string key);
 
-        Task DeleteLink(string key);
-    }
+    Task DeleteLink(string key);
 }

@@ -1,9 +1,8 @@
-﻿namespace Application.Exceptions
+﻿namespace Application.Exceptions;
+
+public class BadRequestException : ValueException
 {
-    public class BadRequestException : ValueException
+    public BadRequestException(string message) : base(message)
     {
-        public BadRequestException(string message) : base(message)
-        {
-        }
     }
 }

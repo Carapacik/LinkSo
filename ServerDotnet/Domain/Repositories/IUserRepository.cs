@@ -1,14 +1,13 @@
 ﻿using System.Threading.Tasks;
 using Domain.Entities;
 
-namespace Domain.Repositories
+namespace Domain.Repositories;
+
+public interface IUserRepository
 {
-    public interface IUserRepository
-    {
-        Task<User> AddUser(string login, string email, Password password);
-        
-        Task<User> GetUserByLogin(string login);
-        
-        Task<User> GetUserById(int id);
-    }
+    Task<User> AddUser(string login, string email, Password password);
+
+    Task<User> GetUserByLogin(string login);
+
+    Task<User> GetUserById(int id);
 }

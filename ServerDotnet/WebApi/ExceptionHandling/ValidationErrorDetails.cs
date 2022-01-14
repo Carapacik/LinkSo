@@ -1,15 +1,15 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace WebApi.ExceptionHandling
+namespace WebApi.ExceptionHandling;
+
+public class ValidationErrorDetails : ErrorDetails
 {
-    public class ValidationErrorDetails: ErrorDetails
+    private const string InvalidFieldsMessage = "Validation.InputFieldsAreInvalid";
+
+    public ValidationErrorDetails(string[] invalidFields) : base(InvalidFieldsMessage)
     {
-        private const string InvalidFieldsMessage = "Validation.InputFieldsAreInvalid";
-        [JsonPropertyName("invalidFields")] public string[] InvalidFields { get; }
-        
-        public ValidationErrorDetails(string[] invalidFields): base(InvalidFieldsMessage)
-        {
-            InvalidFields = invalidFields;
-        }
+        InvalidFields = invalidFields;
     }
+
+    [JsonPropertyName("invalidFields")] public string[] InvalidFields { get; }
 }

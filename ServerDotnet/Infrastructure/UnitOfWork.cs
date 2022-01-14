@@ -1,20 +1,19 @@
 ﻿using System.Threading.Tasks;
 using Domain;
 
-namespace Infrastructure
+namespace Infrastructure;
+
+public class UnitOfWork : IUnitOfWork
 {
-    public class UnitOfWork : IUnitOfWork
+    private readonly LinkSoDbContext _context;
+
+    public UnitOfWork(LinkSoDbContext context)
     {
-        private readonly LinkSoDbContext _context;
+        _context = context;
+    }
 
-        public UnitOfWork(LinkSoDbContext context)
-        {
-            _context = context;
-        }
-
-        public async Task Commit()
-        {
-            await _context.SaveChangesAsync();
-        }
+    public async Task Commit()
+    {
+        await _context.SaveChangesAsync();
     }
 }

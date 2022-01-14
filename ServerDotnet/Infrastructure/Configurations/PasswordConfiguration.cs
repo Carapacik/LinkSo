@@ -2,12 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Infrastructure.Configurations
+namespace Infrastructure.Configurations;
+
+public class PasswordConfiguration : IEntityTypeConfiguration<Password>
 {
-    public class PasswordConfiguration : IEntityTypeConfiguration<Password>
+    public void Configure(EntityTypeBuilder<Password> builder)
     {
-        public void Configure(EntityTypeBuilder<Password> builder)
-        {
-        }
     }
 }

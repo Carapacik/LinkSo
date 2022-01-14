@@ -3,37 +3,36 @@ using Domain.Entities;
 using Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Repositories
+namespace Infrastructure.Repositories;
+
+public class UserRepository : IUserRepository
 {
-    public class UserRepository: IUserRepository
+    private readonly LinkSoDbContext _linkSoDbContext;
+
+    public UserRepository(LinkSoDbContext linkSoDbContext)
     {
-        private LinkSoDbContext _linkSoDbContext;
+        _linkSoDbContext = linkSoDbContext;
+    }
 
-        public UserRepository(LinkSoDbContext linkSoDbContext)
+    public async Task<User> AddUser(string login, string email, Password password)
+    {
+        var newUser = new User
         {
-            _linkSoDbContext = linkSoDbContext;
-        }
+            Login = login,
+            Email = email,
+            Password = password
+        };
+        await _linkSoDbContext.Users.AddAsync(newUser);
+        return newUser;
+    }
 
-        public async Task<User> AddUser(string login, string email, Password password)
-        {
-            var newUser = new User
-            {
-                Login = login,
-                Email = email,
-                Password = password
-            };
-            await _linkSoDbContext.Users.AddAsync(newUser);
-            return newUser;
-        }
+    public async Task<User> GetUserByLogin(string login)
+    {
+        return await _linkSoDbContext.Users.FirstOrDefaultAsync(x => x.Login == login);
+    }
 
-        public async Task<User> GetUserByLogin(string login)
-        {
-            return await _linkSoDbContext.Users.FirstOrDefaultAsync(x => x.Login == login);
-        }
-
-        public async Task<User> GetUserById(int id)
-        {
-            return await _linkSoDbContext.Users.FindAsync(id);
-        }
+    public async Task<User> GetUserById(int id)
+    {
+        return await _linkSoDbContext.Users.FindAsync(id);
     }
 }

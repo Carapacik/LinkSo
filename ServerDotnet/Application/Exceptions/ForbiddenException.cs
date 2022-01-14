@@ -1,9 +1,8 @@
-﻿namespace Application.Exceptions
+﻿namespace Application.Exceptions;
+
+public class ForbiddenException : ValueException
 {
-    public class ForbiddenException : ValueException
+    public ForbiddenException(string message) : base(message)
     {
-        public ForbiddenException(string message) : base(message)
-        {
-        }
     }
 }

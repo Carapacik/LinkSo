@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
 
-namespace Domain
+namespace Domain;
+
+public interface IUnitOfWork
 {
-    public interface IUnitOfWork
-    {
-        Task Commit();
-    }
+    Task Commit();
 }

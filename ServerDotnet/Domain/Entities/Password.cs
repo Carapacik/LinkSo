@@ -1,8 +1,7 @@
-﻿namespace Domain.Entities
+﻿namespace Domain.Entities;
+
+public class Password
 {
-    public class Password
-    {
-        public string PasswordHash { get; set; }
-        public string PasswordSalt { get; set; }
-    }
+    public string PasswordHash { get; set; }
+    public string PasswordSalt { get; set; }
 }
